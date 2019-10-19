@@ -11,7 +11,7 @@ RandomSeed 1
 Parameter cellsize 5e-9
 
 Specify Oxs_BoxAtlas:atlas {
-  xrange {0 60e-9}
+  xrange {0 50e-9}
   yrange {0 600e-9}
   zrange {0  20e-9}
 }
@@ -45,7 +45,7 @@ Specify Oxs_Demag {}
 Specify Oxs_RungeKuttaEvolve:evolve {}
 
 Specify Oxs_TimeDriver [subst {
- basename rect_cobalt_single_x_60
+ basename rect_cobalt_single_x_50
  evolver :evolve
  stopping_dm_dt 0.1
  mesh :mesh
