@@ -1,5 +1,5 @@
 # MIF 2.1
-# MIF Example File: rect_cobalt_single.mif
+# MIF Example File: rect_cobalt_double_y.mif
 # Description: Hysteresis loop using Runge-Kutta evolver
 #     and time driver.
 
@@ -10,10 +10,25 @@ RandomSeed 1
 
 Parameter cellsize 5e-9
 
-Specify Oxs_BoxAtlas:atlas {
-  xrange {0 100e-9}
-  yrange {0 600e-9}
-  zrange {0  20e-9}
+Specify Oxs_MultiAtlas:atlas {
+   atlas { Oxs_BoxAtlas {
+       xrange {0 100e-9}
+       yrange {0 600e-9}
+       zrange {0  20e-9}
+       name left
+   }   }
+   atlas { Oxs_BoxAtlas {
+       xrange {100e-9 200e-9}
+       yrange {0 600e-9}
+       zrange {0  20e-9}
+       name gap
+   }   }
+   atlas { Oxs_BoxAtlas {
+       xrange {200e-9 400e-9}
+       yrange {0 600e-9}
+       zrange {0  20e-9}
+       name  right
+   }   }
 }
 
 Specify Oxs_RectangularMesh:mesh [subst {
@@ -31,12 +46,13 @@ Specify Oxs_UniformExchange {
    A  30e-12
 }
 
+# y direction B field
 Specify Oxs_UZeeman [subst {
   multiplier [expr {0.001/$mu0}]
   Hrange {
-     { 0   0  0   500  0  0   10 }
-     { 500  0  0  -500 0  0   20 }
-     { -500 0  0   500  0  0   20 }
+     { 0   0   0   0  500  0   50 }
+     { 0  500  0   0 -500  0   50 }
+     { 0 -500  0   0  500  0   50 }
   }
 }]
 
@@ -45,12 +61,27 @@ Specify Oxs_Demag {}
 Specify Oxs_RungeKuttaEvolve:evolve {}
 
 Specify Oxs_TimeDriver [subst {
- basename rect_cobalt_single
+ basename rect_cobalt_double
  evolver :evolve
  stopping_dm_dt 0.1
  mesh :mesh
- Ms 1400e3
- m0 { 0.01 1 0.01 }
+ Ms  { Oxs_AtlasScalarField {
+     atlas :atlas
+     values {
+        left  1400e3
+        gap   0.0
+        right 1400e3
+     }
+ }}
+ m0 { Oxs_AtlasVectorField {
+    atlas :atlas
+    norm 1
+    values {
+        left    { 0  1  0 }
+        gap     { 0  0  0 }
+	      right   { 0 -1  0 }
+    }
+  }}
 }]
 
 # Create destinations
