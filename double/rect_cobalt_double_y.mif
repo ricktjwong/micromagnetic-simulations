@@ -18,7 +18,7 @@ Specify Oxs_MultiAtlas:atlas {
        name left
    }   }
    atlas { Oxs_BoxAtlas {
-       xrange {200e-9 400e-9}
+       xrange {200e-9 300e-9}
        yrange {0 600e-9}
        zrange {0  20e-9}
        name  right
@@ -44,9 +44,9 @@ Specify Oxs_UniformExchange {
 Specify Oxs_UZeeman [subst {
   multiplier [expr {0.001/$mu0}]
   Hrange {
-     { 0   0   0   0  500  0   10 }
-     { 0  500  0   0 -500  0   20 }
-     { 0 -500  0   0  500  0   20 }
+     { 0   0   0   0  400  0   40 }
+     { 0  400  0   0 -400  0   40 }
+     { 0 -400  0   0  400  0   40 }
   }
 }]
 
@@ -55,7 +55,7 @@ Specify Oxs_Demag {}
 Specify Oxs_RungeKuttaEvolve:evolve {}
 
 Specify Oxs_TimeDriver [subst {
- basename rect_cobalt_double_y_universe
+ basename rect_cobalt_double_y_100_100
  evolver :evolve
  stopping_dm_dt 0.1
  mesh :mesh
