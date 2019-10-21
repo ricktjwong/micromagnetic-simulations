@@ -20,18 +20,18 @@ plt.rcParams['mathtext.default'] = 'regular'
 # plt.savefig('y-cobalt-single-sweep.pdf', dpi=1000)
 # plt.show()
 
-widths = [10 * j for j in range(10, 11)]
+# widths = [10 * j for j in range(10, 11)]
 
-for w in widths:
-    df = pd.read_csv('./data/single/cobalt/x/x-' + str(w) + 'nm.csv')
-    x = df[' Bx']
-    y = df[' mx']
-    plt.plot(x, y)
+# for w in widths:
+#     df = pd.read_csv('./data/single/cobalt/x/x-' + str(w) + 'nm.csv')
+#     x = df[' Bx']
+#     y = df[' mx']
+#     plt.plot(x, y)
 
-plt.savefig('x-cobalt-single-sweep.pdf', dpi=1000)
-plt.show()
+# plt.savefig('x-cobalt-single-sweep.pdf', dpi=1000)
+# plt.show()
 
-# widths = [10 * j for j in range(10, 14, 2)]
+# widths = [10 * j for j in range(10, 22, 2)]
 
 # for w in widths:
 #     df = pd.read_csv('./data/double/cobalt/vary_width/y/y-100-' + str(w) + '.csv')
@@ -42,7 +42,7 @@ plt.show()
 # plt.savefig('y-cobalt-double-sweep-width.pdf', dpi=1000)
 # plt.show()
 
-# widths = [10 * j for j in range(10, 22, 2)]
+# widths = [10 * j for j in range(12, 16, 2)]
 
 # for w in widths:
 #     df = pd.read_csv('./data/double/cobalt/vary_width/x/x-100-' + str(w) + '.csv')
@@ -53,15 +53,25 @@ plt.show()
 # plt.savefig('x-cobalt-double-sweep-width.pdf', dpi=1000)
 # plt.show()
 
-# widths = [10 * j for j in range(5, 16, 1)]
+widths = [10 * j for j in range(6, 16, 2)]
 
-# for w in widths:
-#     df = pd.read_csv('./data/double/cobalt/vary_gap/y/y-100-' + str(w) + '-150.csv')
-#     x = df[' By']
-#     y = df[' my']
-#     plt.figure()
-#     plt.plot(x, y)
-# plt.show()
+for w in widths:
+    df = pd.read_csv('./data/double/cobalt/vary_gap/y/y-100-' + str(w) + '-150.csv')
+    x = df[' By']
+    y = df[' my']
+    plt.plot(x, y)
 
-# plt.savefig('x-cobalt-double-sweep-width.pdf', dpi=1000)
+# plt.savefig('y-cobalt-double-sweep-gap.pdf', dpi=1000)
+plt.show()
+
+# df = pd.read_csv('./data/double/cobalt/vary_gap/y/y-100-60-150.csv')
+# x = df[' By']
+# y = df[' my']
+# plt.plot(x, y)
+
+# df = pd.read_csv('./data/double/cobalt/vary_gap/y/y-100-150-150.csv')
+# x = df[' By']
+# y = df[' my']
+# plt.plot(x, y)
+
 # plt.show()

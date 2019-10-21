@@ -11,7 +11,7 @@ RandomSeed 1
 Parameter cellsize 5e-9
 
 Specify Oxs_BoxAtlas:atlas {
-  xrange {0 90e-9}
+  xrange {0 100e-9}
   yrange {0 600e-9}
   zrange {0  20e-9}
 }
@@ -42,10 +42,12 @@ Specify Oxs_UZeeman [subst {
 
 Specify Oxs_Demag {}
 
-Specify Oxs_RungeKuttaEvolve:evolve {}
+Specify Oxs_RungeKuttaEvolve:evolve {
+  alpha 0.015
+}
 
 Specify Oxs_TimeDriver [subst {
- basename rect_cobalt_single_y_90nm
+ basename rect_cobalt_single_y_100nm
  evolver :evolve
  stopping_dm_dt 0.1
  mesh :mesh
@@ -54,12 +56,16 @@ Specify Oxs_TimeDriver [subst {
 }]
 
 # Create destinations
-Destination my_graph mmGraph
+# Destination my_graph mmGraph
 Destination my_archive mmArchive
-Destination my_display mmDisp
+# Destination my_archive2 mmArchive
+# Destination my_display mmDisp
+# Destination my_display2 mmDisp
 
 # Specify what should be saved
-Schedule DataTable my_graph Step 1
+# Schedule DataTable my_graph Step 1
 Schedule DataTable my_archive Step 1
-Schedule Oxs_TimeDriver::Magnetization my_display Stage 1
-Schedule Oxs_TimeDriver::Magnetization my_display Step 1
+# Schedule Oxs_Demag::Field my_archive2 Step 1
+# Schedule Oxs_TimeDriver::Magnetization my_display Stage 1
+# Schedule Oxs_TimeDriver::Magnetization my_display Step 1
+# Schedule Oxs_Demag::Field my_display2 Step 10
