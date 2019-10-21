@@ -50,7 +50,7 @@ Specify Oxs_TimeDriver [subst {
  stopping_dm_dt 0.1
  mesh :mesh
  Ms 800e3
- m0 { 1 0.01 0.01 }
+ m0 { 1 0 0 }
 }]
 
 # Create destinations

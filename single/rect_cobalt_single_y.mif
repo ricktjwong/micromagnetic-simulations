@@ -11,7 +11,7 @@ RandomSeed 1
 Parameter cellsize 5e-9
 
 Specify Oxs_BoxAtlas:atlas {
-  xrange {0 100e-9}
+  xrange {0 80e-9}
   yrange {0 600e-9}
   zrange {0  20e-9}
 }
@@ -21,10 +21,9 @@ Specify Oxs_RectangularMesh:mesh [subst {
   atlas :atlas
 }]
 
-Specify Oxs_CubicAnisotropy {
-  K1  520e3
-  axis1 {1 0 0}
-  axis2 {0 1 0}
+Specify Oxs_UniaxialAnisotropy {
+  K1   520e3
+  axis {0 0 1}
 }
 
 Specify Oxs_UniformExchange {
@@ -34,20 +33,18 @@ Specify Oxs_UniformExchange {
 Specify Oxs_UZeeman [subst {
   multiplier [expr {0.001/$mu0}]
   Hrange {
-     { 0   0   0   0  500  0   50 }
-     { 0  500  0   0 -500  0   50 }
-     { 0 -500  0   0  500  0   50 }
+     { 0   0   0   0  400  0  40 }
+     { 0  400  0   0 -400  0  40 }
+     { 0 -400  0   0  400  0  40 }
   }
 }]
 
 Specify Oxs_Demag {}
 
-Specify Oxs_RungeKuttaEvolve:evolve {
-  alpha 0.015
-}
+Specify Oxs_RungeKuttaEvolve:evolve {}
 
 Specify Oxs_TimeDriver [subst {
- basename rect_cobalt_single_y_100nm
+ basename rect_cobalt_single_y_80nm
  evolver :evolve
  stopping_dm_dt 0.1
  mesh :mesh
