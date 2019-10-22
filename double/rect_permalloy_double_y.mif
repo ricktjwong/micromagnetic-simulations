@@ -1,5 +1,5 @@
 # MIF 2.1
-# MIF Example File: rect_cobalt_double_x.mif
+# MIF Example File: rect_permalloy_double_y.mif
 # Description: Hysteresis loop using Runge-Kutta evolver
 #     and time driver.
 
@@ -18,7 +18,7 @@ Specify Oxs_MultiAtlas:atlas {
        name left
    }   }
    atlas { Oxs_BoxAtlas {
-       xrange {200e-9 300e-9}
+       xrange {140e-9 290e-9}
        yrange {0 600e-9}
        zrange {0  20e-9}
        name  right
@@ -30,22 +30,23 @@ Specify Oxs_RectangularMesh:mesh [subst {
   atlas :atlas
 }]
 
-Specify Oxs_UniaxialAnisotropy {
-  K1   0
-  axis {1 0 0}
+Specify Oxs_CubicAnisotropy {
+  K1  0
+  axis1 {1 0 0}
+  axis2 {0 1 0}
 }
 
 Specify Oxs_UniformExchange {
-   A  30e-12
+   A  13e-12
 }
 
-# x direction B field
+# y direction B field
 Specify Oxs_UZeeman [subst {
   multiplier [expr {0.001/$mu0}]
   Hrange {
-     {   0   0  0   400  0  0   40 }
-     {  400  0  0  -400  0  0   40 }
-     { -400  0  0   400  0  0   40 }
+     { 0   0   0   0  200  0   20 }
+     { 0  200  0   0 -200  0   20 }
+     { 0 -200  0   0  200  0   20 }
   }
 }]
 
@@ -54,16 +55,16 @@ Specify Oxs_Demag {}
 Specify Oxs_RungeKuttaEvolve:evolve {}
 
 Specify Oxs_TimeDriver [subst {
- basename rect_cobalt_double_x_100_100
+ basename rect_cobalt_double_y_100_40_150
  evolver :evolve
  stopping_dm_dt 0.1
  mesh :mesh
  Ms  { Oxs_AtlasScalarField {
      atlas :atlas
      values {
-        left      1400e3
+        left      800e3
         universe  0.0
-        right     1400e3
+        right     800e3
      }
  }}
  m0 { Oxs_AtlasVectorField {
@@ -72,7 +73,7 @@ Specify Oxs_TimeDriver [subst {
     values {
         left     { 0  1  0 }
         universe { 0  0  0 }
-	      right    { 0 -1  0 }
+	    right    { 0 -1  0 }
     }
   }}
 }]
