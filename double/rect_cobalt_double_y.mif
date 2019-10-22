@@ -18,7 +18,7 @@ Specify Oxs_MultiAtlas:atlas {
        name left
    }   }
    atlas { Oxs_BoxAtlas {
-       xrange {200e-9 300e-9}
+       xrange {140e-9 290e-9}
        yrange {0 600e-9}
        zrange {0  20e-9}
        name  right
@@ -31,8 +31,8 @@ Specify Oxs_RectangularMesh:mesh [subst {
 }]
 
 Specify Oxs_UniaxialAnisotropy {
-  K1   520e3
-  axis {0 0 1}
+  K1   0
+  axis {1 0 0}
 }
 
 Specify Oxs_UniformExchange {
@@ -54,7 +54,7 @@ Specify Oxs_Demag {}
 Specify Oxs_RungeKuttaEvolve:evolve {}
 
 Specify Oxs_TimeDriver [subst {
- basename rect_cobalt_double_y_100_100
+ basename rect_cobalt_double_y_100_40_150
  evolver :evolve
  stopping_dm_dt 0.1
  mesh :mesh
@@ -78,12 +78,12 @@ Specify Oxs_TimeDriver [subst {
 }]
 
 # Create destinations
-Destination my_graph mmGraph
+# Destination my_graph mmGraph
 Destination my_archive mmArchive
-Destination my_display mmDisp
+# Destination my_display mmDisp
 
 # Specify what should be saved
-Schedule DataTable my_graph Step 1
+# Schedule DataTable my_graph Step 1
 Schedule DataTable my_archive Step 1
-Schedule Oxs_TimeDriver::Magnetization my_display Stage 1
-Schedule Oxs_TimeDriver::Magnetization my_display Step 1
+# Schedule Oxs_TimeDriver::Magnetization my_display Stage 1
+# Schedule Oxs_TimeDriver::Magnetization my_display Step 1
