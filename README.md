@@ -9,7 +9,7 @@ Configuration files for OOMMF
 $ sudo apt-get install build-essential
 
 # Download OOMMF binary from website
-$ sudo apt-get install https://math.nist.gov/oommf/dist/oommf20a2_20190930.tar.gz
+$ wget https://math.nist.gov/oommf/dist/oommf20a2_20190930.tar.gz
 $ gunzip -c oommf20a2_20190930.tar.gz | tar xvf -
 
 # Download tcl
@@ -24,7 +24,7 @@ $ tclsh oommf.tcl +platform
 # Build oommf
 $ tclsh oommf.tcl pimake upgrade
 $ tclsh oommf.tcl pimake distclean
-$ tclsh pimake
+$ tclsh oommf.tcl pimake
 </pre>
 
 ### Running mif files using CLI
