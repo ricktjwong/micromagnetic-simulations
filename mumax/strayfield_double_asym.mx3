@@ -1,0 +1,63 @@
+SetGridsize(100, 180, 12)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+x1 := 100e-9
+x2 := 150e-9
+
+sep := 40e-9
+disp1 := x1/2 + sep/2
+disp2 := x2/2 + sep/2
+
+DefRegion(1, Cuboid(x1, 600e-9, 20e-9).transl(-disp1,0,0))
+DefRegion(2, Cuboid(x2, 600e-9, 20e-9).transl(disp2,0,0))
+
+print (disp1)
+print (disp2)
+Ms := 800e-12
+ExchangeE := 13e-12 
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0,1,0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1,0.5)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, uniform(0,-1,0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2,0.5)
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+relax()         // high-energy states best minimized by relax()
+
+saveas(m, "m_updown_doubleAsym_100_40_150")
+saveas(B_demag, "strayfield_updown_doubleAsym_100_40_150")
+
+// Repeat for up up
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0,1,0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1,0.5)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, uniform(0,1,0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2,0.5)
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+relax()         // high-energy states best minimized by relax()
+
+saveas(m, "m_upup_doubleAsym_100_40_150")
+saveas(B_demag, "strayfield_upup_doubleAsym_100_40_150")
