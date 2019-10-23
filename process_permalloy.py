@@ -17,11 +17,22 @@ def process_single_permalloy_y():
         x = df[' By']
         y = df[' my']
         plt.plot(x, y, label=str(w)+'nm')
-    # plt.savefig('y-cobalt-single-sweep.pdf', dpi=1000)
     plt.legend()
+    plt.savefig('y-permalloy-single-sweep.pdf', dpi=1000)
     plt.show()
 
-# process_single_cobalt_y()
-# process_single_permalloy_y()
-# process_double_cobalt_varygap_y()
-# process_double_cobalt_varywidth_y()
+
+def process_double_permalloy_varygap_y():
+    widths = [10 * j for j in range(4, 16, 2)]
+    for w in widths:
+        df = pd.read_csv('./data/double/permalloy/vary_gap/y/y-100-' + str(w) + '-150.txt')
+        x = df[' By']
+        y = df[' my']
+        plt.plot(x, y, label=str(w)+'nm')
+    plt.legend()
+    plt.savefig('y-permalloy-double-vary-gap.pdf', dpi=1000)
+    plt.show()
+
+
+process_single_permalloy_y()
+process_double_permalloy_varygap_y()

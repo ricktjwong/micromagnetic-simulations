@@ -18,7 +18,7 @@ Specify Oxs_MultiAtlas:atlas [subst {
        name left
    }}]   }
    
-    xrange {0 200e-9}
+  xrange {0 200e-9}
 	yrange {0 700e-9}
 	zrange {0 120e-9}
 }]
@@ -28,10 +28,9 @@ Specify Oxs_RectangularMesh:mesh [subst {
   atlas :atlas
 }]
 
-Specify Oxs_CubicAnisotropy {
-  K1  520e3
-  axis1 {1 0 0}
-  axis2 {0 1 0}
+Specify Oxs_UniaxialAnisotropy {
+  K1  0
+  axis {1 0 0}
 }
 
 Specify Oxs_UniformExchange {
@@ -77,14 +76,14 @@ Specify Oxs_TimeDriver [subst {
 # Create destinations
 Destination my_graph mmGraph
 Destination my_archive mmArchive
-# Destination my_archive2 mmArchive
+Destination my_archive2 mmArchive
 Destination my_display mmDisp
 Destination my_display2 mmDisp
 
 # Specify what should be saved
 Schedule DataTable my_graph Step 1
 Schedule DataTable my_archive Step 1
-# Schedule Oxs_Demag::Field my_archive2 Step 1
+Schedule Oxs_Demag::Field my_archive2 Step 1
 Schedule Oxs_TimeDriver::Magnetization my_display Stage 1
 Schedule Oxs_TimeDriver::Magnetization my_display Step 1
 Schedule Oxs_Demag::Field my_display2 Step 10

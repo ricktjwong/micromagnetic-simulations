@@ -19,7 +19,7 @@ $ sudo apt-get install tcl8.6-dev
 $ sudo apt-get install tk8.6-dev
 
 # Check if installation went okay
-$ cd ./oommf & tclsh oommf.tcl +platform
+$ cd ./oommf && tclsh oommf.tcl +platform
 
 # Build oommf
 $ tclsh oommf.tcl pimake upgrade
