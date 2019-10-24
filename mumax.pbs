@@ -2,7 +2,7 @@
 #!/bin/sh
 #
 ## ask PBS for time (format hh:mm:ss)
-#PBS -l walltime=24:00:00
+#PBS -l walltime=48:00:00
 #
 ## ask for one node with 16 cpus and total 2gb memory (per node)
 #PBS -l select=1:ncpus=1:ngpus=1:mem=16GB
@@ -14,7 +14,7 @@
 #
 #
 ##load application module
-module load mumax/3.9.3
+module load cuda/6.5 mumax/3.9.1
 #
 echo BeforeMuMax
 nvidia-smi -L
@@ -25,15 +25,15 @@ ls
 echo
 #
 ##command line
-mumax3 strayfield_6array.mx3
+mumax3-cuda6.5 strayfield_6array.mx3
 
-
+echo AfterMuMax
 #
 ##file management - Move output files to WORK directory
 ls
 mkdir $WORK/results
 cp -a * $WORK/results
-
+ls $WORK/results
 ## Diagnostics
 #
 echo ------------------------------------------------------------------------------------------------------------------
