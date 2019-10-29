@@ -58,19 +58,19 @@ def process_double_cobalt_varywidth_y():
 
 
 def process_double_cobalt_varywidth_x():
-    widths = [10 * j for j in range(10, 14, 2)]
+    widths = [10 * j for j in range(10, 16, 2)]
     for w in widths:
         df = pd.read_csv('./data/double/cobalt/vary_width/x/x-100-50-' + str(w) + '.txt')
         x = df[' Bx']
         y = df[' mx']
         plt.plot(x, y, label=str(w)+'nm')
     plt.legend()
-    # plt.savefig('x-cobalt-double-vary-width.pdf', dpi=1000)
+    plt.savefig('x-cobalt-double-vary-width.pdf', dpi=1000)
     plt.show()
 
 
 def process_double_cobalt_varygap_x():
-    widths = [10 * j for j in range(4, 16, 2)]
+    widths = [10 * j for j in range(4, 12, 2)]
     for w in widths:
         df = pd.read_csv('./data/double/cobalt/vary_gap/x/x-100-' + str(w) + '-150.txt')
         x = df[' Bx']
@@ -82,7 +82,8 @@ def process_double_cobalt_varygap_x():
 
 
 # process_single_cobalt_x()
-# process_single_cobalt_y()
+process_single_cobalt_y()
 # process_double_cobalt_varygap_y()
 # process_double_cobalt_varywidth_y()
-process_double_cobalt_varywidth_x()
+# process_double_cobalt_varywidth_x()
+# process_double_cobalt_varygap_x()

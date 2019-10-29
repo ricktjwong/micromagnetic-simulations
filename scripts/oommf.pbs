@@ -1,0 +1,48 @@
+## interpreter directive - this is a shell script
+#!/bin/sh
+#
+## ask PBS for time (format hh:mm:ss)
+#PBS -l walltime=24:00:00
+#
+## ask for one node with 16 cpus and total 2gb memory (per node)
+#PBS -l select=1:ncpus=4:ngpus=1:mem=8GB
+## Ask to join GPU queue
+#
+#
+#
+## ask PBS to email upon job termination
+#
+#
+##load application module
+module load gcc/8.2.0
+
+#
+##file management - Copy input file to TMPDIR
+echo $TMPDIR
+
+cp $WORK/Tip_Writing_Simulations/ScanangleVsUnifrom/disk.0.mif $TMPDIR
+
+
+mkdir -p $WORK/Tip_Writing_Simulations/ScanangleVsUnifrom/Results/0
+
+ls
+echo
+#
+##command line
+echo RunningCode
+
+tclsh $WORK/oommf/oommf.tcl boxsi disk.0.mif
+
+echo FinishedCode
+#
+##file management - Move output files to WORK directory
+
+ls
+echo CopiedFiles
+cp -a * $WORK/Tip_Writing_Simulations/ScanangleVsUnifrom/Results/0
+## Diagnostics
+#
+echo ------------------------------------------------------------------------------------------------------------------
+ls -la /tmp/
+nvidia-smi
+#
