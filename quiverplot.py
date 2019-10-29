@@ -11,8 +11,8 @@ def plot_3D(n: int):
     data_field = data.reshape(40, 140, 24, 3, order="F")
 
     Y, X, Z = np.meshgrid(np.arange(0, 140, 1),
-                        np.arange(0, 40, 1),
-                        np.arange(0, 24, 1))
+                          np.arange(0, 40, 1),
+                          np.arange(0, 24, 1))
 
     # sample every 5th
     X, Y, Z = X[::n, ::n, ::n], Y[::n, ::n, ::n], Z[::n, ::n, ::n]
@@ -58,7 +58,7 @@ def plot_2D_quiver_2(z: int):
     CS = ax.contour(X, Y, mag_slice)
     ax.clabel(CS, inline=1, fontsize=10)
     ax.set_aspect('equal')
-    # plt.savefig('single.png', dpi=1000)
+    # plt.savefig('6array.png', dpi=1000)
     plt.show()
 
 
