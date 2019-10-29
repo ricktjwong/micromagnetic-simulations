@@ -75,6 +75,6 @@ def plot_2D_stream(z: int):
     plt.show()
 
 # plot_3D(5)
-# plot_2D_quiver(0)
-plot_2D_quiver_2(0)
+plot_2D_quiver(0)
+# plot_2D_quiver_2(0)
 # plot_2D_stream(0)

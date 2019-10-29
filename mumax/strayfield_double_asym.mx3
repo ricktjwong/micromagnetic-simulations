@@ -13,7 +13,7 @@ DefRegion(2, Cuboid(x2, 600e-9, 20e-9).transl(disp2,0,0))
 
 print (disp1)
 print (disp2)
-Ms := 800e-12
+Ms := 800e3
 ExchangeE := 13e-12 
 
 Msat.SetRegion(1, Ms)

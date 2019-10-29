@@ -81,9 +81,21 @@ def process_double_cobalt_varygap_x():
     plt.show()
 
 
+def process_double_cobalt_mumax():
+    df = pd.read_csv('./cobalt_double_100-100-100.txt', delimiter="\t")
+    print(list(df.columns.values))
+    x = df['B_exty (T)']
+    y = df['my ()']
+    plt.plot(x, y)
+    plt.legend()
+    # plt.savefig('x-cobalt-double-vary-gap.pdf', dpi=1000)
+    plt.show()
+
+
 # process_single_cobalt_x()
-process_single_cobalt_y()
+# process_single_cobalt_y()
 # process_double_cobalt_varygap_y()
 # process_double_cobalt_varywidth_y()
 # process_double_cobalt_varywidth_x()
 # process_double_cobalt_varygap_x()
+process_double_cobalt_mumax()
