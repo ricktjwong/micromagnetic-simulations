@@ -82,7 +82,7 @@ def process_double_cobalt_varygap_x():
 
 
 def process_double_cobalt_mumax():
-    df = pd.read_csv('./cobalt_double_100-100-100.txt', delimiter="\t")
+    df = pd.read_csv('./cobalt_double-100-50-100.txt', delimiter="\t")
     print(list(df.columns.values))
     x = df['B_exty (T)']
     y = df['my ()']

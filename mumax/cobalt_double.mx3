@@ -1,8 +1,12 @@
 SetGridsize(60, 120, 4)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
-DefRegion(1, Cuboid(100e-9, 600e-9, 20e-9).transl(-100e-9,0,0))
-DefRegion(2, Cuboid(100e-9, 600e-9, 20e-9).transl(100e-9,0,0))
+func setRegions(w1 int, w2 int, gap int) {
+    DefRegion(1, Cuboid(w1, 600e-9, 20e-9).transl(-(w1/2 + gap/2), 0, 0))
+    DefRegion(2, Cuboid(w2, 600e-9, 20e-9).transl(w2/2 + gap/2, 0, 0))
+}
+
+setRegions(100e-9, 100e-9, 50e-9)
 
 Msat.SetRegion(1, 1400e3)
 m.SetRegion(1, uniform(0,1,0))
