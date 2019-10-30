@@ -98,13 +98,13 @@ def process_double_cobalt_mumax():
     plt.show()
 
 def process_single_cobalt_mumax():
-    df = pd.read_csv('./data/mumax/cobalt_single-100-anis.txt', delimiter="\t")
+    df = pd.read_csv('./data/mumax/cobalt_single-100-nowhitespace.txt', delimiter="\t")
     x = df['B_exty (T)']
     y = df['my ()']
     plt.plot(x, y)
     plt.legend()
     # plt.savefig('x-cobalt-double-vary-gap.pdf', dpi=1000)
-    df = pd.read_csv('./data/mumax/cobalt_single-100.txt', delimiter="\t")
+    df = pd.read_csv('./data/mumax/cobalt_single-100-anis-nowhitespace.txt', delimiter="\t")
     x = df['B_exty (T)']
     y = df['my ()']
     plt.plot(x, y)
