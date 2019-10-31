@@ -96,26 +96,49 @@ def process_double_cobalt_mumax():
     plt.legend()
     plt.show()
 
-def process_single_cobalt_mumax():
+
+def process_mumax_single_cobalt_x():
     widths = [10 * i for i in range(4, 12, 2)]
     for w in widths:
-        df = pd.read_csv('./data/mumax/single/y-' + str(w) + '.txt', delimiter="\t")
+        df = pd.read_csv('./data/mumax/single/cobalt/x-' + str(w) + '.txt', delimiter="\t")
+        x = df['B_extx (T)']
+        y = df['mx ()']
+        plt.plot(x, y, label=str(w)+'nm')
+        plt.legend()
+        # plt.savefig('x-cobalt-double-vary-gap.pdf', dpi=1000)
+    plt.show()
+
+
+def process_mumax_single_cobalt_y():
+    widths = [10 * i for i in range(4, 12, 2)]
+    for w in widths:
+        df = pd.read_csv('./data/mumax/single/cobalt/y-' + str(w) + '.txt', delimiter="\t")
         x = df['B_exty (T)']
         y = df['my ()']
         plt.plot(x, y, label=str(w)+'nm')
         plt.legend()
         # plt.savefig('x-cobalt-double-vary-gap.pdf', dpi=1000)
+    plt.show()
 
+
+def process_mumax_double_cobalt_y():
+    widths = [10 * i for i in range(8, 12, 2)]
+    for w in widths:
+        df = pd.read_csv('./data/mumax/double/cobalt/y-100-' + str(w) + '-100.txt', delimiter="\t")
+        x = df['B_exty (T)']
+        y = df['my ()']
+        plt.plot(x, y, label=str(w)+'nm')
+        plt.legend()
+        # plt.savefig('x-cobalt-double-vary-gap.pdf', dpi=1000)
+    plt.show()
 
 # process_single_cobalt_x()
-plt.figure()
-process_single_cobalt_y()
+# process_single_cobalt_y()
 # process_double_cobalt_varygap_y()
 # process_double_cobalt_varywidth_y()
 # process_double_cobalt_varywidth_x()
 # process_double_cobalt_varygap_x()
 # process_double_cobalt_mumax()
-plt.figure()
-process_single_cobalt_mumax()
-
-plt.show()
+# process_mumax_single_cobalt_y()
+# process_mumax_single_cobalt_x()
+process_mumax_double_cobalt_y()

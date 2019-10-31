@@ -7,8 +7,14 @@ gap := 100e-9
 trans1 := -(w1/2 + gap/2)
 trans2 := w2/2 + gap/2
 
-DefRegion(1, Cuboid(w1, 600e-9, 20e-9).transl(trans1, 0, 0))
-DefRegion(2, Cuboid(w2, 600e-9, 20e-9).transl(trans2, 0, 0))
+cuboid1 := Cuboid(w1, 600e-9, 20e-9)
+cuboid2 := Cuboid(w2, 600e-9, 20e-9)
+
+setgeom(cuboid1)
+setgeom(cuboid2)
+
+DefRegion(1, cuboid1.transl(trans1, 0, 0))
+DefRegion(2, cuboid2.transl(trans2, 0, 0))
 
 Msat.SetRegion(1, 1400e3)
 m.SetRegion(1, uniform(0, 1, 0))
