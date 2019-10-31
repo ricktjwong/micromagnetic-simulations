@@ -18,7 +18,7 @@ def process_single_permalloy_y():
         y = df[' my']
         plt.plot(x, y, label=str(w)+'nm')
     plt.legend()
-    plt.savefig('y-permalloy-single-sweep.pdf', dpi=1000)
+    # plt.savefig('y-permalloy-single-sweep.pdf', dpi=1000)
     plt.show()
 
 
@@ -30,9 +30,21 @@ def process_double_permalloy_varygap_y():
         y = df[' my']
         plt.plot(x, y, label=str(w)+'nm')
     plt.legend()
-    plt.savefig('y-permalloy-double-vary-gap.pdf', dpi=1000)
+    # plt.savefig('y-permalloy-double-vary-gap.pdf', dpi=1000)
+    plt.show()
+
+
+def process_mumax_single_permalloy_y():
+    widths = [10 * i for i in range(8, 12, 2)]
+    for w in widths:
+        df = pd.read_csv('./data/mumax/single/permalloy/y-' + str(w) + '.txt', delimiter="\t")
+        x = df['B_exty (T)']
+        y = df['my ()']
+        plt.plot(x, y, label=str(w)+'nm')
+        plt.legend()
     plt.show()
 
 
 process_single_permalloy_y()
-process_double_permalloy_varygap_y()
+# process_double_permalloy_varygap_y()
+process_mumax_single_permalloy_y()

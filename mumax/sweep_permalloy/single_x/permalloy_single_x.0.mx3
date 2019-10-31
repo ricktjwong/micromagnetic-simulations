@@ -1,6 +1,6 @@
-w := 60e-9
+w := 100e-9
 
-SetGridsize(w/5e-9, 120, 4)
+SetGridsize(20, 120, 4)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 DefRegion(1, Cuboid(w, 600e-9, 20e-9).transl(0, 0, 0))
@@ -20,25 +20,25 @@ Aex.SetRegion(0, 0)
 
 relax()         // high-energy states best minimized by relax()
 
-Bmax  := 300.0e-3
-Bstep := 1e-3
+Bmax  := 400.0e-3
+Bstep := 0.1e-3
 MinimizerStop = 1e-6
 TableAdd(B_ext)
 
 for B:=0.0; B<=Bmax; B+=Bstep{
-    B_ext = vector(0, B, 0)
+    B_ext = vector(B, 0, 0)
     minimize()   // small changes best minimized by minimize()
     tablesave()
 }
 
 for B:=Bmax; B>=-Bmax; B-=Bstep{
-    B_ext = vector(0, B, 0)
+    B_ext = vector(B, 0, 0)
     minimize()   // small changes best minimized by minimize()
     tablesave()
 }
 
 for B:=-Bmax; B<=Bmax; B+=Bstep{
-    B_ext = vector(0, B, 0)
+    B_ext = vector(B, 0, 0)
     minimize()   // small changes best minimized by minimize()
     tablesave()
 }

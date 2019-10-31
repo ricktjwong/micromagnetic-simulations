@@ -1,6 +1,6 @@
-w := 80e-9
+w := 60e-9
 
-SetGridsize(w/5e-9, 120, 4)
+SetGridsize(12, 120, 4)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 DefRegion(1, Cuboid(w, 600e-9, 20e-9).transl(0, 0, 0))
