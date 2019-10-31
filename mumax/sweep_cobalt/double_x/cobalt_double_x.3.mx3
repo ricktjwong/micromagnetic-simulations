@@ -1,0 +1,52 @@
+SetGridsize(72, 120, 4)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+w1 := 100e-9
+w2 := 100e-9
+gap := 160e-9
+trans1 := -(w1/2 + gap/2)
+trans2 := w2/2 + gap/2
+
+DefRegion(1, Cuboid(w1, 600e-9, 20e-9).transl(trans1, 0, 0))
+DefRegion(2, Cuboid(w2, 600e-9, 20e-9).transl(trans2, 0, 0))
+
+Msat.SetRegion(1, 1400e3)
+m.SetRegion(1, uniform(0, 1, 0))
+Aex.SetRegion(1, 30e-12)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1, 0.015)
+
+Msat.SetRegion(2, 1400e3)
+m.SetRegion(2, uniform(0, -1, 0))
+Aex.SetRegion(2, 30e-12)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2, 0.015)
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+
+relax()         // high-energy states best minimized by relax()
+
+Bmax  := 400.0e-3
+Bstep := 0.1e-3
+MinimizerStop = 1e-6
+TableAdd(B_ext)
+
+for B:=0.0; B<=Bmax; B+=Bstep{
+    B_ext = vector(B, 0, 0)
+    minimize()   // small changes best minimized by minimize()
+    tablesave()
+}
+
+for B:=Bmax; B>=-Bmax; B-=Bstep{
+    B_ext = vector(B, 0, 0)
+    minimize()   // small changes best minimized by minimize()
+    tablesave()
+}
+
+for B:=-Bmax; B<=Bmax; B+=Bstep{
+    B_ext = vector(B, 0, 0)
+    minimize()   // small changes best minimized by minimize()
+    tablesave()
+}
