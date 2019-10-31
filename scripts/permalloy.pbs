@@ -22,12 +22,12 @@ echo BeforeMuMax
 nvidia-smi -L
 #
 ##file management - Copy input file to TMPDIR
-cp $WORK/oommf-simulations/mumax/cobalt_single.$PBS_ARRAY_INDEX.mx3 $TMPDIR
+cp $WORK/oommf-simulations/mumax/permalloy_single.$PBS_ARRAY_INDEX.mx3 $TMPDIR
 ls
 echo
 #
 ##command line
-mumax3-cuda6.5 cobalt_single.mx3
+mumax3-cuda6.5 permalloy_single.$PBS_ARRAY_INDEX.mx3
 
 echo AfterMuMax
 #
