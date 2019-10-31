@@ -35,7 +35,7 @@ def process_double_permalloy_varygap_y():
 
 
 def process_mumax_single_permalloy_y():
-    widths = [10 * i for i in range(8, 12, 2)]
+    widths = [10 * i for i in range(4, 12, 2)]
     for w in widths:
         df = pd.read_csv('./data/mumax/single/permalloy/y-' + str(w) + '.txt', delimiter="\t")
         x = df['B_exty (T)']
@@ -45,6 +45,17 @@ def process_mumax_single_permalloy_y():
     plt.show()
 
 
-process_single_permalloy_y()
+def process_mumax_single_permalloy_x():
+    widths = [10 * i for i in range(4, 12, 2)]
+    for w in widths:
+        df = pd.read_csv('./data/mumax/single/permalloy/x-' + str(w) + '.txt', delimiter="\t")
+        x = df['B_extx (T)']
+        y = df['mx ()']
+        plt.plot(x, y, label=str(w)+'nm')
+        plt.legend()
+    plt.show()
+
+# process_single_permalloy_y()
 # process_double_permalloy_varygap_y()
+process_mumax_single_permalloy_x()
 process_mumax_single_permalloy_y()
