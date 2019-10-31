@@ -1,14 +1,17 @@
-w := 100e-9
+w := 60e-9
 
 SetGridsize(w/5e-9, 120, 4)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 DefRegion(1, Cuboid(w, 600e-9, 20e-9).transl(0, 0, 0))
 
-Msat.SetRegion(1, 1400e3)
+Ms := 800e3
+ExchangeE := 13e-12 
+
+Msat.SetRegion(1, Ms)
 m.SetRegion(1, uniform(0, 1, 0))
-Aex.SetRegion(1, 30e-12)
-alpha.SetRegion(1, 0.015)
+Aex.SetRegion(1, ExchangeE)
+alpha.SetRegion(1, 0.01)
 Ku1.SetRegion(1, 0)
 
 Msat.SetRegion(0, 0)
