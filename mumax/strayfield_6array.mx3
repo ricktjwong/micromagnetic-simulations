@@ -2,7 +2,7 @@ SetGridsize(252, 200, 12)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 sep := 100e-9
-x1 := 100e-9
+x1 := 200e-9
 x2 := 120e-9
 
 disp_n1 := sep/2 + x1/2
@@ -65,5 +65,7 @@ Kc1.SetRegion(0, 0)
 
 relax()         // high-energy states best minimized by relax()
 
-saveas(m, "m_updown_6array_100_100_120")
-saveas(B_demag, "strayfield_updown_6array_100_100_120")
+OutputFormat = OVF2_TEXT
+
+saveas(m, "m_updown_6array_100_200_120")
+saveas(B_demag, "strayfield_updown_6array_100_200_120")
