@@ -22,10 +22,6 @@ Aex.SetRegion(2, 30e-12)
 Ku1.SetRegion(2, 0)
 alpha.SetRegion(2, 0.015)
 
-Msat.SetRegion(0, 0)
-m.SetRegion(0, uniform(0,0,0))
-Aex.SetRegion(0, 0)
-
 relax()         // high-energy states best minimized by relax()
 
 Bmax  := 400.0e-3
