@@ -30,6 +30,7 @@ def process_single_cobalt_y():
         plt.plot(x, y, label=str(w)+'nm')
     plt.legend()
     # plt.savefig('y-cobalt-single-sweep.pdf', dpi=1000)
+    plt.show()
 
 
 def process_double_cobalt_varygap_y():
@@ -40,7 +41,7 @@ def process_double_cobalt_varygap_y():
         y = df[' my']
         plt.plot(x, y, label=str(w)+'nm')
     plt.legend()
-    plt.savefig('y-cobalt-double-vary-gap.pdf', dpi=1000)
+    # plt.savefig('y-cobalt-double-vary-gap.pdf', dpi=1000)
     plt.show()
 
 
@@ -105,7 +106,7 @@ def process_mumax_single_cobalt_x():
         y = df['mx ()']
         plt.plot(x, y, label=str(w)+'nm')
         plt.legend()
-        # plt.savefig('x-cobalt-double-vary-gap.pdf', dpi=1000)
+    # plt.savefig('x-cobalt-single.pdf', dpi=1000)
     plt.show()
 
 
@@ -117,7 +118,7 @@ def process_mumax_single_cobalt_y():
         y = df['my ()']
         plt.plot(x, y, label=str(w)+'nm')
         plt.legend()
-        # plt.savefig('x-cobalt-double-vary-gap.pdf', dpi=1000)
+    # plt.savefig('y-cobalt-single.pdf', dpi=1000)
     plt.show()
 
 
@@ -129,7 +130,7 @@ def process_mumax_double_cobalt_x():
         y = df['mx ()']
         plt.plot(x, y, label=str(w)+'nm')
         plt.legend()
-        # plt.savefig('x-cobalt-double-vary-gap.pdf', dpi=1000)
+    # plt.savefig('x-cobalt-double-vary-gap.pdf', dpi=1000)
     plt.show()
 
 
@@ -141,7 +142,7 @@ def process_mumax_double_cobalt_y():
         y = df['my ()']
         plt.plot(x, y, label=str(w)+'nm')
         plt.legend()
-    plt.savefig('y-cobalt-double-vary-gap.pdf', dpi=1000)
+    # plt.savefig('y-cobalt-double-vary-gap.pdf', dpi=1000)
     plt.show()
 
 
@@ -154,13 +155,13 @@ def test():
 
 # process_single_cobalt_x()
 # process_single_cobalt_y()
-# process_double_cobalt_varygap_y()
+process_double_cobalt_varygap_y()
 # process_double_cobalt_varywidth_y()
 # process_double_cobalt_varywidth_x()
 # process_double_cobalt_varygap_x()
 # process_double_cobalt_mumax()
 # process_mumax_single_cobalt_y()
 # process_mumax_single_cobalt_x()
-process_mumax_double_cobalt_x()
-# process_mumax_double_cobalt_y()
+# process_mumax_double_cobalt_x()
+process_mumax_double_cobalt_y()
 # test()

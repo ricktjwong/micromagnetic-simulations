@@ -42,6 +42,7 @@ def process_mumax_single_permalloy_y():
         y = df['my ()']
         plt.plot(x, y, label=str(w)+'nm')
         plt.legend()
+    # plt.savefig('y-permalloy-single.pdf', dpi=1000)
     plt.show()
 
 
@@ -53,9 +54,10 @@ def process_mumax_single_permalloy_x():
         y = df['mx ()']
         plt.plot(x, y, label=str(w)+'nm')
         plt.legend()
+    # plt.savefig('x-permalloy-single.pdf', dpi=1000)
     plt.show()
 
 # process_single_permalloy_y()
 # process_double_permalloy_varygap_y()
-process_mumax_single_permalloy_x()
-process_mumax_single_permalloy_y()
+# process_mumax_single_permalloy_x()
+# process_mumax_single_permalloy_y()

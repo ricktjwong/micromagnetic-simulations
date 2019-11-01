@@ -87,11 +87,12 @@ def get_meta_data(file_path: str):
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_100_100.ovf", zslice=0)
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_150_100.ovf", zslice=0)
 
-plot_2D_quiver(file_path="./data/stray_field/processed/permalloy_6array.txt", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/processed/permalloy_6array.txt", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/processed/strayfield_updown_6array_100_200_120.ovf", zslice=0)
 
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_200_100.ovf", zslice=0)
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_200_100.ovf", zslice=0)
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_150_100.ovf", zslice=0)
-# plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_200_100.ovf", zslice=0)
+plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_200_100.ovf", zslice=0)
 
 # plot_2D_stream(0)
