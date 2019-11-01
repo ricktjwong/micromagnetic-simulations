@@ -1,6 +1,13 @@
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
+
+plt.style.use('seaborn-bright')
+plt.rcParams['font.family'] = 'Times New Roman'
+plt.rcParams['lines.linewidth'] = 1
+plt.rcParams.update({'figure.autolayout': True})
+plt.rcParams['mathtext.default'] = 'regular'
 
 
 def plot_3D(n: int):
@@ -28,26 +35,9 @@ def plot_3D(n: int):
     plt.show()
 
 
-def plot_2D_quiver(z: int):
-    data = np.array(np.loadtxt('./data/stray_field/processed/rect_single_cobalt.txt')) * 0.001254
-    data_field = data.reshape(40, 140, 24, 3, order="F")
-    u, v, w = data_field[:,:,:,0], data_field[:,:,:,1], data_field[:,:,:,2]
-    mag = (u * u + v * v + w * w) ** 0.5
-    mag_slice = mag[:,:,z]
-    Y, X = np.meshgrid(np.arange(0, 140, 1), np.arange(0, 40, 1))
-    fig, ax = plt.subplots()
-    # Choose a z slice
-    ax.quiver(X, Y, u[:,:,z], v[:,:,z], 1)
-    CS = ax.contour(X, Y, mag_slice)
-    ax.clabel(CS, inline=1, fontsize=10)
-    ax.set_aspect('equal')
-    # plt.savefig('single.png', dpi=1000)
-    plt.show()
-
-
-def plot_2D_quiver_2(file, ovf_format, zslice: int):
-    x,y,z, _,_,_ = get_xyz_nodes(file, ovf_format)
-    data = np.array(np.loadtxt(file))
+def plot_2D_quiver(file_path: str, zslice: int):
+    x,y,z, _,_,_ = get_meta_data(file_path)
+    data = np.array(np.loadtxt(file_path))
     data_field = data.reshape(x, y, z, 3, order="F")
     u, v, w = data_field[:,:,:,0], data_field[:,:,:,1], data_field[:,:,:,2]
     mag = (u * u + v * v + w * w) ** 0.5
@@ -56,10 +46,14 @@ def plot_2D_quiver_2(file, ovf_format, zslice: int):
     fig, ax = plt.subplots()
     # Choose a z slice
     ax.quiver(X, Y, u[:,:,zslice], v[:,:,zslice], 1)
-    CS = ax.contour(X, Y, mag_slice)
-    ax.clabel(CS, inline=1, fontsize=10)
+    CS = ax.contour(X, Y, mag_slice, 12, linewidths=[1])
+    ax.clabel(CS, inline=1, fontsize=8)
     ax.set_aspect('equal')
-    # plt.savefig('single.png', dpi=1000)
+    # rect1 = patches.Rectangle((10, 30), 20, 120, linewidth=1, edgecolor='r', facecolor='none')
+    # rect2 = patches.Rectangle((70, 30), 24, 120, linewidth=1, edgecolor='r', facecolor='none')
+    # ax.add_patch(rect1)
+    # ax.add_patch(rect2)
+    # plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     plt.show()
 
 
@@ -75,70 +69,26 @@ def plot_2D_stream(z: int):
     ax.set_aspect('equal')
     plt.show()
 
-def get_xyz_nodes(file, ovf_format):
-    with open(file) as current_file:
-        if ovf_format == "mumax_v1" :
-            for i, line in enumerate(current_file):
-                if i == 11:
-                    x_step = float(line[13:])
-                if i == 12:
-                    y_step = float(line[13:])
-                if i == 13:
-                    z_step = float(line[13:])
-                    
-                if i == 20:
-                    x_nodes = int(float(line[10:]))
-                if i == 21:
-                    y_nodes = int(float(line[10:]))
-                if i == 22:
-                    z_nodes = int(float(line[10:]))
-                
-                if i > 23:
-                    break
-                
-        if ovf_format == "mumax_v2" :
-            for i, line in enumerate(current_file):
-                if i == 23:
-                    x_step = float(line[13:])
-                if i == 24:
-                    y_step = float(line[13:])
-                if i == 25:
-                    z_step = float(line[13:])
-                    
-                if i == 20:
-                    x_nodes = int(float(line[10:]))
-                if i == 21:
-                    y_nodes = int(float(line[10:]))
-                if i == 22:
-                    z_nodes = int(float(line[10:]))
-                
-                if i > 26:
-                    break
-        
-        elif ovf_format == "oommf" :
-            for i, line in enumerate(current_file):
-                if i == 11:
-                    x_step = float(line[13:])
-                if i == 12:
-                    y_step = float(line[13:])
-                if i == 13:
-                    z_step = float(line[13:])
-                
-                if i == 14:
-                    x_nodes = int(float(line[10:]))
-                if i == 15:
-                    y_nodes = int(float(line[10:]))
-                if i == 16:
-                    z_nodes = int(float(line[10:]))
-                    
-                if i > 17:
-                    break
-            
-    return x_nodes, y_nodes, z_nodes, x_step, y_step, z_step
-"
+
+def get_meta_data(file_path: str):
+    headers = {}
+    with open(file_path) as f:
+        for line in f:
+            if line[0] != '#': break
+            key_value = line.split('# ')[1].split(':')
+            key, value = key_value[0], key_value[1].split('\n')[0].strip()
+            headers[key] = value
+    return int(headers['xnodes']), int(headers['ynodes']), int(headers['znodes']), \
+           float(headers['xstepsize']), float(headers['ystepsize']), float(headers['zstepsize'])
+
+
 # plot_3D(5)
-# plot_2D_quiver(0)
-plot_2D_quiver_2(file = "../data/stray_field/processed/test_ovf1text.ovf", ovf_format = "mumax_v1", zslice = 0)
+# plot_2D_quiver(file_path="./data/stray_field/processed/double_100_x_120/strayfield_updown_doubleAsym_100_200_120.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_100_100.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_150_100.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_200_100.ovf", zslice=0)
+plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_200_100.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_150_100.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_200_100.ovf", zslice=0)
+
 # plot_2D_stream(0)
-
-
