@@ -49,11 +49,11 @@ def plot_2D_quiver(file_path: str, zslice: int):
     CS = ax.contour(X, Y, mag_slice, 12, linewidths=[1])
     ax.clabel(CS, inline=1, fontsize=8)
     ax.set_aspect('equal')
-    # rect1 = patches.Rectangle((10, 30), 20, 120, linewidth=1, edgecolor='r', facecolor='none')
-    # rect2 = patches.Rectangle((70, 30), 24, 120, linewidth=1, edgecolor='r', facecolor='none')
-    # ax.add_patch(rect1)
-    # ax.add_patch(rect2)
-    plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
+    rect1 = patches.Rectangle((10, 30), 20, 120, linewidth=1, edgecolor='r', facecolor='none')
+    rect2 = patches.Rectangle((70, 30), 24, 120, linewidth=1, edgecolor='r', facecolor='none')
+    ax.add_patch(rect1)
+    ax.add_patch(rect2)
+    # plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     plt.show()
 
 
@@ -83,7 +83,7 @@ def get_meta_data(file_path: str):
 
 
 # plot_3D(5)
-# plot_2D_quiver(file_path="./data/stray_field/processed/double_100_x_120/strayfield_updown_doubleAsym_100_200_120.ovf", zslice=0)
+plot_2D_quiver(file_path="./data/stray_field/processed/double_100_x_120/strayfield_updown_doubleAsym_100_200_120.ovf", zslice=0)
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_100_100.ovf", zslice=0)
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_150_100.ovf", zslice=0)
 
@@ -93,6 +93,6 @@ def get_meta_data(file_path: str):
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_200_100.ovf", zslice=0)
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_200_100.ovf", zslice=0)
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_150_100.ovf", zslice=0)
-plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_200_100.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_200_100.ovf", zslice=0)
 
 # plot_2D_stream(0)

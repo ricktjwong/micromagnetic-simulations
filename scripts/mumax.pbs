@@ -21,12 +21,12 @@ echo BeforeMuMax
 nvidia-smi -L
 #
 ##file management - Copy input file to TMPDIR
-cp $WORK/oommf-simulations/mumax/sweep_cobalt/double_y/cobalt_double_y.0.mx3 $TMPDIR
+cp $WORK/oommf-simulations/mumax/shape/hemisphere_capped.mx3 $TMPDIR
 ls
 echo
 #
 ##command line
-mumax3-cuda6.5 cobalt_double_y.0.mx3
+mumax3-cuda6.5 hemisphere_capped.mx3
 
 echo AfterMuMax
 #
