@@ -7,13 +7,13 @@ SetCellsize(5e-9, 5e-9, 5e-9)
 Ms := 800e3
 ExchangeE := 13e-12 
 
-cyl := Cylinder(100e-9, 600e-9).RotX(pi/2)
+Cylinder(100e-9, 600e-9).RotX(pi/2)
 
-sphere := Ellipsoid(50e-9, 50e-9, 50e-9)
-cub := Cuboid(100e-9, 50e-9, 100e-9).transl(0, 25e-9, 0)
-hemisphere := sphere.intersect(cub).transl(0, 300e-9, 0)
+Ellipsoid(50e-9, 50e-9, 50e-9)
+Cuboid(100e-9, 100e-9, 100e-9).transl(0, 50e-9, 0)
+hemisphere := ellipsoid.intersect(cuboid).transl(0, 300e-9, 0)
 
-hemisphereTip := cyl.add(hemisphere)
+hemisphereTip := cylinder.add(hemisphere)
 
 DefRegion(1, hemisphereTip)
 saveas(geom, "hemisphere")
