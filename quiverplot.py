@@ -83,7 +83,7 @@ def get_meta_data(file_path: str):
 
 
 # plot_3D(5)
-plot_2D_quiver(file_path="./data/stray_field/processed/double_100_x_120/strayfield_updown_doubleAsym_100_200_120.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/processed/double_100_x_120/strayfield_updown_doubleAsym_100_200_120.ovf", zslice=0)
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_100_100.ovf", zslice=0)
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_100_150_100.ovf", zslice=0)
 
@@ -96,3 +96,5 @@ plot_2D_quiver(file_path="./data/stray_field/processed/double_100_x_120/strayfie
 # plot_2D_quiver(file_path="./data/stray_field/processed/two_rows/strayfield_2rows_staggered_100_200_100.ovf", zslice=0)
 
 # plot_2D_stream(0)
+
+plot_2D_quiver(file_path="./data/stray_field/strayfield_one_hemisphere_tip.ovf", zslice=0)

@@ -3,26 +3,24 @@ OutputFormat = OVF1_TEXT
 SetGridsize(30, 160, 30)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
-print ("Set ok")
-
 Ms := 800e3
 ExchangeE := 13e-12 
 
-cylinder := Cylinder(100e-9, 600e-9).RotX(pi/2)
-
-print ("Cylinder ok")
+cyl := Cylinder(100e-9, 600e-9).RotX(pi/2)
 
 sphere := Ellipsoid(50e-9, 50e-9, 50e-9)
-cuboid := Cuboid(100e-9, 50e-9, 100e-9).transl(0, 25e-9, 0)
-hemisphere := sphere.intersect(cuboid).transl(0, 300e-9, 0)
+cub := Cuboid(100e-9, 50e-9, 100e-9).transl(0, 25e-9, 0)
+hemisphere := sphere.intersect(cub).transl(0, 300e-9, 0)
 
-print ("SPhere ok")
-
-hemisphereTip := cylinder.add(hemisphere)
-
-print ("hemiSPhere ok")
+hemisphereTip := cyl.add(hemisphere)
 
 DefRegion(1, hemisphereTip)
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0, 1, 0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1, 0.01)
 
 Msat.SetRegion(0, 0)
 m.SetRegion(0, uniform(0,0,0))
