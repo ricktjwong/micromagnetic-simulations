@@ -97,5 +97,5 @@ def get_meta_data(file_path: str):
 
 # plot_2D_stream(0)
 
-plot_2D_quiver(file_path="./data/stray_field/strayfield_one_hemisphere_tip.ovf", zslice=0)
-# plot_2D_quiver(file_path="./data/stray_field/strayfield_double_hemisphere_tip_100_100_100.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/strayfield_one_hemisphere_tip.ovf", zslice=0)
+plot_2D_quiver(file_path="./data/stray_field/strayfield_double_hemisphere_tip_100_100_100.ovf", zslice=0)
