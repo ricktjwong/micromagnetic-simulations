@@ -1,0 +1,31 @@
+OutputFormat = OVF1_TEXT
+EdgeSmooth = 8
+
+SetGridsize(30, 160, 30)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+Ms := 800e3
+ExchangeE := 13e-12 
+
+cyl := Cylinder(100e-9, 600e-9).RotX(pi/2)
+coneTip := Cone(100e-9, 100e-9).RotX(pi/2).transl(0, 650e-9)
+
+conicalTip := cyl.add(coneTip)
+
+DefRegion(1, conicalTip)
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0, 1, 0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1, 0.01)
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+relax()         // high-energy states best minimized by relax()
+
+saveas(m, "m_one_conical_tip")
+saveas(B_demag, "strayfield_one_conical_tip")
