@@ -1,4 +1,5 @@
 OutputFormat = OVF1_TEXT
+EdgeSmooth = 8
 
 SetGridsize(30, 160, 30)
 SetCellsize(5e-9, 5e-9, 5e-9)
@@ -15,6 +16,7 @@ hemisphere := sphere.intersect(cub).transl(0, 300e-9, 0)
 hemisphereTip := cyl.add(hemisphere)
 
 DefRegion(1, hemisphereTip)
+saveas(geom, "hemisphere")
 
 Msat.SetRegion(1, Ms)
 m.SetRegion(1, uniform(0, 1, 0))
