@@ -9,14 +9,13 @@ ExchangeE := 13e-12
 
 cyl := Cylinder(100e-9, 600e-9).RotX(pi/2)
 
-sphere := Ellipsoid(50e-9, 50e-9, 50e-9)
+sphere := Ellipsoid(100e-9, 100e-9, 100e-9)
 cub := Cuboid(100e-9, 100e-9, 100e-9).transl(0, 50e-9, 0)
 hemisphere := sphere.intersect(cub).transl(0, 300e-9, 0)
 
 hemisphereTip := cyl.add(hemisphere)
 
 DefRegion(1, hemisphereTip)
-saveas(geom, "hemisphere")
 
 Msat.SetRegion(1, Ms)
 m.SetRegion(1, uniform(0, 1, 0))

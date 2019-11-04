@@ -6,23 +6,22 @@ x := 100e-9
 
 disp := sep/2 + x/2
 Ms := 800e-12
-ExchangeE := 13e-12 
+ExchangeE := 13e-12
 
-
-DefRegion(1, Cuboid(x, 600e-9, 20e-9).transl(-disp,0,0))
-DefRegion(2, Cuboid(x, 600e-9, 20e-9).transl(disp,0,0))
+DefRegion(1, Cuboid(x, 600e-9, 20e-9).transl(-disp, 0, 0))
+DefRegion(2, Cuboid(x, 600e-9, 20e-9).transl(disp, 0, 0))
 
 Msat.SetRegion(1, Ms)
 m.SetRegion(1, uniform(0,1,0))
 Aex.SetRegion(1, ExchangeE)
 Ku1.SetRegion(1, 0)
-alpha.SetRegion(1,0.5)
+alpha.SetRegion(1, 0.5)
 
 Msat.SetRegion(2, Ms)
 m.SetRegion(2, uniform(0,-1,0))
 Aex.SetRegion(2, ExchangeE)
 Ku1.SetRegion(2, 0)
-alpha.SetRegion(2,0.5)
+alpha.SetRegion(2, 0.5)
 
 Msat.SetRegion(0, 0)
 m.SetRegion(0, uniform(0,0,0))

@@ -1,7 +1,7 @@
 OutputFormat = OVF1_TEXT
 EdgeSmooth = 8
 
-SetGridsize(30, 160, 30)
+SetGridsize(80, 200, 30)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 Ms := 800e3
@@ -12,15 +12,14 @@ disp := sep/2 + diameter/2
 
 cyl := Cylinder(diameter, 600e-9).RotX(pi/2)
 
-sphere := Ellipsoid(50e-9, 50e-9, 50e-9)
+sphere := Ellipsoid(100e-9, 100e-9, 100e-9)
 cub := Cuboid(100e-9, 100e-9, 100e-9).transl(0, 50e-9, 0)
 hemisphere := sphere.intersect(cub).transl(0, 300e-9, 0)
 
 hemisphereTip := cyl.add(hemisphere)
 
-DefRegion(1, hemisphereTip.transl(-disp))
-DefRegion(2, hemisphereTip.transl(disp))
-saveas(geom, "hemisphere")
+DefRegion(1, hemisphereTip.transl(-disp, 0 ,0))
+DefRegion(2, hemisphereTip.transl(disp, 0, 0))
 
 Msat.SetRegion(1, Ms)
 m.SetRegion(1, uniform(0, 1, 0))

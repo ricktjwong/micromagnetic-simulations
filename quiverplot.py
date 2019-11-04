@@ -53,7 +53,7 @@ def plot_2D_quiver(file_path: str, zslice: int):
     # rect2 = patches.Rectangle((70, 30), 24, 120, linewidth=1, edgecolor='r', facecolor='none')
     # ax.add_patch(rect1)
     # ax.add_patch(rect2)
-    # plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
+    plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     plt.show()
 
 
@@ -98,3 +98,4 @@ def get_meta_data(file_path: str):
 # plot_2D_stream(0)
 
 plot_2D_quiver(file_path="./data/stray_field/strayfield_one_hemisphere_tip.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/strayfield_double_hemisphere_tip_100_100_100.ovf", zslice=0)
