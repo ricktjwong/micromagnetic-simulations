@@ -46,7 +46,7 @@ def plot_2D_quiver(file_path: str, zslice: int):
     fig, ax = plt.subplots()
     # Choose a z slice
     ax.quiver(X, Y, u[:,:,zslice], v[:,:,zslice], 1)
-    CS = ax.contour(X, Y, mag_slice, 30, linewidths=[1])
+    CS = ax.contour(X, Y, mag_slice, 20, linewidths=[1])
     ax.clabel(CS, inline=1, fontsize=8)
     ax.set_aspect('equal')
     # rect1 = patches.Rectangle((10, 30), 20, 120, linewidth=1, edgecolor='r', facecolor='none')
@@ -98,4 +98,8 @@ def get_meta_data(file_path: str):
 # plot_2D_stream(0)
 
 # plot_2D_quiver(file_path="./data/stray_field/strayfield_one_hemisphere_tip.ovf", zslice=0)
-plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_double_hemisphere_tip_100_100_100.ovf", zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_double_hemisphere_tip_100_100_100.ovf", zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_double_hemisphere_tip_6array.ovf", zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_double_hemisphere_tip_6array_upupup_100.ovf", zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_double_hemisphere_tip_6array_upupup_50.ovf", zslice=15)
+plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_one_conical_tip.ovf", zslice=0)

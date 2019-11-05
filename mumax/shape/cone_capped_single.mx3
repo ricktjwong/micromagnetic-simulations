@@ -8,11 +8,11 @@ Ms := 800e3
 ExchangeE := 13e-12 
 
 cyl := Cylinder(100e-9, 600e-9).RotX(pi/2)
-coneTip := Cone(100e-9, 100e-9).RotX(pi/2).transl(0, 650e-9)
+coneTip := Cone(100e-9, 50e-9).RotX(-pi/2).transl(0, 300e-9, 0)
 
 conicalTip := cyl.add(coneTip)
 
-DefRegion(1, conicalTip)
+DefRegion(1, conicalTip.transl(0, -25e-9, 0))
 
 Msat.SetRegion(1, Ms)
 m.SetRegion(1, uniform(0, 1, 0))
@@ -29,3 +29,4 @@ relax()         // high-energy states best minimized by relax()
 
 saveas(m, "m_one_conical_tip")
 saveas(B_demag, "strayfield_one_conical_tip")
+exit
