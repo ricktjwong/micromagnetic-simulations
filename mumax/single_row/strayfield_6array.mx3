@@ -12,8 +12,8 @@ disp_1 := sep/2 + x2/2
 disp_2 := 1.5*sep + x2 + x1/2
 disp_3 := 2.5*sep + 1.5*x2 + x1
 
-Ms_Co := 800e3
-Aex_Co := 13e-12
+Ms := 800e3
+Aex := 13e-12
 
 DefRegion(1, Cuboid(x1, 600e-9, 20e-9).transl(-disp_n1,0,0))
 DefRegion(2, Cuboid(x2, 600e-9, 20e-9).transl(-disp_n2,0,0))
