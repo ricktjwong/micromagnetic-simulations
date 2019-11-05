@@ -97,9 +97,9 @@ def get_meta_data(file_path: str):
 
 # plot_2D_stream(0)
 
-# plot_2D_quiver(file_path="./data/stray_field/strayfield_one_hemisphere_tip.ovf", zslice=0)
-# plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_double_hemisphere_tip_100_100_100.ovf", zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_one_hemisphere_tip.ovf", zslice=15)
+plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_double_hemisphere_tip_100_100_100.ovf", zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_double_hemisphere_tip_6array.ovf", zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_double_hemisphere_tip_6array_upupup_100.ovf", zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_double_hemisphere_tip_6array_upupup_50.ovf", zslice=15)
-plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_one_conical_tip.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/shape/strayfield_one_conical_tip.ovf", zslice=0)
