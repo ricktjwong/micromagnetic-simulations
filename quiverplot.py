@@ -60,7 +60,7 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     # rect2 = patches.Rectangle((70, 30), 24, 120, linewidth=1, edgecolor='r', facecolor='none')
     # ax.add_patch(rect1)
     # ax.add_patch(rect2)
-    # plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
+    plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     plt.show()
 
 
@@ -95,26 +95,27 @@ def get_meta_data(file_path: str):
 # plot_2D_quiver(file_path="./data/stray_field/rect/double_100_x_120/strayfield_updown_doubleAsym_100_200_120.ovf", mag_dir='total', zslice=6)
 
 # Six rects
-# plot_2D_quiver(file_path="./data/stray_field/rect/permalloy_6array.txt", zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/strayfield_updown_6array_100_200_120.ovf", zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/rect/permalloy_6array.txt", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/rect/strayfield_updown_6array_100_200_120.ovf", mag_dir='total', zslice=6)
 
 # Two rows of three rects
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_100_100_100.ovf", zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_100_150_100.ovf", zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_100_200_100.ovf", zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_100_100_100.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_100_150_100.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_100_200_100.ovf", mag_dir='total', zslice=6)
 
 # Two rows of staggered rects
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_staggered_100_100_100.ovf", zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_staggered_100_150_100.ovf", zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_staggered_100_200_100.ovf", zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_staggered_100_100_100.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_staggered_100_150_100.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_staggered_100_200_100.ovf", mag_dir='total', zslice=6)
 
 # Hemisphere tips
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_one_hemisphere_tip.ovf", zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_100_100_100.ovf", mag_dir='total', zslice=15)
+plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_100_100_100_Co.ovf", mag_dir='total', zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_6array.ovf", mag_dir='x', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_6array_upupup_100.ovf", zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_6array_upupup_50.ovf", zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_one_conical_tip.ovf", zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_6array_upupup_100.ovf", mag_dir='total', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_6array_upupup_50.ovf", mag_dir='total', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_one_conical_tip.ovf", mag_dir='total', zslice=0)
 
 # Halbach array
 # plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_120_100.ovf", mag_dir='total', zslice=6)
