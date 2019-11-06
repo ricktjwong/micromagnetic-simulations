@@ -14,7 +14,7 @@ AlphaCo := 0.015
 
 Ms := MsCo
 ExchangeE := ExchangeECo
-alpha := AlphaCo
+Alph := AlphaCo
 
 sep := 100e-9
 D := 100e-9
@@ -49,37 +49,37 @@ Msat.SetRegion(1, Ms)
 m.SetRegion(1, uniform(0, 1, 0))
 Aex.SetRegion(1, ExchangeE)
 Ku1.SetRegion(1, 0)
-alpha.SetRegion(1, alpha)
+alpha.SetRegion(1, Alph)
 
 Msat.SetRegion(2, Ms)
 m.SetRegion(2, uniform(0, -1, 0))
 Aex.SetRegion(2, ExchangeE)
 Ku1.SetRegion(2, 0)
-alpha.SetRegion(2, alpha)
+alpha.SetRegion(2, Alph)
 
 Msat.SetRegion(3, Ms)
 m.SetRegion(3, uniform(0, 1, 0))
 Aex.SetRegion(3, ExchangeE)
 Ku1.SetRegion(3, 0)
-alpha.SetRegion(3, alpha)
+alpha.SetRegion(3, Alph)
 
 Msat.SetRegion(4, Ms)
 m.SetRegion(4, uniform(0, -1, 0))
 Aex.SetRegion(4, ExchangeE)
 Ku1.SetRegion(4, 0)
-alpha.SetRegion(4, alpha)
+alpha.SetRegion(4, Alph)
 
 Msat.SetRegion(5, Ms)
 m.SetRegion(5, uniform(0, 1, 0))
 Aex.SetRegion(5, ExchangeE)
 Ku1.SetRegion(5, 0)
-alpha.SetRegion(5, alpha)
+alpha.SetRegion(5, Alph)
 
 Msat.SetRegion(6, Ms)
 m.SetRegion(6, uniform(0, -1, 0))
 Aex.SetRegion(6, ExchangeE)
 Ku1.SetRegion(6, 0)
-alpha.SetRegion(6, alpha)
+alpha.SetRegion(6, Alph)
 
 Msat.SetRegion(0, 0)
 m.SetRegion(0, uniform(0, 0, 0))
