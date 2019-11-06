@@ -18,8 +18,8 @@ def plot_3D(n: int):
     data_field = data.reshape(40, 140, 24, 3, order="F")
 
     Y, X, Z = np.meshgrid(np.arange(0, 140, 1),
-                        np.arange(0, 40, 1),
-                        np.arange(0, 24, 1))
+                          np.arange(0, 40, 1),
+                          np.arange(0, 24, 1))
 
     # sample every 5th
     X, Y, Z = X[::n, ::n, ::n], Y[::n, ::n, ::n], Z[::n, ::n, ::n]
@@ -36,7 +36,8 @@ def plot_3D(n: int):
 
 
 def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
-    x,y,z, _,_,_ = get_meta_data(file_path)
+    contours = [0.01 * i for i in range(10)]
+    x, y, z, _, _, _ = get_meta_data(file_path)
     data = np.array(np.loadtxt(file_path))
     data_field = data.reshape(x, y, z, 3, order="F")
     u, v, w = data_field[:,:,:,0], data_field[:,:,:,1], data_field[:,:,:,2]
@@ -53,14 +54,14 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     fig, ax = plt.subplots()
     # Choose a z slice
     ax.quiver(X, Y, u[:,:,zslice], v[:,:,zslice], 1)
-    CS = ax.contour(X, Y, mag_slice, 50, linewidths=[1])
+    CS = ax.contour(X, Y, mag_slice, contours, linewidths=[1])
     ax.clabel(CS, inline=1, fontsize=8)
     ax.set_aspect('equal')
     # rect1 = patches.Rectangle((10, 30), 20, 120, linewidth=1, edgecolor='r', facecolor='none')
     # rect2 = patches.Rectangle((70, 30), 24, 120, linewidth=1, edgecolor='r', facecolor='none')
     # ax.add_patch(rect1)
     # ax.add_patch(rect2)
-    plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
+    # plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     plt.show()
 
 
@@ -82,9 +83,10 @@ def get_meta_data(file_path: str):
     with open(file_path) as f:
         for line in f:
             if line[0] != '#': break
-            key_value = line.split('# ')[1].split(':')
-            key, value = key_value[0], key_value[1].split('\n')[0].strip()
-            headers[key] = value
+            if ':' in line:
+                key_value = line.split('# ')[1].split(':')
+                key, value = key_value[0], key_value[1].split('\n')[0].strip()
+                headers[key] = value
     return int(headers['xnodes']), int(headers['ynodes']), int(headers['znodes']), \
            float(headers['xstepsize']), float(headers['ystepsize']), float(headers['zstepsize'])
 
@@ -109,9 +111,9 @@ def get_meta_data(file_path: str):
 # plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_staggered_100_200_100.ovf", mag_dir='total', zslice=6)
 
 # Hemisphere tips
-# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_one_hemisphere_tip.ovf", zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_one_hemisphere_tip.ovf", mag_dir='total', zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_100_100_100.ovf", mag_dir='total', zslice=15)
-plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_100_100_100_Co.ovf", mag_dir='total', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_100_100_100_Co.ovf", mag_dir='total', zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_6array.ovf", mag_dir='x', zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_6array_upupup_100.ovf", mag_dir='total', zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_6array_upupup_50.ovf", mag_dir='total', zslice=15)
