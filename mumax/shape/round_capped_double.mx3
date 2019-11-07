@@ -20,16 +20,14 @@ sep := 100e-9
 diameter := 100e-9
 disp := sep/2 + diameter/2
 
-cyl := Cylinder(diameter, 600e-9).RotX(pi/2)
+baseCub := Cuboid(100e-9, 550e-9, 20e-9)
+cyl := Cylinder(100e-9, 100e-9)
+cub := Cuboid(100e-9, 100e-9, 20e-9).transl(0, 50e-9, 0)
+halfCyl := cyl.intersect(cub).transl(0, 275e-9, 0)
+roundedTip := baseCub.add(halfCyl).transl(0, -25e-9, 0)
 
-sphere := Ellipsoid(100e-9, 100e-9, 100e-9)
-cub := Cuboid(100e-9, 100e-9, 100e-9).transl(0, 50e-9, 0)
-hemisphere := sphere.intersect(cub).transl(0, 300e-9, 0)
-
-hemisphereTip := cyl.add(hemisphere).transl(0, -25e-9, 0)
-
-DefRegion(1, hemisphereTip.transl(-disp, 0 ,0))
-DefRegion(2, hemisphereTip.transl(disp, 0, 0))
+DefRegion(1, roundedTip.transl(-disp, 0 ,0))
+DefRegion(2, roundedTip.transl(disp, 0, 0))
 
 Msat.SetRegion(1, Ms)
 m.SetRegion(1, uniform(0, 1, 0))
@@ -37,7 +35,7 @@ Aex.SetRegion(1, ExchangeE)
 Ku1.SetRegion(1, 0)
 alpha.SetRegion(1, Alph)
 
-Msat.SetRegion(2, MsCo)
+Msat.SetRegion(2, Ms)
 m.SetRegion(2, uniform(0, -1, 0))
 Aex.SetRegion(2, ExchangeE)
 Ku1.SetRegion(2, 0)
@@ -50,5 +48,5 @@ Kc1.SetRegion(0, 0)
 
 relax()         // high-energy states best minimized by relax()
 
-saveas(m, "m_double_hemisphere_tip_100_100_100")
-saveas(B_demag, "strayfield_double_hemisphere_tip_100_100_100")
+saveas(m, "m_double_round_tip_100_100_100")
+saveas(B_demag, "strayfield_double_round_tip_100_100_100")

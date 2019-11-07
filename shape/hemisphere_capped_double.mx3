@@ -12,10 +12,6 @@ MsCo := 1400e3
 ExchangeECo := 30e-12
 AlphaCo := 0.015
 
-Ms := MsPerm
-ExchangeE := ExchangeEPerm
-Alph := AlphaPerm
-
 sep := 100e-9
 diameter := 100e-9
 disp := sep/2 + diameter/2
@@ -31,17 +27,17 @@ hemisphereTip := cyl.add(hemisphere).transl(0, -25e-9, 0)
 DefRegion(1, hemisphereTip.transl(-disp, 0 ,0))
 DefRegion(2, hemisphereTip.transl(disp, 0, 0))
 
-Msat.SetRegion(1, Ms)
+Msat.SetRegion(1, MsCo)
 m.SetRegion(1, uniform(0, 1, 0))
-Aex.SetRegion(1, ExchangeE)
+Aex.SetRegion(1, ExchangeECo)
 Ku1.SetRegion(1, 0)
-alpha.SetRegion(1, Alph)
+alpha.SetRegion(1, AlphaCo)
 
 Msat.SetRegion(2, MsCo)
 m.SetRegion(2, uniform(0, -1, 0))
-Aex.SetRegion(2, ExchangeE)
+Aex.SetRegion(2, ExchangeECo)
 Ku1.SetRegion(2, 0)
-alpha.SetRegion(2, Alph)
+alpha.SetRegion(2, AlphaCo)
 
 Msat.SetRegion(0, 0)
 m.SetRegion(0, uniform(0, 0, 0))

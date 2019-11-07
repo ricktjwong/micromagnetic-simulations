@@ -1,0 +1,92 @@
+OutputFormat = OVF1_TEXT
+EdgeSmooth = 8
+
+SetGridsize(250, 200, 30)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+MsPerm := 800e3
+ExchangeEPerm := 13e-12
+AlphaPerm := 0.01
+
+MsCo := 1400e3
+ExchangeECo := 30e-12
+AlphaCo := 0.015
+
+Ms := MsCo
+ExchangeE := ExchangeECo
+Alph := AlphaCo
+
+sep := 100e-9
+D := 100e-9
+disp := sep/2 + D/2
+
+cyl := Cylinder(D, 600e-9).RotX(pi/2)
+
+sphere := Ellipsoid(100e-9, 100e-9, 100e-9)
+cub := Cuboid(100e-9, 100e-9, 100e-9).transl(0, 50e-9, 0)
+hemisphere := sphere.intersect(cub).transl(0, 300e-9, 0)
+
+hemisphereTip := cyl.add(hemisphere).transl(0, -25e-9, 0)
+
+disp_n1 := sep/2 + D/2
+disp_n2 := 1.5*sep + D + D/2
+disp_n3 := 2.5*sep + 1.5*D + D
+disp_1 := sep/2 + D/2
+disp_2 := 1.5*sep + D + D/2
+disp_3 := 2.5*sep + 1.5*D + D
+
+DefRegion(1, hemisphereTip.transl(-disp, 0 ,0))
+DefRegion(2, hemisphereTip.transl(disp, 0, 0))
+
+DefRegion(1, hemisphereTip.transl(-disp_n1, 0, 0))
+DefRegion(2, hemisphereTip.transl(-disp_n2, 0, 0))
+DefRegion(3, hemisphereTip.transl(-disp_n3, 0, 0))
+DefRegion(4, hemisphereTip.transl(disp_1, 0, 0))
+DefRegion(5, hemisphereTip.transl(disp_2, 0, 0))
+DefRegion(6, hemisphereTip.transl(disp_3, 0, 0))
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0, 1, 0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1, Alph)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, uniform(0, -1, 0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2, Alph)
+
+Msat.SetRegion(3, Ms)
+m.SetRegion(3, uniform(0, 1, 0))
+Aex.SetRegion(3, ExchangeE)
+Ku1.SetRegion(3, 0)
+alpha.SetRegion(3, Alph)
+
+Msat.SetRegion(4, Ms)
+m.SetRegion(4, uniform(0, -1, 0))
+Aex.SetRegion(4, ExchangeE)
+Ku1.SetRegion(4, 0)
+alpha.SetRegion(4, Alph)
+
+Msat.SetRegion(5, Ms)
+m.SetRegion(5, uniform(0, 1, 0))
+Aex.SetRegion(5, ExchangeE)
+Ku1.SetRegion(5, 0)
+alpha.SetRegion(5, Alph)
+
+Msat.SetRegion(6, Ms)
+m.SetRegion(6, uniform(0, -1, 0))
+Aex.SetRegion(6, ExchangeE)
+Ku1.SetRegion(6, 0)
+alpha.SetRegion(6, Alph)
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0, 0, 0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+relax()         // high-energy states best minimized by relax()
+
+saveas(m, "m_double_hemisphere_tip_6array")
+saveas(B_demag, "strayfield_double_hemisphere_tip_6array")
