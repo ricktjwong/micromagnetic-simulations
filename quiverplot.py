@@ -115,11 +115,13 @@ def get_meta_data(file_path: str):
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_100_100_100.ovf", mag_dir='total', zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_100_100_100_Co.ovf", mag_dir='total', zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_6array.ovf", mag_dir='x', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_six_hemisphere_tip_Co.ovf", mag_dir='total', zslice=15)
 # plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_one_conical_tip.ovf", mag_dir='total', zslice=0)
 
 # Rounded tips
-plot_2D_quiver(file_path="./data/stray_field/rounded/strayfield_one_rounded_tip.ovf", mag_dir='total', zslice=6)
-plot_2D_quiver(file_path="./data/stray_field/rounded/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/rounded/strayfield_one_rounded_tip.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/rounded/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='total', zslice=6)
+plot_2D_quiver(file_path="./data/stray_field/rounded/strayfield_six_rounded_tip.ovf", mag_dir='total', zslice=6)
 
 # Halbach array
 # plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_120_100.ovf", mag_dir='total', zslice=6)
