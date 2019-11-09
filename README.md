@@ -1,4 +1,5 @@
-# oommf-simulations
+# micromagnetic-simulations
+Scripts to process OOMMF vector files (.ovf)
 Configuration files for OOMMF and mumax
 
 ## Utilities
