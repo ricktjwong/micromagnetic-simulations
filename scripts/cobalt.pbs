@@ -27,7 +27,7 @@ ls
 echo
 #
 ##command line
-mumax3-cuda6.5 cobalt_double_x.$PBS_ARRAY_INDEX.mx3
+mumax3-cuda6.5 cobalt_single_y.$PBS_ARRAY_INDEX.mx3
 
 echo AfterMuMax
 #

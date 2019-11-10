@@ -1,9 +1,9 @@
-t := 100e-9
+thickness := 100e-9
 
 SetGridsize(20, 200, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
-DefRegion(1, Cuboid(100e-9, 600e-9, t).transl(0, 0, 0))
+DefRegion(1, Cuboid(100e-9, 600e-9, thickness).transl(0, 0, 0))
 
 Ms := 1400e3
 ExchangeE := 30e-12 
