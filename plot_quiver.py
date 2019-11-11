@@ -42,11 +42,11 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     data_field = data.reshape(x, y, z, 3, order="F")
     u, v, w = data_field[:,:,:,0], data_field[:,:,:,1], data_field[:,:,:,2]
     if (mag_dir == 'x'):
-        mag = u
+        mag = abs(u)
     elif (mag_dir == 'y'):
-        mag = v
+        mag = abs(v)
     elif (mag_dir == 'z'):
-        mag = w
+        mag = abs(w)
     elif (mag_dir == 'total'):
         mag = (u * u + v * v + w * w) ** 0.5
     mag_slice = mag[:,:,zslice]
@@ -57,10 +57,6 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     CS = ax.contour(X, Y, mag_slice, contours, linewidths=[1])
     ax.clabel(CS, inline=1, fontsize=8)
     ax.set_aspect('equal')
-    # rect1 = patches.Rectangle((10, 30), 20, 120, linewidth=1, edgecolor='r', facecolor='none')
-    # rect2 = patches.Rectangle((70, 30), 24, 120, linewidth=1, edgecolor='r', facecolor='none')
-    # ax.add_patch(rect1)
-    # ax.add_patch(rect2)
     plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     plt.show()
 
