@@ -1,3 +1,4 @@
+OutputFormat = OVF1_TEXT
 thickness := 60e-9
 
 SetGridsize(20, 200, 12)
