@@ -42,11 +42,11 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     data_field = data.reshape(x, y, z, 3, order="F")
     u, v, w = data_field[:,:,:,0], data_field[:,:,:,1], data_field[:,:,:,2]
     if (mag_dir == 'x'):
-        mag = u
+        mag = np.abs(u)
     elif (mag_dir == 'y'):
-        mag = v
+        mag = np.abs(v)
     elif (mag_dir == 'z'):
-        mag = w
+        mag = np.abs(w)
     elif (mag_dir == 'total'):
         mag = (u * u + v * v + w * w) ** 0.5
     mag_slice = mag[:,:,zslice]
@@ -124,6 +124,9 @@ def get_meta_data(file_path: str):
 # plot_2D_quiver(file_path="./data/stray_field/rounded/strayfield_six_rounded_tip.ovf", mag_dir='total', zslice=6)
 
 # Halbach array
-plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_120_100.ovf", mag_dir='total', zslice=6)
+#plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_120_100.ovf", mag_dir='total', zslice=6)
 # plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_200_100.ovf", mag_dir='total', zslice=6)
 # plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_300_100.ovf", mag_dir='total', zslice=6)
+
+# 2rows
+plot_2D_quiver(file_path="../data/stray_field/2rows/strayfield_2rowsPeriodic_100x600_100.ovf", mag_dir='y', zslice =20)

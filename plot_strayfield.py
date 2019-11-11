@@ -37,8 +37,9 @@ def plot_strayfield(file_path: str, mag_dir: str):
         mag = w
     elif (mag_dir == 'total'):
         mag = (u * u + v * v + w * w) ** 0.5
-    yrange = np.linspace(160, 179, 5, dtype = int)
+    yrange = np.linspace(120, 160, 10, dtype = int)
     print(yrange)
+    plt.figure()
     for i in yrange:
         mag_slice = mag[:, i, zslice]
         plt.plot([i for i in range(x)], mag_slice, label=str((i - 160) * 5)+'nm')
@@ -46,4 +47,4 @@ def plot_strayfield(file_path: str, mag_dir: str):
     # plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     plt.show()
 
-plot_strayfield(file_path="./data/stray_field/rounded/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='x')
+plot_strayfield(file_path="../data/stray_field/2rows/strayfield_2rowsPeriodic_100x600_100.ovf", mag_dir='y')
