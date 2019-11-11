@@ -61,7 +61,7 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     # rect2 = patches.Rectangle((70, 30), 24, 120, linewidth=1, edgecolor='r', facecolor='none')
     # ax.add_patch(rect1)
     # ax.add_patch(rect2)
-    # plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
+    plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     plt.show()
 
 
@@ -124,6 +124,10 @@ def get_meta_data(file_path: str):
 # plot_2D_quiver(file_path="./data/stray_field/rounded/strayfield_six_rounded_tip.ovf", mag_dir='total', zslice=6)
 
 # Halbach array
-plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_120_100.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_120_100.ovf", mag_dir='total', zslice=6)
 # plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_200_100.ovf", mag_dir='total', zslice=6)
 # plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_300_100.ovf", mag_dir='total', zslice=6)
+
+# Compare
+plot_2D_quiver(file_path="./data/stray_field/compare_cobalt_double-100-600-100/strayfield_double_rect_100_100_100.ovf", mag_dir='total', zslice=10)
+plot_2D_quiver(file_path="./data/stray_field/compare_cobalt_double-100-600-100/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='total', zslice=10)

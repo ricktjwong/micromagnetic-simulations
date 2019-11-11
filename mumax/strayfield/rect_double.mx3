@@ -1,4 +1,6 @@
-SetGridsize(60, 120, 20)
+OutputFormat = OVF1_TEXT
+
+SetGridsize(80, 200, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 w1 := 100e-9
