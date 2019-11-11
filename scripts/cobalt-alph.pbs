@@ -5,7 +5,7 @@
 #PBS -l walltime=24:00:00
 #
 ## ask for one node with 16 cpus and total 2gb memory (per node)
-#PBS -l select=1:ncpus=1:ngpus=2:mem=16GB:gpu_type=P100
+#PBS -l select=1:ncpus=4:ngpus=1:mem=24GB:gpu_type=P100
 #PBS -J 0-1
 
 ## Ask to join GPU queue
@@ -22,12 +22,12 @@ echo BeforeMuMax
 nvidia-smi -L
 #
 ##file management - Copy input file to TMPDIR
-cp $WORK/oommf-simulations/mumax/sweep_cobalt/double_y/vary-x-w0-70-alpha/cobalt_double_y.$PBS_ARRAY_INDEX.mx3 $TMPDIR
+cp $WORK/oommf-simulations/mumax/sweep_cobalt/double_y/vary-x-w0-70-alpha/cobalt_double_y_alpha.$PBS_ARRAY_INDEX.mx3 $TMPDIR
 ls
 echo
 #
 ##command line
-mumax3-cuda6.5 cobalt_double_y.$PBS_ARRAY_INDEX.mx3
+mumax3-cuda6.5 cobalt_double_y_alpha.$PBS_ARRAY_INDEX.mx3
 
 echo AfterMuMax
 #
