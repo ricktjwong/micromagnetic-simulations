@@ -1,0 +1,34 @@
+OutputFormat = OVF1_TEXT
+EdgeSmooth = 8
+
+SetGridsize(30, 160, 30)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+Ms := 800e3
+ExchangeE := 13e-12
+
+cyl := Cylinder(100e-9, 600e-9).RotX(pi/2)
+
+sphere := Ellipsoid(100e-9, 100e-9, 100e-9)
+cub := Cuboid(100e-9, 100e-9, 100e-9).transl(0, 50e-9, 0)
+hemisphere := sphere.intersect(cub).transl(0, 300e-9, 0)
+
+hemisphereTip := cyl.add(hemisphere).transl(0, -25e-9, 0)
+
+DefRegion(1, hemisphereTip)
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0, 1, 0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1, 0.01)
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+relax()         // high-energy states best minimized by relax()
+
+saveas(m, "m_one_hemisphere_tip")
+saveas(B_demag, "strayfield_one_hemisphere_tip")
