@@ -5,7 +5,7 @@
 #PBS -l walltime=24:00:00
 #
 ## ask for one node with 16 cpus and total 2gb memory (per node)
-#PBS -l select=1:ncpus=1:ngpus=1:mem=16GB
+#PBS -l select=1:ncpus=1:ngpus=2:mem=16GB:gpu_type=P100
 #PBS -J 0-1
 
 ## Ask to join GPU queue
