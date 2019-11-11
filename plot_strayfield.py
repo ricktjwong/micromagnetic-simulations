@@ -3,7 +3,7 @@ import matplotlib.patches as patches
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 
-plt.style.use('seaborn-bright')
+plt.style.use('ggplot')
 plt.rcParams['font.family'] = 'Times New Roman'
 plt.rcParams['lines.linewidth'] = 1
 plt.rcParams.update({'figure.autolayout': True})
@@ -46,4 +46,35 @@ def plot_strayfield(file_path: str, mag_dir: str):
     # plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     plt.show()
 
-plot_strayfield(file_path="./data/stray_field/rounded/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='x')
+
+def plot_strayfield_compare(file_path: str, mag_dir: str, t: int):
+    x, y, z, _, _, _ = get_meta_data(file_path)
+    zslice = int(z / 2)
+    data = np.array(np.loadtxt(file_path))
+    data_field = data.reshape(x, y, z, 3, order="F")
+    u, v, w = data_field[:,:,:,0], data_field[:,:,:,1], data_field[:,:,:,2]
+    if (mag_dir == 'x'):
+        mag = u
+    elif (mag_dir == 'y'):
+        mag = v
+    elif (mag_dir == 'z'):
+        mag = w
+    elif (mag_dir == 'total'):
+        mag = (u * u + v * v + w * w) ** 0.5
+    yslice = 190
+    mag_slice = mag[:, yslice, zslice]
+    plt.plot([i * 5 for i in range(x)], mag_slice, label=str(t/100))
+    plt.legend()    
+
+# plot_strayfield(file_path="./data/stray_field/rounded/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='y')
+
+def compare_strayfields(base_path: str, thicknesses: [int], mag_dir: str):
+    thicknesses = [10 * i for i in range(6, 13, 1)]
+    for t in thicknesses:
+        file_path = base_path + str(t) + ".ovf"
+        plot_strayfield_compare(file_path=file_path, mag_dir=mag_dir, t=t)
+    plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
+    plt.show()
+
+t = [10 * i for i in range(6, 13, 1)]
+compare_strayfields(base_path="./data/stray_field/rect/single_600-100-z/strayfield_cobalt_single_rect_thickness_", thicknesses=t, mag_dir='y')
