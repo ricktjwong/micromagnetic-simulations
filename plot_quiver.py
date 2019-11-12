@@ -125,5 +125,9 @@ def get_meta_data(file_path: str):
 # plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_300_100.ovf", mag_dir='total', zslice=6)
 
 # Compare
-plot_2D_quiver(file_path="./data/stray_field/compare_cobalt_double-100-600-100/strayfield_double_rect_100_100_100.ovf", mag_dir='total', zslice=10)
-plot_2D_quiver(file_path="./data/stray_field/compare_cobalt_double-100-600-100/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='total', zslice=10)
+# plot_2D_quiver(file_path="./data/stray_field/compare_cobalt_double-100-600-100/strayfield_double_rect_100_100_100.ovf", mag_dir='total', zslice=10)
+# plot_2D_quiver(file_path="./data/stray_field/cobalt_six-100-600-100/m_rounded_tip_6array.ovf", mag_dir='total', zslice=10)
+plot_2D_quiver(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100_1u.ovf", mag_dir='total', zslice=10)
+
+# plot_2D_quiver(file_path="./data/stray_field/cobalt_six-100-600-100/m_rect_6array.ovf", mag_dir='total', zslice=10)
+# plot_2D_quiver(file_path="./data/stray_field/cobalt_six-100-600-100/m_rounded_tip_6array.ovf", mag_dir='total', zslice=10)
