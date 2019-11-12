@@ -1,0 +1,171 @@
+OutputFormat = OVF1_TEXT
+
+L := 600e-9
+w1 := 200e-9
+Nbars := 3
+w2 := L / (2*Nbars - 1)
+thickness_L := 100e-9
+thickness_S := 100e-9
+
+xsep := 100e-9
+ysep := w2
+
+ygap := 300e-9
+
+xdisp1 := xsep/2 + w1/2
+xdisp2 := 1.5*xsep + w1 + L/2
+
+xdisp_n1 := xsep/2 + L/2
+xdisp_n2 := 1.5*xsep + L + w1/2
+
+ydisp2 := ygap/2 +L/2
+ydisp1 := ydisp2 - ysep - w2
+ydisp3 := ydisp2 + ysep + w2
+
+x_total := 4*xsep + 2*w1 + 2*L
+y_total := 2*L + ygap
+nx := x_total / 5e-9
+ny := y_total / 5e-9
+
+print (ny)
+print (nx)
+
+SetPBC(2, 0, 0)
+SetGridsize(nx, ny, 30)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+Ms := 800e3
+ExchangeE := 13e-12
+alpha_coeff := 0.01 
+
+DefRegion(1, Cuboid(w1, L, thickness_L).transl(-xdisp_n2,ydisp2,0))
+DefRegion(2, Cuboid(w1, L, thickness_L).transl(xdisp1,ydisp2,0))
+DefRegion(3, Cuboid(w1, L, thickness_L).transl(-xdisp_n2,-ydisp2,0))
+DefRegion(4, Cuboid(w1, L, thickness_L).transl(xdisp1,-ydisp2,0))
+
+DefRegion(10, Cuboid(L, w2, thickness_S).transl(-xdisp_n1,ydisp1,0))
+DefRegion(11, Cuboid(L, w2, thickness_S).transl(-xdisp_n1,ydisp2,0))
+DefRegion(12, Cuboid(L, w2, thickness_S).transl(-xdisp_n1,ydisp3,0))
+
+DefRegion(20, Cuboid(L, w2, thickness_S).transl(xdisp2,ydisp1,0))
+DefRegion(21, Cuboid(L, w2, thickness_S).transl(xdisp2,ydisp2,0))
+DefRegion(22, Cuboid(L, w2, thickness_S).transl(xdisp2,ydisp3,0))
+
+DefRegion(30, Cuboid(L, w2, thickness_S).transl(-xdisp_n1,-ydisp1,0))
+DefRegion(31, Cuboid(L, w2, thickness_S).transl(-xdisp_n1,-ydisp2,0))
+DefRegion(32, Cuboid(L, w2, thickness_S).transl(-xdisp_n1,-ydisp3,0))
+
+DefRegion(40, Cuboid(L, w2, thickness_S).transl(xdisp2,-ydisp1,0))
+DefRegion(41, Cuboid(L, w2, thickness_S).transl(xdisp2,-ydisp2,0))
+DefRegion(42, Cuboid(L, w2, thickness_S).transl(xdisp2,-ydisp3,0))
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0,-1,0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1,0.5)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, uniform(0,1,0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2,0.5)
+
+Msat.SetRegion(3, Ms)
+m.SetRegion(3, uniform(0,-1,0))
+Aex.SetRegion(3, ExchangeE)
+Ku1.SetRegion(3, 0)
+alpha.SetRegion(3,0.5)
+
+Msat.SetRegion(4, Ms)
+m.SetRegion(4, uniform(0,1,0))
+Aex.SetRegion(4, ExchangeE)
+Ku1.SetRegion(4, 0)
+alpha.SetRegion(4,0.5)
+
+
+// 
+Msat.SetRegion(10, Ms)
+m.SetRegion(10, uniform(-1,0,0))
+Aex.SetRegion(10, ExchangeE)
+Ku1.SetRegion(10, 0)
+alpha.SetRegion(10,0.5)
+
+Msat.SetRegion(11, Ms)
+m.SetRegion(11, uniform(1,0,0))
+Aex.SetRegion(11, ExchangeE)
+Ku1.SetRegion(11, 0)
+alpha.SetRegion(11,0.5)
+
+Msat.SetRegion(12, Ms)
+m.SetRegion(12, uniform(-1,0,0))
+Aex.SetRegion(12, ExchangeE)
+Ku1.SetRegion(12, 0)
+alpha.SetRegion(12,0.5)
+
+//
+Msat.SetRegion(20, Ms)
+m.SetRegion(20, uniform(1,0,0))
+Aex.SetRegion(20, ExchangeE)
+Ku1.SetRegion(20, 0)
+alpha.SetRegion(20,0.5)
+
+Msat.SetRegion(21, Ms)
+m.SetRegion(21, uniform(-1,0,0))
+Aex.SetRegion(21, ExchangeE)
+Ku1.SetRegion(21, 0)
+alpha.SetRegion(21,0.5)
+
+Msat.SetRegion(22, Ms)
+m.SetRegion(22, uniform(1,0,0))
+Aex.SetRegion(22, ExchangeE)
+Ku1.SetRegion(22, 0)
+alpha.SetRegion(22,0.5)
+
+// 
+Msat.SetRegion(30, Ms)
+m.SetRegion(30, uniform(1,0,0))
+Aex.SetRegion(30, ExchangeE)
+Ku1.SetRegion(30, 0)
+alpha.SetRegion(30,0.5)
+
+Msat.SetRegion(31, Ms)
+m.SetRegion(31, uniform(-1,0,0))
+Aex.SetRegion(31, ExchangeE)
+Ku1.SetRegion(31, 0)
+alpha.SetRegion(31,0.5)
+
+Msat.SetRegion(32, Ms)
+m.SetRegion(32, uniform(1,0,0))
+Aex.SetRegion(32, ExchangeE)
+Ku1.SetRegion(32, 0)
+alpha.SetRegion(32,0.5)
+
+//
+Msat.SetRegion(40, Ms)
+m.SetRegion(40, uniform(-1,0,0))
+Aex.SetRegion(40, ExchangeE)
+Ku1.SetRegion(40, 0)
+alpha.SetRegion(40,0.5)
+
+Msat.SetRegion(41, Ms)
+m.SetRegion(41, uniform(1,0,0))
+Aex.SetRegion(41, ExchangeE)
+Ku1.SetRegion(41, 0)
+alpha.SetRegion(41,0.5)
+
+Msat.SetRegion(42, Ms)
+m.SetRegion(42, uniform(-1,0,0))
+Aex.SetRegion(42, ExchangeE)
+Ku1.SetRegion(42, 0)
+alpha.SetRegion(42,0.5)
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+relax()         // high-energy states best minimized by relax()
+
+saveas(m, "m_halbach2rows_L600x200_S600x120_Gap100")
+saveas(B_demag, "strayfield_halbach2rows_L600x200_S600x120_Gap100")
