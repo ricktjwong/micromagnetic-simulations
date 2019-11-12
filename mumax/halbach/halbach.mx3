@@ -1,8 +1,8 @@
 OutputFormat = OVF1_TEXT
 
 L := 600e-9
-w1 := 300e-9
-w2 := 120e-9
+w1 := 200e-9
+w2 := 100e-9
 
 xsep := 100e-9
 ysep := w2
@@ -25,15 +25,15 @@ ExchangeE := 13e-12
 
 DefRegion(1, Cuboid(w1, L, 20e-9).transl(-disp2,0,0))
 
-DefRegion(2, Cuboid(L, w2, 20e-9).transl(-disp1,ysep + w2,0))
-DefRegion(3, Cuboid(L, w2, 20e-9).transl(-disp1,0,0))
-DefRegion(4, Cuboid(L, w2, 20e-9).transl(-disp1,-ysep - w2,0))
+DefRegion(2, Cuboid(L, w2, 20e-9).transl(-disp1,ysep + w2/2 + 100e-9,0))
+DefRegion(3, Cuboid(L, 200e-9, 20e-9).transl(-disp1,0,0))
+DefRegion(4, Cuboid(L, w2, 20e-9).transl(-disp1,-ysep - w2/2 - 100e-9,0))
 
 DefRegion(5, Cuboid(w1, L, 20e-9).transl(0,0,0))
 
-DefRegion(6, Cuboid(L, w2, 20e-9).transl(disp1,ysep + w2,0))
-DefRegion(7, Cuboid(L, w2, 20e-9).transl(disp1,0,0))
-DefRegion(8, Cuboid(L, w2, 20e-9).transl(disp1,-ysep - w2,0))
+DefRegion(6, Cuboid(L, w2, 20e-9).transl(disp1,ysep + w2/2 + 100e-9,0))
+DefRegion(7, Cuboid(L, 200e-9, 20e-9).transl(disp1,0,0))
+DefRegion(8, Cuboid(L, w2, 20e-9).transl(disp1,-ysep - w2/2 - 100e-9,0))
 
 DefRegion(9, Cuboid(w1, L, 20e-9).transl(disp2,0,0))
 
@@ -98,5 +98,5 @@ Kc1.SetRegion(0, 0)
 
 relax()         // high-energy states best minimized by relax()
 
-saveas(m, "m_halbach_600_300_100")
-saveas(B_demag, "strayfield_halbach_600_300_100")
+saveas(m, "m_halbach2_600_100_100")
+saveas(B_demag, "strayfield_halbach2_600_100_100")
