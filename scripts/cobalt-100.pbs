@@ -1,0 +1,45 @@
+## interpreter directive - this is a shell script
+#!/bin/sh
+#
+## ask PBS for time (format hh:mm:ss)
+#PBS -l walltime=24:00:00
+#
+## ask for one node with 16 cpus and total 2gb memory (per node)
+#PBS -l select=1:ncpus=4:ngpus=1:mem=24GB:gpu_type=P100
+#PBS -J 0-5
+
+## Ask to join GPU queue
+#
+#
+#
+## ask PBS to email upon job termination
+#
+#
+##load application module
+module load cuda/6.5 mumax/3.9.1
+#
+echo BeforeMuMax
+nvidia-smi -L
+#
+##file management - Copy input file to TMPDIR
+cp $WORK/oommf-simulations/mumax/sweep_cobalt/double_y/vary-x-w0-100/cobalt_double_y.$PBS_ARRAY_INDEX.mx3 $TMPDIR
+ls
+echo
+#
+##command line
+mumax3-cuda6.5 cobalt_double_y.$PBS_ARRAY_INDEX.mx3
+
+echo AfterMuMax
+#
+##file management - Move output files to WORK directory
+ls
+mkdir $WORK/cobalt-double-y-vary-x-w0-100
+cp -a * $WORK/cobalt-double-y-vary-x-w0-100
+ls $WORK/cobalt-double-y-vary-x-w0-100
+## Diagnostics
+#
+echo ------------------------------------------------------------------------------------------------------------------
+ls -la /tmp/
+nvidia-smi
+
+#

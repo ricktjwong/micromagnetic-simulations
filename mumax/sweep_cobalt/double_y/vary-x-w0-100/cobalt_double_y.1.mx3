@@ -4,7 +4,7 @@ SetGridsize(80, 200, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 w1 := 100e-9
-w2 := 102e-9
+w2 := 110e-9
 gap := 100e-9
 trans1 := -(w1/2 + gap/2)
 trans2 := w2/2 + gap/2
@@ -30,8 +30,8 @@ Aex.SetRegion(0, 0)
 
 relax()         // high-energy states best minimized by relax()
 
-saveas(m, "m_cobalt_double_rect_100-100-102")
-saveas(B_demag, "strayfield_cobalt_double_rect_100-100-102")
+saveas(m, "m_cobalt_double_rect_100-100-110")
+saveas(B_demag, "strayfield_cobalt_double_rect_100-100-110")
 
 Bmax  := 400.0e-3
 Bstep := 0.1e-3
