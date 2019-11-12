@@ -1,7 +1,7 @@
 OutputFormat = OVF1_TEXT
 EdgeSmooth = 8
 
-SetGridsize(250, 200, 12)
+SetGridsize(250, 200, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 MsPerm := 800e3
@@ -12,16 +12,16 @@ MsCo := 1400e3
 ExchangeECo := 30e-12
 AlphaCo := 0.015
 
-Ms := MsPerm
-ExchangeE := ExchangeEPerm
-Alph := AlphaPerm
+Ms := MsCo
+ExchangeE := ExchangeECo
+Alph := AlphaCo
 
 sep := 100e-9
 D := 100e-9
 
-baseCub := Cuboid(D, 550e-9, 20e-9)
+baseCub := Cuboid(D, 550e-9, 100e-9)
 cyl := Cylinder(D, 100e-9)
-cub := Cuboid(D, 100e-9, 20e-9).transl(0, 50e-9, 0)
+cub := Cuboid(D, 100e-9, 100e-9).transl(0, 50e-9, 0)
 halfCyl := cyl.intersect(cub).transl(0, 275e-9, 0)
 roundedTip := baseCub.add(halfCyl).transl(0, -25e-9, 0)
 
