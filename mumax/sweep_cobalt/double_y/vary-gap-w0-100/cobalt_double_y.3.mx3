@@ -1,16 +1,16 @@
 OutputFormat = OVF1_TEXT
 
-SetGridsize(80, 200, 14)
+SetGridsize(80, 200, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
-w1 := 70e-9
-w2 := 90e-9
-gap := 100e-9
+w1 := 100e-9
+w2 := 100e-9
+gap := 130e-9
 trans1 := -(w1/2 + gap/2)
 trans2 := w2/2 + gap/2
 
-DefRegion(1, Cuboid(w1, 600e-9, 70e-9).transl(trans1, 0, 0))
-DefRegion(2, Cuboid(w2, 600e-9, 70e-9).transl(trans2, 0, 0))
+DefRegion(1, Cuboid(w1, 600e-9, 100e-9).transl(trans1, 0, 0))
+DefRegion(2, Cuboid(w2, 600e-9, 100e-9).transl(trans2, 0, 0))
 
 Msat.SetRegion(1, 1400e3)
 m.SetRegion(1, uniform(0, 1, 0))
@@ -30,8 +30,8 @@ Aex.SetRegion(0, 0)
 
 relax()         // high-energy states best minimized by relax()
 
-saveas(m, "m_cobalt_double_rect_70-100-90")
-saveas(B_demag, "strayfield_cobalt_double_rect_70-100-90")
+saveas(m, "m_cobalt_double_rect_100-130-100")
+saveas(B_demag, "strayfield_cobalt_double_rect_100-130-100")
 
 Bmax  := 400.0e-3
 Bstep := 0.1e-3
