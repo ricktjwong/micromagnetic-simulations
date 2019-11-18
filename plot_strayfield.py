@@ -39,7 +39,8 @@ def plot_strayfield(file_path: str, mag_dir: str, yslice: [int]):
         mag = (u * u + v * v + w * w) ** 0.5
     for i in yslice:
         mag_slice = mag[:, i, zslice]
-        plt.plot([i * 5 for i in range(x)], mag_slice, label=mag_dir)
+        # plt.plot([i * 5 for i in range(x)], mag_slice, label=mag_dir)
+        plt.plot([i * 5 for i in range(x)], mag_slice, label=str((i - 160) * 5) + 'nm')
     plt.legend()
     # plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     # plt.show()
@@ -76,13 +77,10 @@ def compare_strayfields(base_path: str, thicknesses: [int], mag_dir: str):
 # t = [10 * i for i in range(6, 13, 1)]
 # compare_strayfields(base_path="./data/stray_field/rect/single_600-100-z/strayfield_cobalt_single_rect_thickness_", thicknesses=t, mag_dir='y')
 
-plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100.ovf", mag_dir='x', yslice=[190])
-plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100_1u.ovf", mag_dir='x', yslice=[270])
-plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100.ovf", mag_dir='y', yslice=[190])
-plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100_1u.ovf", mag_dir='y', yslice=[270])
-plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100.ovf", mag_dir='z', yslice=[190])
-plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100_1u.ovf", mag_dir='z', yslice=[270])
-plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100.ovf", mag_dir='total', yslice=[190])
-plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100_1u.ovf", mag_dir='total', yslice=[270])
-plt.savefig('rect_vs_rounded_double-600-1000.pdf', dpi=1000)
+plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='z', yslice=[165, 170, 180, 190])
+plt.savefig('strayfield_double_rounded_tip_100_100_100-multiple-Bz.pdf', dpi=1000)
+
+# plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100.ovf", mag_dir='x', yslice=[190])
+# plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100_1u.ovf", mag_dir='total', yslice=[270])
+# plt.savefig('rect_vs_rounded_double-600-1000.pdf', dpi=1000)
 plt.show()

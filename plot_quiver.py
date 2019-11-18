@@ -127,7 +127,10 @@ def get_meta_data(file_path: str):
 # Compare
 # plot_2D_quiver(file_path="./data/stray_field/compare_cobalt_double-100-600-100/strayfield_double_rect_100_100_100.ovf", mag_dir='total', zslice=10)
 # plot_2D_quiver(file_path="./data/stray_field/cobalt_six-100-600-100/m_rounded_tip_6array.ovf", mag_dir='total', zslice=10)
-plot_2D_quiver(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100_1u.ovf", mag_dir='total', zslice=10)
+# plot_2D_quiver(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100_1u.ovf", mag_dir='total', zslice=10)
 
 # plot_2D_quiver(file_path="./data/stray_field/cobalt_six-100-600-100/m_rect_6array.ovf", mag_dir='total', zslice=10)
 # plot_2D_quiver(file_path="./data/stray_field/cobalt_six-100-600-100/m_rounded_tip_6array.ovf", mag_dir='total', zslice=10)
+
+# Compare single rows
+plot_2D_quiver(file_path="./data/stray_field/cobalt_single_compare/m_halbach2rows_L600x200_S600x120_Gap100.ovf", mag_dir='total', zslice=15)
