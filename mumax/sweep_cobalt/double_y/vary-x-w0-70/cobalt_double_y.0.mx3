@@ -44,14 +44,23 @@ for B:=0.0; B<=Bmax; B+=Bstep{
     tablesave()
 }
 
+saveas(m, "m_cobalt_double_rect_70-100-70")
+saveas(B_demag, "strayfield_cobalt_double_rect_70-100-70")
+
 for B:=Bmax; B>=-Bmax; B-=Bstep{
     B_ext = vector(0, B, 0)
     minimize()   // small changes best minimized by minimize()
     tablesave()
 }
 
+saveas(m, "m_cobalt_double_rect_70-100-70")
+saveas(B_demag, "strayfield_cobalt_double_rect_70-100-70")
+
 for B:=-Bmax; B<=Bmax; B+=Bstep{
     B_ext = vector(0, B, 0)
     minimize()   // small changes best minimized by minimize()
     tablesave()
 }
+
+saveas(m, "m_cobalt_double_rect_70-100-70")
+saveas(B_demag, "strayfield_cobalt_double_rect_70-100-70")

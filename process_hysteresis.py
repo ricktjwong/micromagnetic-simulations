@@ -10,15 +10,21 @@ plt.rcParams.update({'figure.autolayout': True})
 plt.rcParams['mathtext.default'] = 'regular'
 
 def process_mumax_single_cobalt_vary_z():
-    widths = [i for i in range(70, 85, 5)]
+    widths = [i for i in range(40, 120, 20)]
     for w in widths:
-        df = pd.read_csv('./data/hysteresis/mumax/double/cobalt_x-600-70/y-70-100-' + str(w) + '.txt', delimiter="\t")
+        df = pd.read_csv('./data/hysteresis/mumax/single/cobalt/vary-x/y-' + str(w) + '-space.txt', delimiter="\t")
         x = df['B_exty (T)']
         y = df['my ()']
-        y = y/max(y)
+        # y = y/max(y)
         plt.plot(x, y, label=str(w)+'nm')
         plt.legend()
-    plt.savefig('y-cobalt-double-vary-width-w0-70.pdf', dpi=1000)
+        df = pd.read_csv('./data/hysteresis/mumax/single/cobalt/vary-x/y-' + str(w) + '.txt', delimiter="\t")
+        x = df['B_exty (T)']
+        y = df['my ()']
+        # y = y/max(y)
+        plt.plot(x, y, label=str(w)+'nm')
+        plt.legend()
+    # plt.savefig('y-cobalt-double-vary-width-w0-70.pdf', dpi=1000)
 
     # widths = [i for i in range(100, 110, 10)]
     # for w in widths:

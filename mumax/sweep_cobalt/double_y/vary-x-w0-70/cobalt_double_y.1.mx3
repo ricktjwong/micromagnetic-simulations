@@ -4,7 +4,7 @@ SetGridsize(80, 200, 14)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 w1 := 70e-9
-w2 := 80e-9
+w2 := 70e-9
 gap := 100e-9
 trans1 := -(w1/2 + gap/2)
 trans2 := w2/2 + gap/2
@@ -30,8 +30,8 @@ Aex.SetRegion(0, 0)
 
 relax()         // high-energy states best minimized by relax()
 
-saveas(m, "m_cobalt_double_rect_70-100-80")
-saveas(B_demag, "strayfield_cobalt_double_rect_70-100-80")
+saveas(m, "m_cobalt_double_rect_70-100-70")
+saveas(B_demag, "strayfield_cobalt_double_rect_70-100-70")
 
 Bmax  := 400.0e-3
 Bstep := 0.1e-3
@@ -44,14 +44,23 @@ for B:=0.0; B<=Bmax; B+=Bstep{
     tablesave()
 }
 
+saveas(m, "m_cobalt_double_rect_70-100-70")
+saveas(B_demag, "strayfield_cobalt_double_rect_70-100-70")
+
 for B:=Bmax; B>=-Bmax; B-=Bstep{
     B_ext = vector(0, B, 0)
     minimize()   // small changes best minimized by minimize()
     tablesave()
 }
 
+saveas(m, "m_cobalt_double_rect_70-100-70")
+saveas(B_demag, "strayfield_cobalt_double_rect_70-100-70")
+
 for B:=-Bmax; B<=Bmax; B+=Bstep{
     B_ext = vector(0, B, 0)
     minimize()   // small changes best minimized by minimize()
     tablesave()
 }
+
+saveas(m, "m_cobalt_double_rect_70-100-70")
+saveas(B_demag, "strayfield_cobalt_double_rect_70-100-70")
