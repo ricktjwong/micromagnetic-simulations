@@ -1,7 +1,7 @@
 OutputFormat = OVF1_TEXT
 EdgeSmooth = 8
 
-SetGridsize(80, 200, 20)
+SetGridsize(120, 200, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 MsPerm := 800e3
@@ -16,15 +16,27 @@ Ms := MsCo
 ExchangeE := ExchangeECo
 Alph := AlphaCo
 
+base_x := 200e-9
 sep := 100e-9
-diameter := 100e-9
-disp := sep/2 + diameter/2
+disp := sep/2 + base_x/2
 
-baseCub := Cuboid(100e-9, 550e-9, 100e-9)
-cyl := Cylinder(100e-9, 100e-9)
-cub := Cuboid(100e-9, 100e-9, 100e-9).transl(0, 50e-9, 0)
-halfCyl := cyl.intersect(cub).transl(0, 275e-9, 0)
-roundedTip := baseCub.add(halfCyl).transl(0, -25e-9, 0)
+
+fullH := 600e-9
+h := fullH - base_x/2
+cub_transl := base_x/2 
+tip_transl := h/2
+recentre := base_x/4
+z := 100e-9
+
+xtotal := 2*sep + 2*base_x
+nx := xtotal / 5e-9
+print (nx)
+
+baseCub := Cuboid(base_x, h, z)
+cyl := Cylinder(base_x, z)
+cub := Cuboid(base_x, base_x, z).transl(0, cub_transl, 0)
+halfCyl := cyl.intersect(cub).transl(0, tip_transl, 0)
+roundedTip := baseCub.add(halfCyl).transl(0, -recentre, 0)
 
 DefRegion(1, roundedTip.transl(-disp, 0 ,0))
 DefRegion(2, roundedTip.transl(disp, 0, 0))

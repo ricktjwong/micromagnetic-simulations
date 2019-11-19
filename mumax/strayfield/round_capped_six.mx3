@@ -19,9 +19,9 @@ Alph := AlphaCo
 sep := 100e-9
 D := 100e-9
 
-baseCub := Cuboid(D, 550e-9, 100e-9)
-cyl := Cylinder(D, 100e-9)
-cub := Cuboid(D, 100e-9, 100e-9).transl(0, 50e-9, 0)
+baseCub := Cuboid(D, 550e-9, 50e-9)
+cyl := Cylinder(D, 50e-9)
+cub := Cuboid(D, 100e-9, 50e-9).transl(0, 50e-9, 0)
 halfCyl := cyl.intersect(cub).transl(0, 275e-9, 0)
 roundedTip := baseCub.add(halfCyl).transl(0, -25e-9, 0)
 
