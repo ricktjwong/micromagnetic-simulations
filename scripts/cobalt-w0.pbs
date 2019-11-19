@@ -6,7 +6,7 @@
 #
 ## ask for one node with 16 cpus and total 2gb memory (per node)
 #PBS -l select=1:ncpus=4:ngpus=1:mem=24GB:gpu_type=P100
-#PBS -J 0-2
+#PBS -J 0-3
 
 ## Ask to join GPU queue
 #
