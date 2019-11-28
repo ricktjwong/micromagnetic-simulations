@@ -15,16 +15,16 @@ ny := ytotal / 5e-9
 print (nx)
 print (ny)
 
-SetPBC(2, 0, 0)
+SetPBC(1, 0, 0)
 SetGridsize(nx, ny, 30)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 
 xdisp := xsep/2 + x/2
 ydisp := ysep/2 + y/2
-Ms := 800e3
-ExchangeE := 13e-12
-alpha_coeff := 0.01
+Ms := 1400e3
+ExchangeE := 30e-12
+alpha_coeff := 0.015
 
 DefRegion(1, Cuboid(x, y, z).transl(-xdisp,ydisp,0))
 DefRegion(2, Cuboid(x, y, z).transl(xdisp,ydisp,0))
@@ -64,5 +64,5 @@ alpha.SetRegion(4,alpha_coeff)
 
 relax()         // high-energy states best minimized by relax()
 
-saveas(m, "m_2rowsPeriodic_100x600_gap300")
-saveas(B_demag, "strayfield_2rowsPeriodic_100x600_gap300")
+saveas(m, "m_rect_6array_2rows_PBC")
+saveas(B_demag, "strayfield_rect_6array_2rows_PBC")
