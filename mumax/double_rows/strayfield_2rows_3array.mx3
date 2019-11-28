@@ -3,8 +3,8 @@ OutputFormat = OVF1_TEXT
 SetGridsize(140, 280, 12)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
-xsep := 150e-9
-ysep := 200e-9
+xsep := 100e-9
+ysep := 300e-9
 x := 100e-9
 
 xdisp := x/2 + xsep + x/2
