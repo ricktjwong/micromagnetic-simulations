@@ -1,0 +1,5 @@
+width of Vertical magnet swept x = [50,100,150,200] nm
+Horizontal magnets fixed at 400nm
+
+.0 to .3 with aligned M for H magnets
+.4 to .7 with alternating M alignment for H magnets 
