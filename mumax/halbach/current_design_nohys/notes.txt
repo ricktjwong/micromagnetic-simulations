@@ -1,0 +1,9 @@
+2 rows halbach (periodic) with 
+Vertical magnet (x,y,z) = (100,600,100) nm
+Horizontal magnet (x,y,z) = (500,120,100) nm
+xsep = 100nm
+ysep = 120nm (this is y spacing btw H magnets)
+ygap = 300nm
+
+.0 for alternating alignment for H magnets
+.1 for same alignment for H magnets
