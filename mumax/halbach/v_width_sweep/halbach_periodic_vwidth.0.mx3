@@ -1,7 +1,7 @@
 OutputFormat = OVF1_TEXT
 
 L := 600e-9
-L2 := 400e-9
+L2 := 500e-9
 w1 := 50e-9
 //w2 := 120e-9
 Nbars := 3
