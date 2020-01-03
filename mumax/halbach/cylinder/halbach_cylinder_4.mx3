@@ -1,0 +1,67 @@
+OutputFormat = OVF1_TEXT
+
+xsep := 300e-9
+ysep := 300e-9
+x := 100e-9
+y := 600e-9
+
+xGrid = (xsep + x*2)/5e-9
+yGrid = (ysep + y*2)/5e-9
+
+SetGridsize(xGrid, yGrid, 20)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+xdisp := x/2 + xsep/2
+ydisp := y/2 + ysep/2
+
+MsPerm := 800e3
+ExchangeEPerm := 13e-12
+AlphaPerm := 0.01
+
+MsCo := 1400e3
+ExchangeECo := 30e-12
+AlphaCo := 0.015
+
+Ms := MsCo
+ExchangeE := ExchangeECo
+Alph := AlphaCo
+
+DefRegion(1, Cuboid(x, y, 100e-9).transl(-xdisp, 0, 0))
+DefRegion(2, Cuboid(x, y, 100e-9).transl(xdisp, 0, 0))
+
+DefRegion(3, Cuboid(x, y, 100e-9).transl(0, ydisp, 0))
+DefRegion(4, Cuboid(x, y, 100e-9).transl(0, -ydisp, 0))
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0, 0, 0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0, -1, 0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1, Alph)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, uniform(0, -1, 0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2, Alph)
+
+Msat.SetRegion(3, Ms)
+m.SetRegion(3, uniform(0, 1, 0))
+Aex.SetRegion(3, ExchangeE)
+Ku1.SetRegion(3, 0)
+alpha.SetRegion(3, Alph)
+
+Msat.SetRegion(4, Ms)
+m.SetRegion(4, uniform(0, 1, 0))
+Aex.SetRegion(4, ExchangeE)
+Ku1.SetRegion(4, 0)
+alpha.SetRegion(4, Alph)
+
+relax()         // high-energy states best minimized by relax()
+
+saveas(m, "m_halbach_cylinder_4")
+saveas(B_demag, "strayfield_halbach_cylinder_4")
