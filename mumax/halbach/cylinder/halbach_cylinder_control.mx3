@@ -1,0 +1,53 @@
+OutputFormat = OVF1_TEXT
+
+sep := 600e-9
+x := 100e-9
+y := 600e-9
+
+xGrid := (sep + y*2)/5e-9
+yGrid := (sep + y*2)/5e-9
+
+print(xGrid)
+print(yGrid)
+
+SetGridsize(xGrid, yGrid, 20)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+disp := y/2 + sep/2
+
+MsPerm := 800e3
+ExchangeEPerm := 13e-12
+AlphaPerm := 0.01
+
+MsCo := 1400e3
+ExchangeECo := 30e-12
+AlphaCo := 0.015
+
+Ms := MsCo
+ExchangeE := ExchangeECo
+Alph := AlphaCo
+
+DefRegion(1, Cuboid(x, y, 100e-9).transl(0, disp, 0))
+DefRegion(2, Cuboid(x, y, 100e-9).transl(0, -disp, 0))
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0, 0, 0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0, 1, 0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1, Alph)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, uniform(0, 1, 0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2, Alph)
+
+relax()         // high-energy states best minimized by relax()
+
+saveas(m, "m_halbach_cylinder_control")
+saveas(B_demag, "strayfield_halbach_cylinder_control")
