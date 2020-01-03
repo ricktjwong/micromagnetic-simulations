@@ -1,12 +1,15 @@
 OutputFormat = OVF1_TEXT
 
-xsep := 300e-9
-ysep := 300e-9
+xsep := 600e-9
+ysep := 600e-9
 x := 100e-9
 y := 600e-9
 
-xGrid = (xsep + x*2)/5e-9
-yGrid = (ysep + y*2)/5e-9
+xGrid := (xsep + x*2)/5e-9
+yGrid := (ysep + y*2)/5e-9
+
+print(xGrid)
+print(yGrid)
 
 SetGridsize(xGrid, yGrid, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
