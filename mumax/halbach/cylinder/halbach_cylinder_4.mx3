@@ -1,17 +1,19 @@
 OutputFormat = OVF1_TEXT
 
-r := 300e-9
+sep := 600e-9
 x := 100e-9
 y := 600e-9
 
-xGrid := (r*2 + x)/5e-9
-yGrid := (r*2 + y)/5e-9
+xGrid := (sep + y*2)/5e-9
+yGrid := (sep + y*2)/5e-9
 
 print(xGrid)
 print(yGrid)
 
 SetGridsize(xGrid, yGrid, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
+
+disp := y/2 + sep/2
 
 MsPerm := 800e3
 ExchangeEPerm := 13e-12
@@ -25,11 +27,11 @@ Ms := MsCo
 ExchangeE := ExchangeECo
 Alph := AlphaCo
 
-DefRegion(1, Cuboid(x, y, 100e-9).transl(-r, 0, 0))
-DefRegion(2, Cuboid(x, y, 100e-9).transl(r, 0, 0))
+DefRegion(1, Cuboid(x, y, 100e-9).transl(disp, 0, 0))
+DefRegion(2, Cuboid(x, y, 100e-9).transl(-disp, 0, 0))
 
-DefRegion(3, Cuboid(x, y, 100e-9).transl(0, r, 0))
-DefRegion(4, Cuboid(x, y, 100e-9).transl(0, -r, 0))
+DefRegion(3, Cuboid(x, y, 100e-9).transl(0, disp, 0))
+DefRegion(4, Cuboid(x, y, 100e-9).transl(0, -disp, 0))
 
 Msat.SetRegion(0, 0)
 m.SetRegion(0, uniform(0, 0, 0))
