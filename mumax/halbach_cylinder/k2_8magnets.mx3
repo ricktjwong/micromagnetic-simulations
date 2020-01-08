@@ -1,0 +1,89 @@
+OutputFormat = OVF1_TEXT
+
+Ms := 800e3
+ExchangeE := 13e-12 
+
+x := 100e-9
+y := 300e-9
+z := 50e-9
+R := 350e-9 // minimum of 283nm
+
+maxY := 2*R + 2*y
+maxX := (2/sqrt(2)) * R + 2*y
+print (maxY)
+print (maxX)
+
+
+SetGridsize(240, 240, 20)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+pos1 := R/sqrt(2)
+
+DefRegion(1, Cuboid(x, y, z).RotZ(0).transl(0,R + y/2,0))
+DefRegion(2, Cuboid(x, y, z).RotZ((90*pi/180)).transl(pos1 + y/2,pos1,0))
+DefRegion(3, Cuboid(x, y, z).RotZ(0).transl(R,0,0))
+DefRegion(4, Cuboid(x, y, z).RotZ((90*pi/180)).transl(pos1 + y/2,-pos1,0))
+
+DefRegion(5, Cuboid(x, y, z).RotZ(0).transl(0,-R - y/2,0))
+DefRegion(6, Cuboid(x, y, z).RotZ((90*pi/180)).transl(-pos1 -y/2,-pos1,0))
+DefRegion(7, Cuboid(x, y, z).RotZ(0).transl(-R,0,0))
+DefRegion(8, Cuboid(x, y, z).RotZ((90*pi/180)).transl(-pos1 - y/2,pos1,0))
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0,1,0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1,0.5)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, uniform(1,0,0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2,0.5)
+
+Msat.SetRegion(3, Ms)
+m.SetRegion(3, uniform(0,-1,0))
+Aex.SetRegion(3, ExchangeE)
+Ku1.SetRegion(3, 0)
+alpha.SetRegion(3,0.5)
+
+Msat.SetRegion(4, Ms)
+m.SetRegion(4, uniform(-1,0,0))
+Aex.SetRegion(4, ExchangeE)
+Ku1.SetRegion(4, 0)
+alpha.SetRegion(4,0.5)
+
+Msat.SetRegion(5, Ms)
+m.SetRegion(5, uniform(0,1,0))
+Aex.SetRegion(5, ExchangeE)
+Ku1.SetRegion(5, 0)
+alpha.SetRegion(5,0.5)
+
+Msat.SetRegion(6, Ms)
+m.SetRegion(6, uniform(1,0,0))
+Aex.SetRegion(6, ExchangeE)
+Ku1.SetRegion(6, 0)
+alpha.SetRegion(6,0.5)
+
+Msat.SetRegion(7, Ms)
+m.SetRegion(7, uniform(0,-1,0))
+Aex.SetRegion(7, ExchangeE)
+Ku1.SetRegion(7, 0)
+alpha.SetRegion(7,0.5)
+
+Msat.SetRegion(8, Ms)
+m.SetRegion(8, uniform(-1,0,0))
+Aex.SetRegion(8, ExchangeE)
+Ku1.SetRegion(8, 0)
+alpha.SetRegion(8,0.5)
+
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+relax()         // high-energy states best minimized by relax()
+
+saveas(m, "m")
+saveas(B_demag, "strayfield")
