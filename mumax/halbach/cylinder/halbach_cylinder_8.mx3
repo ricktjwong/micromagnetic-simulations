@@ -15,14 +15,14 @@ Alph := AlphaCo
 x := 100e-9
 y := 600e-9
 z := 100e-9
-R := 300e-9
+R := 600e-9
 
 maxY := 2*R + 2*y
 maxX := (2/sqrt(2)) * R + 2*y
 print (maxY)
 print (maxX)
 
-SetGridsize(240, 240, 20)
+SetGridsize(360, 360, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 pos1 := R/sqrt(2)
