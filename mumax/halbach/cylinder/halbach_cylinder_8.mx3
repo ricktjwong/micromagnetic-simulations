@@ -92,5 +92,5 @@ Kc1.SetRegion(0, 0)
 
 relax()         // high-energy states best minimized by relax()
 
-saveas(m, "m_halbach_cylinder_4")
-saveas(B_demag, "strayfield_halbach_cylinder_4")
+saveas(m, "m_halbach_cylinder_8")
+saveas(B_demag, "strayfield_halbach_cylinder_8")
