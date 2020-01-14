@@ -25,19 +25,19 @@ pos2 := v2 * R
 
 
 DefRegion(1, Cuboid(x, y, z).RotZ((-60*pi/180)).transl(pos1, pos2, 0))
-DefRegion(2, Cuboid(x, y, z).RotZ((30*pi/180)).transl(pos2, pos1, 0))
+DefRegion(2, Cuboid(x, y, z).RotZ((-120*pi/180)).transl(pos2, pos1, 0))
 DefRegion(3, Cuboid(x, y, z).RotZ(0).transl(R,0,0))
 
 DefRegion(4, Cuboid(x, y, z).RotZ((-60*pi/180)).transl(pos2 , -pos1, 0))
-DefRegion(5, Cuboid(x, y, z).RotZ((30*pi/180)).transl(pos1, -pos2, 0))
+DefRegion(5, Cuboid(x, y, z).RotZ((-120*pi/180)).transl(pos1, -pos2, 0))
 DefRegion(6, Cuboid(x, y, z).RotZ(0).transl(0,-R - y/2,0))
 
-DefRegion(7, Cuboid(x, y, z).RotZ((-60*pi/180)).transl(-pos1, -pos2,0))
-DefRegion(8, Cuboid(x, y, z).RotZ((30*pi/180)).transl(-pos2 , -pos1,0))
+DefRegion(7, Cuboid(x, y, z).RotZ((120*pi/180)).transl(-pos1, -pos2,0))
+DefRegion(8, Cuboid(x, y, z).RotZ((60*pi/180)).transl(-pos2 , -pos1,0))
 DefRegion(9, Cuboid(x, y, z).RotZ(0).transl(-R, 0, 0))
 
-DefRegion(10, Cuboid(x, y, z).RotZ((-60*pi/180)).transl(-pos2 , pos1, 0))
-DefRegion(11, Cuboid(x, y, z).RotZ((30*pi/180)).transl(-pos1, pos2, 0))
+DefRegion(10, Cuboid(x, y, z).RotZ((120*pi/180)).transl(-pos2 , pos1, 0))
+DefRegion(11, Cuboid(x, y, z).RotZ((60*pi/180)).transl(-pos1, pos2, 0))
 DefRegion(12, Cuboid(x, y, z).RotZ(0).transl(0,R + y/2,0))
 
 Msat.SetRegion(1, Ms)
