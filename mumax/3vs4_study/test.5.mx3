@@ -1,0 +1,69 @@
+OutputFormat = OVF1_TEXT
+
+SetGridsize(200, 200, 20)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+Ms := 800e3
+ExchangeE := 13e-12 
+
+a := 100e-9
+b := 400e-9
+z := 100e-9
+
+s:= 50e-9
+deltay := 0.25 * ((2-sqrt(3))*b - a)
+
+slanty := 0.5*(a + sqrt(3)*b)
+slantx := 0.5*(sqrt(3)*a + b)
+
+dispx1 := 2*s + b/2
+dispx2 := s/2 + slantx/2
+dispy := -slanty/2 -a/2 -s/2
+
+maxX := 2*b + 4*s 
+maxY := b
+print(maxX)
+
+v1 := 1/2
+v2 := sqrt(3)/2
+
+DefRegion(1, Cuboid(b, a, z).RotZ(0).transl(-dispx1, 0, 0))
+DefRegion(2, Cuboid(b, a, z).RotZ((60*pi/180)).transl(-dispx2,dispy,0))
+DefRegion(3, Cuboid(b, a, z).RotZ((120*pi/180)).transl(dispx2, dispy,0))
+DefRegion(4, Cuboid(b, a, z).RotZ(0).transl(dispx1, 0,0))
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(1,0,0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1,0.5)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, uniform(v1,v2,0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2,0.5)
+
+
+Msat.SetRegion(3, Ms)
+m.SetRegion(3, uniform(-v1,v2,0))
+Aex.SetRegion(3, ExchangeE)
+Ku1.SetRegion(3, 0)
+alpha.SetRegion(3,0.5)
+
+Msat.SetRegion(4, Ms)
+m.SetRegion(4, uniform(-1,0,0))
+Aex.SetRegion(4, ExchangeE)
+Ku1.SetRegion(4, 0)
+alpha.SetRegion(4,0.5)
+
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+relax()         // high-energy states best minimized by relax()
+
+saveas(m, "m")
+saveas(B_demag, "strayfield")
