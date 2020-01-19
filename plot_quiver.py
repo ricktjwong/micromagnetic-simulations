@@ -53,11 +53,12 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     Y, X = np.meshgrid(np.arange(0, y, 1), np.arange(0, x, 1))
     fig, ax = plt.subplots()
     # Choose a z slice
-    ax.quiver(X, Y, u[:,:,zslice], v[:,:,zslice], 1)
-    CS = ax.contour(X, Y, mag_slice, contours, linewidths=[1])
+    skip = (slice(None,None,5), slice(None,None,5))
+    ax.quiver(X[skip]*5, Y[skip]*5, u[:,:,zslice][skip], v[:,:,zslice][skip], 10)
+    CS = ax.contour(X*5, Y*5, mag_slice, contours, linewidths=[1])
     ax.clabel(CS, inline=1, fontsize=8)
     ax.set_aspect('equal')
-    plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
+    plt.savefig(file_path.split('/')[-1].split('.')[0] + '_By.pdf', dpi=1000)
     plt.show()
 
 
@@ -86,51 +87,34 @@ def get_meta_data(file_path: str):
     return int(headers['xnodes']), int(headers['ynodes']), int(headers['znodes']), \
            float(headers['xstepsize']), float(headers['ystepsize']), float(headers['zstepsize'])
 
+# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_hlength/strayfield_halbachPeriodic_hlength_300.ovf", mag_dir='y', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_hlength/strayfield_halbachPeriodic_hlength_300_aligned.ovf", mag_dir='y', zslice=15)
 
-# Double rect
-# plot_2D_quiver(file_path="./data/stray_field/rect/double_100_x_120/strayfield_updown_doubleAsym_100_100_120.ovf", mag_dir='total', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/double_100_x_120/strayfield_updown_doubleAsym_100_150_120.ovf", mag_dir='total', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/double_100_x_120/strayfield_updown_doubleAsym_100_200_120.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_100.ovf", mag_dir='y', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_100_aligned.ovf", mag_dir='y', zslice=15)
 
-# Six rects
-# plot_2D_quiver(file_path="./data/stray_field/rect/permalloy_6array.txt", mag_dir='total', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/strayfield_updown_6array_100_200_120.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_150.ovf", mag_dir='y', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_150_aligned.ovf", mag_dir='y', zslice=15)
 
-# Two rows of three rects
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_100_100_100.ovf", mag_dir='total', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_100_150_100.ovf", mag_dir='total', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_100_200_100.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_200.ovf", mag_dir='y', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_200_aligned.ovf", mag_dir='y', zslice=15)
 
-# Two rows of staggered rects
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_staggered_100_100_100.ovf", mag_dir='total', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_staggered_100_150_100.ovf", mag_dir='total', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rect/two_rows/strayfield_2rows_staggered_100_200_100.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf", mag_dir='y', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_parallel.ovf", mag_dir='y', zslice=15)
 
-# Hemisphere tips
-# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_one_hemisphere_tip.ovf", mag_dir='total', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_100_100_100.ovf", mag_dir='total', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_double_hemisphere_tip_100_100_100_Co.ovf", mag_dir='total', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_six_hemisphere_tip.ovf", mag_dir='total', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_six_hemisphere_tip_Co.ovf", mag_dir='total', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/hemisphere/strayfield_one_conical_tip.ovf", mag_dir='total', zslice=0)
+# plot_2D_quiver(file_path="./data/stray_field/cobalt_tworows_compare/strayfield_rect_6array_2rows_noPBC.ovf", mag_dir='y', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/cobalt_tworows_compare/strayfield_rect_7array_2rows_noPBC.ovf", mag_dir='y', zslice=15)
 
-# Rounded tips
-# plot_2D_quiver(file_path="./data/stray_field/rounded/strayfield_one_rounded_tip.ovf", mag_dir='total', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rounded/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='x', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/rounded/strayfield_six_rounded_tip.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./cobalt-halbach-2rows/halbach2rows.0.out/m000000.ovf", mag_dir='y', zslice=15)
+# plot_2D_quiver(file_path="./cobalt-halbach-2rows/halbach2rows.0.out/m000000.ovf", mag_dir='y', zslice=15)
 
-# Halbach array
-# plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_120_100.ovf", mag_dir='total', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_200_100.ovf", mag_dir='total', zslice=6)
-# plot_2D_quiver(file_path="./data/stray_field/halbach/strayfield_halbach_600_300_100.ovf", mag_dir='total', zslice=6)
+# plot_2D_quiver(file_path="./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_4.ovf", mag_dir='total', zslice=10)
+# plot_2D_quiver(file_path="./data/stray_field/halbach_cylinder/m_halbach_cylinder_8.ovf", mag_dir='total', zslice=10)
 
-# Compare
-# plot_2D_quiver(file_path="./data/stray_field/compare_cobalt_double-100-600-100/strayfield_double_rect_100_100_100.ovf", mag_dir='total', zslice=10)
-# plot_2D_quiver(file_path="./data/stray_field/cobalt_six-100-600-100/m_rounded_tip_6array.ovf", mag_dir='total', zslice=10)
-# plot_2D_quiver(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100_1u.ovf", mag_dir='total', zslice=10)
+# plot_2D_quiver(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100.ovf", mag_dir='total', zslice=10)
+# plot_2D_quiver(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='total', zslice=10)
 
-# plot_2D_quiver(file_path="./data/stray_field/cobalt_six-100-600-100/m_rect_6array.ovf", mag_dir='total', zslice=10)
-# plot_2D_quiver(file_path="./data/stray_field/cobalt_six-100-600-100/m_rounded_tip_6array.ovf", mag_dir='total', zslice=10)
-
-# Compare single rows
-plot_2D_quiver(file_path="./data/stray_field/cobalt_single_compare/m_halbach2rows_L600x200_S600x120_Gap100.ovf", mag_dir='total', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf", mag_dir='total', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/cobalt_tworows_compare/strayfield_6array_2rows_PBC_6eachside.ovf", mag_dir='total', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_12.ovf", mag_dir='total', zslice=15)
+plot_2D_quiver(file_path="./data/stray_field/halbach_cylinder/modified_cyl.ovf", mag_dir='total', zslice=15)
