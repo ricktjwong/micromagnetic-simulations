@@ -111,3 +111,4 @@ relax()
 
 saveas(m, "m_optimise")
 saveas(B_demag, "strayfield_optimise")
+endfile
