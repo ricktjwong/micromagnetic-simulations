@@ -1,11 +1,12 @@
 OutputFormat = OVF1_TEXT
 
-nx := 6
-ny := 6
-nz := 10
+nx := 40
+ny := 40
+nz := 40
 
-CellSize := 20e-9
-Translate := 10e-9
+CellSize := 5e-9
+Translate := 50e-9
+GridSize := 100e-9
 
 SetGridsize(nx, ny, nz)
 SetCellsize(CellSize, CellSize, CellSize)
@@ -14,10 +15,10 @@ Ms := 1400e3
 ExchangeE := 30e-12
 Alph := 0.015
 
-DefRegion(1, Cuboid(CellSize, CellSize, CellSize).transl(Translate, Translate, 0))
-DefRegion(2, Cuboid(CellSize, CellSize, CellSize).transl(Translate, -Translate, 0))
-DefRegion(3, Cuboid(CellSize, CellSize, CellSize).transl(-Translate, Translate, 0))
-DefRegion(4, Cuboid(CellSize, CellSize, CellSize).transl(-Translate, -Translate, 0))
+DefRegion(1, Cuboid(GridSize, GridSize, GridSize).transl(Translate, Translate, 0))
+DefRegion(2, Cuboid(GridSize, GridSize, GridSize).transl(Translate, -Translate, 0))
+DefRegion(3, Cuboid(GridSize, GridSize, GridSize).transl(-Translate, Translate, 0))
+DefRegion(4, Cuboid(GridSize, GridSize, GridSize).transl(-Translate, -Translate, 0))
 
 Msat.SetRegion(1, Ms)
 m.SetRegion(1, uniform(0, 1, 0))
