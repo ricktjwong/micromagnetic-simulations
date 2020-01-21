@@ -6,10 +6,10 @@ def initialise_gridspace(x: int, y: int):
     configs = ['uniform(0, 0, 0)', 'uniform(0, 1, 0)', 'uniform(0, -1, 0)',
                'uniform(1, 0, 0)', 'uniform(-1, 0, 0)']
     with open('./boilerplate.mx3') as f:
-        with open('out.mx3', 'w') as f1:
+        with open('out2.mx3', 'w') as f1:
             for line in f:
                 f1.write(line)
-            lines = ''
+            lines = '\n'
             lines += 'm.SetRegion(1, uniform(0, 0, 0))\n'
             lines += 'm.SetRegion(2, uniform(0, 0, 0))\n'
             lines += 'm.SetRegion(3, uniform(0, 0, 0))\n'
