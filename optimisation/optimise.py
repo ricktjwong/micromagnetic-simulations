@@ -62,7 +62,7 @@ def acceptance_probability(old, new, T):
     T gets smaller at every iteration, i.e. we accept bad cost values with
     lower probability
     """
-    if new < old:
+    if new > old:
         a = 1
     else:
         a = np.exp((new - old) / T)
@@ -70,9 +70,9 @@ def acceptance_probability(old, new, T):
 
 
 def simulated_annealing(x0, T, T_min, alpha):
-    min_costs = []
-    min_actions = []
-    min_cost = 1000
+    max_costs = []
+    max_actions = []
+    max_cost = 0.01
     while T > T_min:
         count = 0
         while(count < 100):
@@ -80,22 +80,24 @@ def simulated_annealing(x0, T, T_min, alpha):
             initialise_gridspace(x0, filename)
             run_mumax_script(filename)
             while not os.path.exists('./mumax_scripts/' + filename.split('.')[0] + '.out'):
-                time.sleep(20)
+                time.sleep(5)
             cost_new = find_max_B(filename.split('.')[0], 6)
             print('new cost: ' + str(cost_new))
-            ep = acceptance_probability(min_cost, cost_new, T)
+            ep = acceptance_probability(max_cost, cost_new, T)
             if ep > random.random():
-                min_cost = cost_new
-                min_action = x0.copy()
-                min_costs.append(min_cost)
-                min_actions.append(min_action)
+                max_cost = cost_new
+                max_action = x0.copy()
+                max_costs.append(max_cost)
+                max_actions.append(max_action)
             idx = random.choice([0, 1, 2, 3, 4, 5, 6, 7])
-            if x0[idx] <= 4:
+            if x0[idx] < 4:
                 x0[idx] += 1
+            else:
+                x0[idx] = random.choice([0, 1, 2, 3, 4])
             count += 1
-            print(min_cost)
-        np.save("sim_annealing/costs" + str(T), min_costs)
-        np.save("sim_annealing/action" + str(T), min_actions)
+            print(max_cost)
+        np.save("sim_annealing/costs" + str(T), max_costs)
+        np.save("sim_annealing/action" + str(T), max_actions)
         T = T * alpha
 
 
