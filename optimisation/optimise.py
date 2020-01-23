@@ -43,9 +43,10 @@ def initialise_gridspace(x0: [int], filename: str):
 
 
 def find_max_B(file_path: str, yslice: int):
-    x, y, z, _, _, _ = get_meta_data(file_path + '.out/' + 'strayfield_optimise_' + file_path + '.ovf')
+    ovf_path = './mumax_scripts/' + file_path + '.out/' + 'strayfield_optimise_' + file_path + '.ovf'
+    x, y, z, _, _, _ = get_meta_data(ovf_path)
     zslice = int(z / 2)
-    data = np.array(np.loadtxt(file_path))
+    data = np.array(np.loadtxt(ovf_path))
     data_field = data.reshape(x, y, z, 3, order='F')
     u, v, w = data_field[:, :, :, 0], data_field[:, :, :, 1], data_field[:, :, :, 2]
     mag = (u * u + v * v + w * w) ** 0.5
@@ -87,7 +88,7 @@ def simulated_annealing(x0, T, T_min, alpha):
                 min_action = x0.copy()
                 min_costs.append(min_cost)
                 min_actions.append(min_action)
-            idx = random.choice([0, 1, 2, 3, 4, 5, 6, 7, 8])
+            idx = random.choice([0, 1, 2, 3, 4, 5, 6, 7])
             if x0[idx] <= 4:
                 x0[idx] += 1
             count += 1
