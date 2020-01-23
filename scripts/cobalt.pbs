@@ -22,20 +22,20 @@ echo BeforeMuMax
 nvidia-smi -L
 #
 ##file management - Copy input file to TMPDIR
-cp $WORK/micromagnetic-simulations/mumax/3vs4_study/test.$PBS_ARRAY_INDEX.mx3 $TMPDIR
+cp $WORK/micromagnetic-simulations/mumax/halbach/switching/halbach_switch_updown.$PBS_ARRAY_INDEX.mx3 $TMPDIR
 ls
 echo
 #
 ##command line
-mumax3-cuda6.5 test.$PBS_ARRAY_INDEX.mx3
+mumax3-cuda6.5 halbach_switch_updown.$PBS_ARRAY_INDEX.mx3
 
 echo AfterMuMax
 #
 ##file management - Move output files to WORK directory
 ls
-mkdir $WORK/3vs4_study
-cp -a * $WORK/3vs4_study
-ls $WORK/3vs4_study
+mkdir $WORK/switch_study
+cp -a * $WORK/switch_study
+ls $WORK/switch_study
 ## Diagnostics
 #
 echo ------------------------------------------------------------------------------------------------------------------
