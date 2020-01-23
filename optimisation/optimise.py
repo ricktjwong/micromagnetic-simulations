@@ -82,6 +82,7 @@ def simulated_annealing(x0, T, T_min, alpha):
             while not os.path.exists('./mumax_scripts/' + filename.split('.')[0] + '.out'):
                 time.sleep(20)
             cost_new = find_max_B(filename.split('.')[0], 6)
+            print('new cost: ' + str(cost_new))
             ep = acceptance_probability(min_cost, cost_new, T)
             if ep > random.random():
                 min_cost = cost_new
@@ -92,6 +93,7 @@ def simulated_annealing(x0, T, T_min, alpha):
             if x0[idx] <= 4:
                 x0[idx] += 1
             count += 1
+            print(min_cost)
         np.save("sim_annealing/costs" + str(T), min_costs)
         np.save("sim_annealing/action" + str(T), min_actions)
         T = T * alpha
