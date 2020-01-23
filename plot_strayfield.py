@@ -9,6 +9,7 @@ plt.rcParams['lines.linewidth'] = 1
 plt.rcParams.update({'figure.autolayout': True})
 plt.rcParams['mathtext.default'] = 'regular'
 
+
 def get_meta_data(file_path: str):
     headers = {}
     with open(file_path) as f:
@@ -40,7 +41,8 @@ def plot_strayfield(file_path: str, mag_dir: str, yslice: [int]):
     for i in yslice:
         mag_slice = mag[:, i, zslice]
         # plt.plot([i * 5 for i in range(x)], mag_slice, label=mag_dir)
-        plt.plot([i * 5 for i in range(x)], mag_slice, label=str((i - 160) * 5) + 'nm')
+        plt.plot([i * 5 for i in range(x)], mag_slice, label=str(i * 5) + 'nm')
+    print(max(mag_slice))
     plt.legend()
     # plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     # plt.show()
@@ -74,13 +76,14 @@ def compare_strayfields(base_path: str, thicknesses: [int], mag_dir: str):
     plt.savefig(file_path.split('/')[-1].split('.')[0] + '.pdf', dpi=1000)
     plt.show()
 
-# t = [10 * i for i in range(6, 13, 1)]
-# compare_strayfields(base_path="./data/stray_field/rect/single_600-100-z/strayfield_cobalt_single_rect_thickness_", thicknesses=t, mag_dir='y')
 
-plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='z', yslice=[165, 170, 180, 190])
-plt.savefig('strayfield_double_rounded_tip_100_100_100-multiple-Bz.pdf', dpi=1000)
+# plot_strayfield('./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_4.ovf', 'y', [180])
+# plot_strayfield('./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_control.ovf', 'y', [180])
+# plot_strayfield('./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_8.ovf', 'y', [180])
+# plot_strayfield('./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf', 'y', [150])
+# plot_strayfield('./data/stray_field/cobalt_tworows_compare/strayfield_6array_2rows_PBC_6eachside.ovf', 'y', [150])
 
-# plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100.ovf", mag_dir='x', yslice=[190])
-# plot_strayfield(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100_1u.ovf", mag_dir='total', yslice=[270])
-# plt.savefig('rect_vs_rounded_double-600-1000.pdf', dpi=1000)
-plt.show()
+# plot_strayfield('./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_12.ovf', 'y', [200, 210, 220])
+# plot_strayfield('./out.out/strayfield_optimise.ovf', 'total', [6])
+# plt.savefig('strayfield_halbach_cylinder_12.pdf', dpi=1000)
+# plt.show()
