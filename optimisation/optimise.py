@@ -43,7 +43,7 @@ def initialise_gridspace(x0: [int], filename: str):
 
 
 def find_max_B(file_path: str, yslice: int):
-    x, y, z, _, _, _ = get_meta_data(file_path)
+    x, y, z, _, _, _ = get_meta_data(file_path + '.out/' + 'strayfield_optimise_' + file_path + '.ovf')
     zslice = int(z / 2)
     data = np.array(np.loadtxt(file_path))
     data_field = data.reshape(x, y, z, 3, order='F')
@@ -78,9 +78,9 @@ def simulated_annealing(x0, T, T_min, alpha):
             filename = str(random.randint(1111111111, 9999999999)) + '.mx3'
             initialise_gridspace(x0, filename)
             run_mumax_script(filename)
-            while not os.path.exists('./mumax_scripts/strayfield_optimise_' + filename):
+            while not os.path.exists('./mumax_scripts/' + filename.split('.')[0] + '.out'):
                 time.sleep(20)
-            cost_new = find_max_B(filename, 6)
+            cost_new = find_max_B(filename.split('.')[0], 6)
             ep = acceptance_probability(min_cost, cost_new, T)
             if ep > random.random():
                 min_cost = cost_new
