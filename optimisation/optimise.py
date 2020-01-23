@@ -3,12 +3,23 @@ import sys
 import random
 import numpy as np
 import time
-sys.path.append('../')
-from plot_strayfield import get_meta_data
 
 
 def run_mumax_script(filename: str):
     os.system('mumax3-cuda6.5 ./mumax_scripts/' + filename)
+
+
+def get_meta_data(file_path: str):
+    headers = {}
+    with open(file_path) as f:
+        for line in f:
+            if line[0] != '#': break
+            if ':' in line:
+                key_value = line.split('# ')[1].split(':')
+                key, value = key_value[0], key_value[1].split('\n')[0].strip()
+                headers[key] = value
+    return int(headers['xnodes']), int(headers['ynodes']), int(headers['znodes']), \
+           float(headers['xstepsize']), float(headers['ystepsize']), float(headers['zstepsize'])
 
 
 def initialise_gridspace(x0: [int], filename: str):
