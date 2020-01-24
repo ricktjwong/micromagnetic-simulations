@@ -76,7 +76,7 @@ def simulated_annealing(x0, T, T_min, alpha):
     while T > T_min:
         count = 0
         while(count < 100):
-            filename = str(random.randint(1111111111, 9999999999)) + '.mx3'
+            filename = str(T) + '_' + str(count) + '.mx3'
             initialise_gridspace(x0, filename)
             run_mumax_script(filename)
             while not os.path.exists('./mumax_scripts/' + filename.split('.')[0] + '.out'):

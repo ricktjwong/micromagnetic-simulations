@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
+import matplotlib.colors as colors
 import matplotlib.patches as patches
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 plt.style.use('seaborn-bright')
 plt.rcParams['font.family'] = 'Times New Roman'
@@ -40,7 +42,7 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     x, y, z, _, _, _ = get_meta_data(file_path)
     data = np.array(np.loadtxt(file_path))
     data_field = data.reshape(x, y, z, 3, order="F")
-    u, v, w = data_field[:,:,:,0], data_field[:,:,:,1], data_field[:,:,:,2]
+    u, v, w = data_field[:, :, :, 0], data_field[:, :, :, 1], data_field[:, :, :, 2]
     if (mag_dir == 'x'):
         mag = abs(u)
     elif (mag_dir == 'y'):
@@ -49,16 +51,23 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
         mag = abs(w)
     elif (mag_dir == 'total'):
         mag = (u * u + v * v + w * w) ** 0.5
-    mag_slice = mag[:,:,zslice]
+    mag_slice = mag[:, :, zslice]
     Y, X = np.meshgrid(np.arange(0, y, 1), np.arange(0, x, 1))
     fig, ax = plt.subplots()
     # Choose a z slice
-    skip = (slice(None,None,5), slice(None,None,5))
-    ax.quiver(X[skip]*5, Y[skip]*5, u[:,:,zslice][skip], v[:,:,zslice][skip], 10)
+    skip = (slice(None, None, 5), slice(None, None, 5))
+    ax.quiver(X[skip]*5, Y[skip]*5, u[:, :, zslice][skip], v[:, :, zslice][skip], 10)
+    repeat_y = np.repeat(mag_slice, 5, axis=0)
+    repeat_x = np.repeat(repeat_y, 5, axis=1)
+    im = ax.imshow(np.transpose(repeat_x), cmap='rainbow')
     CS = ax.contour(X*5, Y*5, mag_slice, contours, linewidths=[1])
     ax.clabel(CS, inline=1, fontsize=8)
-    ax.set_aspect('equal')
-    plt.savefig(file_path.split('/')[-1].split('.')[0] + '_By.pdf', dpi=1000)
+    divider = make_axes_locatable(ax)
+    cax = divider.append_axes("right", size="5%", pad=0.05)
+    plt.xlabel('$T$', labelpad=20)
+    plt.colorbar(im, cax=cax)
+    # ax.set_aspect('equal')
+    # plt.savefig(file_path.split('/')[-1].split('.')[0] + '_By.pdf', dpi=1000)
     plt.show()
 
 
@@ -87,34 +96,5 @@ def get_meta_data(file_path: str):
     return int(headers['xnodes']), int(headers['ynodes']), int(headers['znodes']), \
            float(headers['xstepsize']), float(headers['ystepsize']), float(headers['zstepsize'])
 
-# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_hlength/strayfield_halbachPeriodic_hlength_300.ovf", mag_dir='y', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_hlength/strayfield_halbachPeriodic_hlength_300_aligned.ovf", mag_dir='y', zslice=15)
 
-# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_100.ovf", mag_dir='y', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_100_aligned.ovf", mag_dir='y', zslice=15)
-
-# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_150.ovf", mag_dir='y', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_150_aligned.ovf", mag_dir='y', zslice=15)
-
-# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_200.ovf", mag_dir='y', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/halbach_vary_width/vary_vwidth/strayfield_halbachPeriodic_vwidth_200_aligned.ovf", mag_dir='y', zslice=15)
-
-# plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf", mag_dir='y', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_parallel.ovf", mag_dir='y', zslice=15)
-
-# plot_2D_quiver(file_path="./data/stray_field/cobalt_tworows_compare/strayfield_rect_6array_2rows_noPBC.ovf", mag_dir='y', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/cobalt_tworows_compare/strayfield_rect_7array_2rows_noPBC.ovf", mag_dir='y', zslice=15)
-
-# plot_2D_quiver(file_path="./cobalt-halbach-2rows/halbach2rows.0.out/m000000.ovf", mag_dir='y', zslice=15)
-# plot_2D_quiver(file_path="./cobalt-halbach-2rows/halbach2rows.0.out/m000000.ovf", mag_dir='y', zslice=15)
-
-# plot_2D_quiver(file_path="./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_4.ovf", mag_dir='total', zslice=10)
-# plot_2D_quiver(file_path="./data/stray_field/halbach_cylinder/m_halbach_cylinder_8.ovf", mag_dir='total', zslice=10)
-
-# plot_2D_quiver(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rect_100_100_100.ovf", mag_dir='total', zslice=10)
-# plot_2D_quiver(file_path="./data/stray_field/cobalt_double-z-100/strayfield_double_rounded_tip_100_100_100.ovf", mag_dir='total', zslice=10)
-
-# plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf", mag_dir='total', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/cobalt_tworows_compare/strayfield_6array_2rows_PBC_6eachside.ovf", mag_dir='total', zslice=15)
-# plot_2D_quiver(file_path="./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_12.ovf", mag_dir='total', zslice=15)
-plot_2D_quiver(file_path="./data/stray_field/halbach_cylinder/modified_cyl.ovf", mag_dir='total', zslice=15)
+plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf", mag_dir='total', zslice=15)
