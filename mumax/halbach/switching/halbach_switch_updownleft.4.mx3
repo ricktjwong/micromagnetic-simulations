@@ -98,27 +98,26 @@ m.SetRegion(0, uniform(0,0,0))
 Aex.SetRegion(0, 0)
 Kc1.SetRegion(0, 0)
 
-Bx := 0
+Bx := 0.0
 By := -47e-3
 B_ext = vector(Bx,By,0)
-
 relax()         // high-energy states best minimized by relax()
 saveas(m, "m")
 
-Bx = 0
-By = 0
+Bx = 0.0
+By = 0.0
 B_ext = vector(Bx,By,0)
 relax()         // high-energy states best minimized by relax()
 saveas(m, "m1")
 
 Bx = -33e-3
-By = 0
+By = 0.0
 B_ext = vector(Bx,By,0)
 relax()
 saveas(m, "m2")
 
-Bx = 0
-By = 0
+Bx = 0.0
+By = 0.0
 B_ext = vector(Bx,By,0)
 relax()
 saveas(m, "m3")
