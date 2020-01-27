@@ -43,8 +43,8 @@ def initialise_gridspace(x0: [int], filename: str):
                     lines += 'Aex.SetRegion(' + str(i + 5) + ', 0)\n'
                     lines += 'Kc1.SetRegion(' + str(i + 5) + ', 0)\n'
             lines += 'relax()\n'
-            lines += 'saveas(m, "m_optimise_' + filename.split('.')[0] + '")\n'
-            lines += 'saveas(B_demag, "strayfield_optimise_' + filename.split('.')[0] + '")\n'
+            lines += 'saveas(m, "m_optimise")\n'
+            lines += 'saveas(B_demag, "strayfield_optimise")\n'
             f1.write(lines)
 
 
@@ -82,7 +82,7 @@ def simulated_annealing(x0, T, T_min, alpha):
     while T > T_min:
         count = 0
         while(count < 100):
-            filename = str(T) + '_' + str(count) + '.mx3'
+            filename = str(T).replace('.', '') + '_' + str(count) + '.mx3'
             initialise_gridspace(x0, filename)
             run_mumax_script(filename)
             while not os.path.exists('./mumax_scripts/' + filename.split('.')[0] + '.out'):
