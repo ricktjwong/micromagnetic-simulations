@@ -36,6 +36,12 @@ def initialise_gridspace(x0: [int], filename: str):
             lines += 'm.SetRegion(4, uniform(0, 0, 0))\n'
             for i in range(len(x0)):
                 lines += 'm.SetRegion(' + str(i + 5) + ', ' + configs[x0[i]] + ')\n'
+                # If the cell is initialised empty, set it as an actual empty cell
+                # with no magnetic saturation (as in vacuum)
+                if x0[i] == 0:
+                    lines += 'Msat.SetRegion(' + str(i + 5) + ', 0)\n'
+                    lines += 'Aex.SetRegion(' + str(i + 5) + ', 0)\n'
+                    lines += 'Kc1.SetRegion(' + str(i + 5) + ', 0)\n'
             lines += 'relax()\n'
             lines += 'saveas(m, "m_optimise_' + filename.split('.')[0] + '")\n'
             lines += 'saveas(B_demag, "strayfield_optimise_' + filename.split('.')[0] + '")\n'
