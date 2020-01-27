@@ -22,26 +22,25 @@ def get_meta_data(file_path: str):
            float(headers['xstepsize']), float(headers['ystepsize']), float(headers['zstepsize'])
 
 
-def initialise_gridspace(x0: [int], filename: str):
+def initialise_gridspace(x0: [int], filename: str, x: int, y: int):
     configs = ['uniform(0, 0, 0)', 'uniform(0, 1, 0)', 'uniform(0, -1, 0)',
                'uniform(1, 0, 0)', 'uniform(-1, 0, 0)']
+    empty_space = [i for i in range(1, x*y + 1, int(y/2))]
     with open('./boilerplate.mx3') as f:
         with open('./mumax_scripts/' + filename, 'w') as f1:
             for line in f:
                 f1.write(line)
-            lines = '\n'
-            lines += 'm.SetRegion(1, uniform(0, 0, 0))\n'
-            lines += 'm.SetRegion(2, uniform(0, 0, 0))\n'
-            lines += 'm.SetRegion(3, uniform(0, 0, 0))\n'
-            lines += 'm.SetRegion(4, uniform(0, 0, 0))\n'
-            for i in range(len(x0)):
-                lines += 'm.SetRegion(' + str(i + 5) + ', ' + configs[x0[i]] + ')\n'
-                # If the cell is initialised empty, set it as an actual empty cell
-                # with no magnetic saturation (as in vacuum)
-                if x0[i] == 0:
-                    lines += 'Msat.SetRegion(' + str(i + 5) + ', 0)\n'
-                    lines += 'Aex.SetRegion(' + str(i + 5) + ', 0)\n'
-                    lines += 'Kc1.SetRegion(' + str(i + 5) + ', 0)\n'
+            lines = ''
+            # Exclude indices that are not part of the empty space
+            for i in range(1, x*y+1):
+                if i not in empty_space:
+                    lines += 'm.SetRegion(' + str(i) + ', ' + configs[x0[i]] + ')\n'
+                    # If the cell is initialised empty, set it as an actual empty cell
+                    # with no magnetic saturation (as in vacuum)
+                    if x0[i] == 0:
+                        lines += 'Msat.SetRegion(' + str(i) + ', 0)\n'
+                        lines += 'Aex.SetRegion(' + str(i) + ', 0)\n'
+                        lines += 'Kc1.SetRegion(' + str(i) + ', 0)\n'
             lines += 'relax()\n'
             lines += 'saveas(m, "m_optimise")\n'
             lines += 'saveas(B_demag, "strayfield_optimise")\n'
@@ -75,7 +74,7 @@ def acceptance_probability(old, new, T):
     return a
 
 
-def simulated_annealing(x0, T, T_min, alpha):
+def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
     max_costs = []
     max_actions = []
     max_cost = 0.01
@@ -83,7 +82,7 @@ def simulated_annealing(x0, T, T_min, alpha):
         count = 0
         while(count < 100):
             filename = str(T).replace('.', '') + '_' + str(count) + '.mx3'
-            initialise_gridspace(x0, filename)
+            initialise_gridspace(x0, filename, x, y)
             run_mumax_script(filename)
             while not os.path.exists('./mumax_scripts/' + filename.split('.')[0] + '.out'):
                 time.sleep(5)
@@ -107,11 +106,10 @@ def simulated_annealing(x0, T, T_min, alpha):
         T = T * alpha
 
 
-x0 = [0, 0, 0, 0, 0, 0, 0, 0]
+x = 6
+y = 6
+x0 = [0 for i in range(x*y)]
 T = 1.0
 T_min = 0.00001
 alpha = 0.8
-
-
-# print(find_max_B('../out.out/strayfield_optimise.ovf', 6))
-simulated_annealing(x0, T, T_min, alpha)
+simulated_annealing(x0, T, T_min, alpha, x, y)

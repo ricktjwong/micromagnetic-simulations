@@ -1,7 +1,7 @@
 OutputFormat = OVF1_TEXT
-nx := 6
+nx := 4
 ny := 12
-nz := 6
+nz := 4
 CellSize := 5e-9
 Translate := 5e-9
 GridSize := 10e-9
