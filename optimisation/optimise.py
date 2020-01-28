@@ -107,9 +107,10 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
         T = T * alpha
 
 
-x = 6
+x = 2
 y = 6
 x0 = [0 for i in range(x*y)]
+x0 = [0, 4, 2, 0, 3, 1, 0, 4, 1, 0, 3, 4, 0, 0, 3, 0, 3, 4, 0, 0, 0, 0, 4, 0, 0, 4, 3, 0, 3, 1, 0, 3, 3, 0, 4, 0]
 T = 1.0
 T_min = 0.00001
 alpha = 0.8
