@@ -68,4 +68,4 @@ def initialise_magnetisation(x: int, y: int) -> str:
     return lines
 
 
-print(generate_mumax_boilerplate(2, 6))
+print(generate_mumax_boilerplate(6, 6))

@@ -5,37 +5,27 @@
 #PBS -l walltime=24:00:00
 #
 ## ask for one node with 16 cpus and total 2gb memory (per node)
-#PBS -l select=1:ncpus=4:ngpus=1:mem=24GB:gpu_type=P100
-#PBS -J 0-1
+#PBS -l select=1:ncpus=4:mem=8GB
 
-## Ask to join GPU queue
-#
-#
-#
-## ask PBS to email upon job termination
-#
-#
 ##load application module
-module load cuda/6.5 mumax/3.9.1
+module load cuda/6.5 mumax/3.9.1 anaconda/personal
 #
 echo BeforeMuMax
 nvidia-smi -L
 #
 ##file management - Copy input file to TMPDIR
-cp $WORK/oommf-simulations/mumax/halbach/current_design_nohys/halbach2rows.$PBS_ARRAY_INDEX.mx3 $TMPDIR
-ls
-echo
+cp $WORK/micromagnetic-simulations/optimisation/* $TMPDIR
 #
 ##command line
-mumax3-cuda6.5 halbach2rows.$PBS_ARRAY_INDEX.mx3
+python optimise.py
 
 echo AfterMuMax
 #
 ##file management - Move output files to WORK directory
 ls
-mkdir $WORK/cobalt-halbach-2rows-nohys
-cp -a * $WORK/cobalt-halbach-2rows-nohys
-ls $WORK/cobalt-halbach-2rows
+mkdir $WORK/optimise_6x6
+cp -a * $WORK/optimise_6x6
+ls $WORK/optimise_6x6
 ## Diagnostics
 #
 echo ------------------------------------------------------------------------------------------------------------------
