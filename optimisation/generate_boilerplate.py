@@ -9,7 +9,9 @@ def generate_mumax_boilerplate(x: int, y: int) -> str:
     lines += generate_header(x, y)
     lines += generate_gridspace(x, y)
     lines += initialise_magnetisation(x, y)
-    return lines
+    with open('boilerplate' + str(x) + 'x' + str(y) + '.mx3', 'w') as f:
+        for line in lines:
+            f.write(line)
 
 
 def generate_header(x: int, y: int) -> str:
@@ -17,7 +19,7 @@ def generate_header(x: int, y: int) -> str:
     lines += 'OutputFormat = OVF1_TEXT\n'
     lines += 'nx := ' + str(x*2) + '\n'
     lines += 'ny := ' + str(y*2) + '\n'
-    lines += 'nz := 4\n'
+    lines += 'nz := 2\n'
     lines += 'CellSize := 5e-9\n'
     lines += 'Translate := 5e-9\n'
     lines += 'GridSize := 10e-9\n'

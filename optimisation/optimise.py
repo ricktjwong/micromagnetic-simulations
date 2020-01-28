@@ -26,7 +26,7 @@ def initialise_gridspace(x0: [int], filename: str, x: int, y: int):
     configs = ['uniform(0, 0, 0)', 'uniform(0, 1, 0)', 'uniform(0, -1, 0)',
                'uniform(1, 0, 0)', 'uniform(-1, 0, 0)']
     empty_space = [i for i in range(1, x*y + 1, int(y/2))]
-    with open('./boilerplate.mx3') as f:
+    with open('./boilerplate2x6.mx3') as f:
         with open('./mumax_scripts/' + filename, 'w') as f1:
             for line in f:
                 f1.write(line)
@@ -78,6 +78,7 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
     max_costs = []
     max_actions = []
     max_cost = 0.01
+    empty_space = [i for i in range(1, x*y + 1, int(y/2))]
     while T > T_min:
         count = 0
         while(count < 100):
@@ -94,11 +95,11 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
                 max_action = x0.copy()
                 max_costs.append(max_cost)
                 max_actions.append(max_action)
-            idx = random.choice([0, 1, 2, 3, 4, 5, 6, 7])
-            if x0[idx] < 4:
-                x0[idx] += 1
-            else:
-                x0[idx] = random.choice([0, 1, 2, 3, 4])
+            while True:
+                idx = random.choice([i for i in range(1, x*y+1)])
+                if idx not in empty_space:
+                    continue
+            x0[idx] = random.choice([0, 1, 2, 3, 4])
             count += 1
             print(max_cost)
         np.save("sim_annealing/costs" + str(T), max_costs)
