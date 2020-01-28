@@ -34,10 +34,10 @@ def initialise_gridspace(x0: [int], filename: str, x: int, y: int):
             # Exclude indices that are not part of the empty space
             for i in range(1, x*y+1):
                 if i not in empty_space:
-                    lines += 'm.SetRegion(' + str(i) + ', ' + configs[x0[i]] + ')\n'
+                    lines += 'm.SetRegion(' + str(i) + ', ' + configs[x0[i-1]] + ')\n'
                     # If the cell is initialised empty, set it as an actual empty cell
                     # with no magnetic saturation (as in vacuum)
-                    if x0[i] == 0:
+                    if x0[i-1] == 0:
                         lines += 'Msat.SetRegion(' + str(i) + ', 0)\n'
                         lines += 'Aex.SetRegion(' + str(i) + ', 0)\n'
                         lines += 'Kc1.SetRegion(' + str(i) + ', 0)\n'
@@ -48,7 +48,7 @@ def initialise_gridspace(x0: [int], filename: str, x: int, y: int):
 
 
 def find_max_B(file_path: str, yslice: int):
-    ovf_path = './mumax_scripts/' + file_path + '.out/' + 'strayfield_optimise_' + file_path + '.ovf'
+    ovf_path = './mumax_scripts/' + file_path + '.out/' + 'strayfield_optimise.ovf'
     x, y, z, _, _, _ = get_meta_data(ovf_path)
     zslice = int(z / 2)
     data = np.array(np.loadtxt(ovf_path))
@@ -98,8 +98,8 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
             while True:
                 idx = random.choice([i for i in range(1, x*y+1)])
                 if idx not in empty_space:
-                    continue
-            x0[idx] = random.choice([0, 1, 2, 3, 4])
+                    break
+            x0[idx-1] = random.choice([0, 1, 2, 3, 4])
             count += 1
             print(max_cost)
         np.save("sim_annealing/costs" + str(T), max_costs)
