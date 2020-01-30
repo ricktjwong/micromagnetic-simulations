@@ -84,14 +84,14 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
     while T > T_min:
         count = 0
         while(count < 100):
-            print('x0: ', x0)
-            print('x_new: ', x_new)
             filename = str(T).replace('.', '') + '_' + str(count) + '.mx3'
             initialise_gridspace(x_new, filename, x, y)
             run_mumax_script(filename)
             while not os.path.exists('./mumax_scripts/' + filename.split('.')[0] + '.out'):
                 time.sleep(5)
             cost_new = find_max_B(filename.split('.')[0])
+            print('x0: ', x0)
+            print('x_new: ', x_new)
             print('new cost: ' + str(cost_new))
             ap = acceptance_probability(max_cost, cost_new, T)
             if ap > random.random():
@@ -119,9 +119,9 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
         T = T * alpha
 
 
-x, y = 6, 6
+x, y = 12, 12
 x0 = [0 for i in range(x*y)]
-# x0 = '0 0 3 2 2 1 0 3 1 0 4 3 0 2 2 1 2 0 0 4 1 0 2 2 0 2 0 0 2 4 0 3 3 0 1 0 0 0 1 1 3 3 0 2 2 3 3 4 0 3 4 1 4 1 0 1 1 3 0 2 0 4 0 0 3 0 0 3 2 3 2 2 0 4 2 3 0 2 0 2 4 2 1 3 0 4 1 3 1 3 0 3 0 1 0 3 0 2 2 0 4 3 0 3 2 3 1 2 0 1 4 0 0 4 0 4 2 0 4 1 0 1 4 2 0 2 0 3 4 0 1 1 0 1 2 0 0 1 0 2 3 3 3 1'
+# x0 = ''
 # x0 = x0.split(' ')
 # x0 = [int(i) for i in x0]
 # print(x0)
