@@ -26,7 +26,7 @@ def initialise_gridspace(x0: [int], filename: str, x: int, y: int):
     configs = ['uniform(0, 0, 0)', 'uniform(0, 1, 0)', 'uniform(0, -1, 0)',
                'uniform(1, 0, 0)', 'uniform(-1, 0, 0)']
     empty_space = [i for i in range(1, x*y + 1, int(y/2))]
-    with open('./boilerplate16x16.mx3') as f:
+    with open('./boilerplate12x12.mx3') as f:
         with open('./mumax_scripts/' + filename, 'w') as f1:
             for line in f:
                 f1.write(line)
@@ -108,9 +108,14 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
         T = T * alpha
 
 
-x = 6
-y = 6
+x = 12
+y = 12
 x0 = [0 for i in range(x*y)]
+x0 = '0 0 3 2 2 1 0 3 1 0 4 3 0 2 2 1 2 0 0 4 1 0 2 2 0 2 0 0 2 4 0 3 3 0 1 0 0 0 1 1 3 3 0 2 2 3 3 4 0 3 4 1 4 1 0 1 1 3 0 2 0 4 0 0 3 0 0 3 2 3 2 2 0 4 2 3 0 2 0 2 4 2 1 3 0 4 1 3 1 3 0 3 0 1 0 3 0 2 2 0 4 3 0 3 2 3 1 2 0 1 4 0 0 4 0 4 2 0 4 1 0 1 4 2 0 2 0 3 4 0 1 1 0 1 2 0 0 1 0 2 3 3 3 1'
+x0 = x0.split(' ')
+x0 = [int(i) for i in x0]
+print(x0)
+print(len(x0))
 T = 1.0
 T_min = 0.00001
 alpha = 0.8
