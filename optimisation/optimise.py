@@ -116,7 +116,7 @@ x0 = x0.split(' ')
 x0 = [int(i) for i in x0]
 print(x0)
 print(len(x0))
-T = 1.0
+T = 0.8 ** 42
 T_min = 0.00001
 alpha = 0.8
 simulated_annealing(x0, T, T_min, alpha, x, y)
