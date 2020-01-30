@@ -84,6 +84,8 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
     while T > T_min:
         count = 0
         while(count < 100):
+            print('x0: ', x0)
+            print('x_new: ', x_new)
             filename = str(T).replace('.', '') + '_' + str(count) + '.mx3'
             initialise_gridspace(x_new, filename, x, y)
             run_mumax_script(filename)
@@ -110,8 +112,6 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
                 if x_new[idx-1] != new_move:
                     break
             x_new[idx-1] = new_move
-            print('x0: ', x0)
-            print('x_new: ', x_new)
             count += 1
             print('max cost: ' + str(max_cost))
         np.save("sim_annealing/costs" + str(T), max_costs)
