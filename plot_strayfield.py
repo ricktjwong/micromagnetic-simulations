@@ -77,13 +77,5 @@ def compare_strayfields(base_path: str, thicknesses: [int], mag_dir: str):
     plt.show()
 
 
-# plot_strayfield('./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_4.ovf', 'y', [180])
-# plot_strayfield('./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_control.ovf', 'y', [180])
-# plot_strayfield('./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_8.ovf', 'y', [180])
-# plot_strayfield('./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf', 'y', [150])
-# plot_strayfield('./data/stray_field/cobalt_tworows_compare/strayfield_6array_2rows_PBC_6eachside.ovf', 'y', [150])
-
-# plot_strayfield('./data/stray_field/halbach_cylinder/strayfield_halbach_cylinder_12.ovf', 'y', [200, 210, 220])
-# plot_strayfield('./out.out/strayfield_optimise.ovf', 'total', [6])
 # plt.savefig('strayfield_halbach_cylinder_12.pdf', dpi=1000)
 # plt.show()
