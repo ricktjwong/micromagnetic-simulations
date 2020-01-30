@@ -121,12 +121,12 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
 
 x, y = 12, 12
 x0 = [0 for i in range(x*y)]
-# x0 = ''
-# x0 = x0.split(' ')
-# x0 = [int(i) for i in x0]
-# print(x0)
-# print(len(x0))
-T = 1.0
+x0 = '0 3 0 1 1 3 0 0 0 3 4 1 0 0 0 3 3 4 0 4 4 3 0 4 0 4 4 3 0 4 0 3 4 4 4 0 0 0 2 0 2 4 0 1 1 0 0 2 0 2 3 1 2 2 0 0 2 1 0 3 0 2 2 0 1 2 0 0 1 0 1 4 0 0 1 1 1 1 0 4 1 1 3 3 0 4 0 0 3 1 0 0 2 4 1 3 0 1 1 0 2 3 0 1 1 3 0 0 0 4 0 3 1 3 0 0 4 4 3 4 0 3 3 0 3 3 0 2 3 4 2 0 0 3 3 3 1 3 0 1 4 4 1 4'
+x0 = x0.split(' ')
+x0 = [int(i) for i in x0]
+print(x0)
+print(len(x0))
+T = 0.8 ** 10
 T_min = 0.00001
 alpha = 0.8
 simulated_annealing(x0, T, T_min, alpha, x, y)
