@@ -59,7 +59,7 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     ax.quiver(X[skip]*5, Y[skip]*5, u[:, :, zslice][skip], v[:, :, zslice][skip], 10)
     repeat_y = np.repeat(mag_slice, 5, axis=0)
     repeat_x = np.repeat(repeat_y, 5, axis=1)
-    im = ax.imshow(np.transpose(repeat_x), cmap='rainbow')
+    im = ax.imshow(np.transpose(repeat_x), cmap='seismic', origin='lower')
     CS = ax.contour(X*5, Y*5, mag_slice, contours, linewidths=[1])
     ax.clabel(CS, inline=1, fontsize=8)
     divider = make_axes_locatable(ax)
@@ -97,4 +97,5 @@ def get_meta_data(file_path: str):
            float(headers['xstepsize']), float(headers['ystepsize']), float(headers['zstepsize'])
 
 
-plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf", mag_dir='total', zslice=15)
+# plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf", mag_dir='total', zslice=15)
+plot_2D_quiver(file_path='./data/investigate/m.ovf', mag_dir='total', zslice=10)
