@@ -78,29 +78,31 @@ def acceptance_probability(old, new, T):
 def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
     max_costs = []
     max_actions = []
-    max_cost = 0.01
+    max_cost = 0.0
     empty_space = [i for i in range(1, x*y + 1, int(y/2))]
+    x_new = x0.copy()
     while T > T_min:
         count = 0
         while(count < 100):
             filename = str(T).replace('.', '') + '_' + str(count) + '.mx3'
-            initialise_gridspace(x0, filename, x, y)
+            initialise_gridspace(x_new, filename, x, y)
             run_mumax_script(filename)
             while not os.path.exists('./mumax_scripts/' + filename.split('.')[0] + '.out'):
                 time.sleep(5)
             cost_new = find_max_B(filename.split('.')[0])
             print('new cost: ' + str(cost_new))
-            ep = acceptance_probability(max_cost, cost_new, T)
-            if ep > random.random():
+            ap = acceptance_probability(max_cost, cost_new, T)
+            if ap > random.random():
+                x0 = x_new.copy()
                 max_cost = cost_new
-                max_action = x0.copy()
                 max_costs.append(max_cost)
-                max_actions.append(max_action)
+                max_actions.append(x0)
             while True:
                 idx = random.choice([i for i in range(1, x*y+1)])
                 if idx not in empty_space:
                     break
-            x0[idx-1] = random.choice([0, 1, 2, 3, 4])
+            x_new = x0.copy()
+            x_new[idx-1] = random.choice([0, 1, 2, 3, 4])
             count += 1
             print('max cost: ' + str(max_cost))
         np.save("sim_annealing/costs" + str(T), max_costs)
