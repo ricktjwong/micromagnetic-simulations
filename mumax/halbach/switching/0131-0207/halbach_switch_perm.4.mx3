@@ -185,7 +185,7 @@ B_ext = vector(Bx,By,0)
 relax()         // high-energy states best minimized by relax()
 saveas(m, "m1")
 
-Bx = 44e-3
+Bx = 28e-3
 By = 0.0
 B_ext = vector(Bx,By,0)
 
@@ -200,7 +200,7 @@ relax()
 saveas(m, "m3")
 
 Bx = 0.0
-By = -40e-3
+By = -30e-3
 B_ext = vector(Bx,By,0)
 
 relax()         
