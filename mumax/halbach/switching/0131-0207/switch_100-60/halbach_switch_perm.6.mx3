@@ -2,7 +2,7 @@ OutputFormat = OVF1_TEXT
 
 L := 600e-9
 L2 := 400e-9
-w1 := 70e-9
+w1 := 60e-9
 w2 := 100e-9
 a:= 100e-9
 b:= 120e-9
@@ -22,9 +22,9 @@ xdisp2 := 470e-9
 ydisp1 := 700e-9
 ydisp2 := 450e-9
 ydisp3 := 200e-9
-ydisp4 := 185e-9
+ydisp4 := 180e-9
 ydisp5 := 450e-9
-ydisp6 := 715e-9
+ydisp6 := 720e-9
 
 x_total := 4*xsep + 2*w1 + 2*L2
 y_total := L + 400e-9

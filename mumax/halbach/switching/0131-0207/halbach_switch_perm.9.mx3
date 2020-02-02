@@ -2,8 +2,8 @@ OutputFormat = OVF1_TEXT
 
 L := 600e-9
 L2 := 400e-9
-w1 := 80e-9
-w2 := 120e-9
+w1 := 70e-9
+w2 := 100e-9
 a:= 100e-9
 b:= 120e-9
 Nbars := 3
@@ -19,12 +19,12 @@ xdisp_n2 := -600e-9
 xdisp1 := 110e-9
 xdisp2 := 470e-9
 
-ydisp1 := 690e-9
+ydisp1 := 700e-9
 ydisp2 := 450e-9
-ydisp3 := 210e-9
-ydisp4 := 190e-9
+ydisp3 := 200e-9
+ydisp4 := 185e-9
 ydisp5 := 450e-9
-ydisp6 := 710e-9
+ydisp6 := 715e-9
 
 x_total := 4*xsep + 2*w1 + 2*L2
 y_total := L + 400e-9
