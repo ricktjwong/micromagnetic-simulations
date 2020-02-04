@@ -27,7 +27,7 @@ echo AfterMuMax
 ##file management - Move output files to WORK directory
 ls
 mkdir -p $WORK/halbach_switch_perm
-cp -a $PBS_O_WORKDIR/$WORK/halbach_switch_perm
+cp -a * $WORK/halbach_switch_perm
 ls $WORK/halbach_switch_perm
 ## Diagnostics
 #
