@@ -1,4 +1,5 @@
 import os
+import subprocess
 import sys
 import random
 import numpy as np
@@ -6,7 +7,8 @@ import time
 
 
 def run_mumax_script(filename: str):
-    os.system('mumax3-cuda6.5 ./mumax_scripts/' + filename)
+    # subprocess call instead of os system
+    subprocess.call('mumax3-cuda6.5 ./mumax_scripts/' + filename, shell=True)
 
 
 def get_meta_data(file_path: str):
@@ -119,9 +121,9 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
         T = T * alpha
 
 
-x, y = 12, 12
+x, y = 14, 14
 x0 = [0 for i in range(x*y)]
-x0 = '0 3 2 2 2 1 0 4 4 2 4 2 0 2 3 3 4 4 0 1 4 4 4 3 0 1 1 1 3 2 0 1 1 4 3 4 0 1 2 1 2 0 0 4 3 3 2 1 0 1 4 4 3 4 0 4 1 1 3 2 0 3 3 4 4 1 0 1 1 3 1 0 0 4 4 3 1 0 0 2 2 3 2 3 0 1 3 4 2 1 0 1 2 4 2 1 0 3 1 4 1 3 0 1 3 1 1 3 0 2 1 1 4 2 0 3 2 2 0 1 0 1 2 3 2 1 0 3 4 4 4 2 0 4 3 3 4 2 0 4 4 4 3 3'
+x0 = '0 1 4 1 0 4 0 0 2 2 3 3 3 2 0 1 1 2 2 4 3 0 3 4 4 3 3 1 0 1 4 1 2 4 4 0 3 2 3 3 1 1 0 2 3 2 4 0 2 0 3 1 3 3 2 0 0 3 2 4 3 1 2 0 3 3 3 4 4 2 0 1 4 4 2 2 3 0 4 4 4 1 3 3 0 1 4 2 1 2 4 0 4 1 4 2 4 2 0 3 1 4 1 4 4 0 1 4 3 1 2 0 0 2 1 4 4 4 4 0 1 1 3 2 3 2 0 2 4 4 2 1 4 0 2 1 1 2 2 4 0 3 2 1 1 2 3 0 2 3 3 3 4 3 0 4 3 4 3 2 0 0 3 1 2 2 1 4 0 1 3 3 3 1 3 0 3 2 2 3 4 2 0 3 2 4 4 4 3 0 3 3 1 1 4 4'
 x0 = x0.split(' ')
 x0 = [int(i) for i in x0]
 print(x0)
