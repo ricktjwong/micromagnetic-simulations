@@ -5,10 +5,10 @@
 #PBS -l walltime=24:00:00
 #
 ## ask for one node with 16 cpus and total 2gb memory (per node)
-#PBS -l select=1:ncpus=4:mem=8GB
+#PBS -l select=1:ncpus=4:ngpus=1:mem=24GB:gpu_type=P100
 
 ##load application module
-module load cuda/6.5 mumax/3.9.1 anaconda/personal
+module load cuda/6.5 mumax/3.9.1 anaconda3/personal
 #
 echo BeforeMuMax
 nvidia-smi -L
@@ -32,4 +32,4 @@ echo ---------------------------------------------------------------------------
 ls -la /tmp/
 nvidia-smi
 
-#
+# qsub -I 
