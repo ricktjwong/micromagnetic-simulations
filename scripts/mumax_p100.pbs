@@ -5,8 +5,7 @@
 #PBS -l walltime=24:00:00
 #
 ## ask for one node with 16 cpus and total 2gb memory (per node)
-#PBS -l select=1:ncpus=1:ngpus=1:mem=16GB
-#PBS -J 0-3
+#PBS -l select=1:ncpus=4:ngpus=1:mem=24GB:gpu_type=P100
 
 ## Ask to join GPU queue
 #
@@ -22,20 +21,20 @@ echo BeforeMuMax
 nvidia-smi -L
 #
 ##file management - Copy input file to TMPDIR
-cp $WORK/oommf-simulations/mumax/permalloy_single.$PBS_ARRAY_INDEX.mx3 $TMPDIR
+cp $WORK/micromagnetic-simulations/mumax/halbach/cylinder/halbach_cylinder_12.mx3 $TMPDIR
 ls
 echo
 #
 ##command line
-mumax3-cuda6.5 permalloy_single.$PBS_ARRAY_INDEX.mx3
+mumax3-cuda6.5 halbach_cylinder_12.mx3
 
 echo AfterMuMax
 #
 ##file management - Move output files to WORK directory
 ls
-mkdir $WORK/results
-cp -a * $WORK/results
-ls $WORK/results
+mkdir $WORK/results-12
+cp -a * $WORK/results-12
+ls $WORK/results-12
 ## Diagnostics
 #
 echo ------------------------------------------------------------------------------------------------------------------
