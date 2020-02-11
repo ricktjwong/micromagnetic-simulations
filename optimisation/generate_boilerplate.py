@@ -1,4 +1,4 @@
-def generate_mumax_boilerplate(x: int, y: int) -> str:
+def generate_mumax_boilerplate(x: int, y: int, empty_space: [int]) -> str:
     """
     Specify the x and y dimensions for gridspace
     The gridspace is 10nm for each cell
@@ -8,8 +8,8 @@ def generate_mumax_boilerplate(x: int, y: int) -> str:
     lines = ''
     lines += generate_header(x, y)
     lines += generate_gridspace(x, y)
-    lines += initialise_magnetisation(x, y)
-    with open('boilerplate' + str(x) + 'x' + str(y) + '.mx3', 'w') as f:
+    lines += initialise_magnetisation(x, y, empty_space)
+    with open('boilerplate' + str(x) + 'x' + str(y) + '_box.mx3', 'w') as f:
         for line in lines:
             f.write(line)
 
@@ -47,13 +47,12 @@ def generate_gridspace(x: int, y: int) -> str:
     return lines
 
 
-def initialise_magnetisation(x: int, y: int) -> str:
+def initialise_magnetisation(x: int, y: int, empty_space: [int]) -> str:
     lines = ''
     lines += 'Msat.SetRegion(0, 0)\n'
     lines += 'm.SetRegion(0, uniform(0, 0, 0))\n'
     lines += 'Aex.SetRegion(0, 0)\n'
     lines += 'Kc1.SetRegion(0, 0)\n'
-    empty_space = [i for i in range(1, x*y + 1, int(y/2))]
     for i in range(1, x*y + 1):
         if i in empty_space:
             lines += 'm.SetRegion(' + str(i) + ', uniform(0, 0, 0))\n'
@@ -68,4 +67,7 @@ def initialise_magnetisation(x: int, y: int) -> str:
     return lines
 
 
-print(generate_mumax_boilerplate(14, 14))
+x, y = 6, 6
+empty_space_two_rows = [i for i in range(1, x*y + 1, int(y/2))]
+empty_space_box_6x6 = [1, 10, 19, 28]
+print(generate_mumax_boilerplate(x, y, empty_space_box_6x6))
