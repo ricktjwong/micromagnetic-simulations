@@ -84,6 +84,8 @@ def simulated_annealing(x0, T, T_min, alpha, x: int, y: int):
     x_new = x0.copy()
     if not os.path.exists('./mumax_scripts'):
         os.makedirs('mumax_scripts')
+    if not os.path.exists('./sim_annealing'):
+        os.makedirs('sim_annealing')
     while T > T_min:
         count = 0
         while(count < 100):
