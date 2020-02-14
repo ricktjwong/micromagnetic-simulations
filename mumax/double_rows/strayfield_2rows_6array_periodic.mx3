@@ -11,9 +11,9 @@ MsCo := 1400e3
 ExchangeECo := 30e-12
 AlphaCo := 0.015
 
-Ms := MsCo
-ExchangeE := ExchangeECo
-Alph := AlphaCo
+Ms := MsPerm
+ExchangeE := ExchangeEPerm
+Alph := AlphaPerm
 
 sep := 100e-9
 x := 100e-9
