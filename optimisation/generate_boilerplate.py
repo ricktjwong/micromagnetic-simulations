@@ -72,4 +72,5 @@ empty_space_two_rows = [i for i in range(1, x*y + 1, int(y/2))]
 empty_space_box_6x6 = [1, 10, 19, 28]
 empty_space_box_12x12 = [1, 2, 7, 8, 37, 38, 43, 44, 73, 74,
                          79, 80, 109, 110, 115, 116]
+empty_space_box_12x12_4 = [1, 37, 73, 109]
 print(generate_mumax_boilerplate(x, y, empty_space_box_12x12))
