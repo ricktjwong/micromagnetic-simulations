@@ -61,7 +61,9 @@ def find_max_B(file_path: str):
     data_field = data.reshape(x, y, z, 3, order='F')
     u, v, w = data_field[:, :, :, 0], data_field[:, :, :, 1], data_field[:, :, :, 2]
     mag = (u * u + v * v + w * w) ** 0.5
-    mag_slice = mag[int(x/3):int(x/3)*2, yslice, zslice]
+    mag_slice = mag[:, yslice, zslice]
+    # Cost function for a box in the centre of grid
+    # mag_slice = mag[int(x/3):int(x/3)*2, yslice, zslice]
     return max(mag_slice)
 
 
@@ -92,7 +94,7 @@ def simulated_annealing(x0: [int], T: float, T_min: float, alpha: float,
         os.makedirs('sim_annealing')
     while T > T_min:
         count = 0
-        while(count < 100):
+        while(count < 200):
             filename = str(T).replace('.', '') + '_' + str(count) + '.mx3'
             initialise_gridspace(x_new, filename, x, y, empty_space)
             run_mumax_script(filename)
@@ -129,13 +131,18 @@ def simulated_annealing(x0: [int], T: float, T_min: float, alpha: float,
         T = T * alpha
 
 
-x, y = 6, 6
+x, y = 12, 12
 empty_space_two_rows = [i for i in range(1, x*y + 1, int(y/2))]
 empty_space_box_6x6 = [1, 10, 19, 28]
 empty_space_box_12x12 = [1, 2, 7, 8, 37, 38, 43, 44, 73, 74,
                          79, 80, 109, 110, 115, 116]
+empty_space_box_12x12_4 = [1, 37, 73, 109]
 x0 = [0 for i in range(x*y)]
+# x0 = '0 1 1 0 2 0 2 2 3 1 3 4 2 0 2 3 0 0 2 1 4 2 0 0 2 1 2 2 1 0 2 0 4 4 2 1 0 3 4 3 0 3 2 1 4 0 1 1 1 4 1 4 2 4 2 4 1 0 0 0 2 4 1 4 4 4 1 4 1 1 3 4 0 1 1 1 2 4 3 4 1 1 1 0 2 0 1 4 3 0 2 4 1 4 0 3 4 2 4 3 4 4 1 1 1 1 2 1 0 1 2 3 0 1 2 0 3 0 3 4 2 2 2 0 4 0 0 1 2 2 4 4 4 2 3 1 0 0 1 4 3 3 3 4'
+# x0 = x0.split(' ')
+# x0 = [int(i) for i in x0]
+# print(x0)
 T = 1.0
 T_min = 0.00001
 alpha = 0.8
-simulated_annealing(x0, T, T_min, alpha, x, y, empty_space_box_6x6)
+simulated_annealing(x0, T, T_min, alpha, x, y, empty_space_two_rows)
