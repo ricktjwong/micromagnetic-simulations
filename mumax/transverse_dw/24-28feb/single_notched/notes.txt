@@ -1,0 +1,7 @@
+0-5: tests thickness z= 100 to 50nm to see if more stable TDW helps strength
+6-12: tests robustness of TDW structure with B_ext from 20 - 140mT
+TDW is not in the "familiar regime" where z << x,y i.e. almost 2D.
+
+wire is 1000x80x100 (x,y,z)
+
+Notch is 50x40x100 (x,y,z) displaced (x direction) 50nm away from centre wire.
