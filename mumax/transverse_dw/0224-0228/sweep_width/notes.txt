@@ -1,0 +1,2 @@
+Sweep transverse wall width
+Dimensions (x,y,z) from (300, 80, 100) to (1000, 80, 100) in steps of 100
