@@ -1,0 +1,65 @@
+OutputFormat = OVF1_TEXT
+
+SetGridsize(250, 100, 10)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+MsPerm := 800e3
+ExchangeEPerm := 13e-12
+AlphaPerm := 0.01
+
+MsCo := 1400e3
+ExchangeECo := 30e-12
+AlphaCo := 0.015
+
+Ms := MsPerm
+ExchangeE := ExchangeEPerm
+Alph := AlphaPerm
+
+
+a := 80e-9
+b := 600e-9
+z := 50e-9
+
+s:= 300e-9
+
+
+rect1 := Cuboid(b, a, z).transl(0, a/2 + s/2, 0)
+rect2 := Cuboid(b, a, z).transl(0, -a/2 -s/2, 0)
+
+
+DefRegion(1, rect1)
+DefRegion(2, rect2)
+
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, TwoDomain(-1,0,0,  0,1,0,  1,0,0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1,Alph)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, TwoDomain(1,0,0,  0,1,0,  -1,0,0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2,Alph)
+
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+//Bx := 50e-3
+//By := 50e-3
+//B_ext = vector(Bx,By,0)
+
+//relax()         // high-energy states best minimized by relax()
+//saveas(m, "m")
+
+//Bx = 0.0
+//By = 0.0
+//B_ext = vector(Bx,By,0)
+
+relax()
+saveas(m, "m")
+saveas(B_demag, "strayfield")
