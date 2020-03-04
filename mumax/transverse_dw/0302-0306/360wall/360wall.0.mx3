@@ -85,11 +85,11 @@ saveas(B_demag, "strayfield0")
 
 Bx := 10e-3
 B_ext = vector(Bx, 0, 0)
+relax()
 
 Bx = 0.0
-By = 0.0
-B_ext = vector(Bx, By, 0)
-
+B_ext = vector(Bx, 0, 0)
 relax()
+
 saveas(m, "m1")
 saveas(B_demag, "strayfield1")
