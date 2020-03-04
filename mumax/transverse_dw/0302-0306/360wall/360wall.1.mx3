@@ -79,17 +79,17 @@ m.SetRegion(0, uniform(0,0,0))
 Aex.SetRegion(0, 0)
 Kc1.SetRegion(0, 0)
 
-//Bx := 50e-3
-//By := 50e-3
-//B_ext = vector(Bx,By,0)
+relax()
+saveas(m, "m0")
+saveas(B_demag, "strayfield0")
 
-//relax()         // high-energy states best minimized by relax()
-//saveas(m, "m")
+Bx := 20e-3
+B_ext = vector(Bx, 0, 0)
 
-//Bx = 0.0
-//By = 0.0
-//B_ext = vector(Bx,By,0)
+Bx = 0.0
+By = 0.0
+B_ext = vector(Bx, By, 0)
 
 relax()
-saveas(m, "m")
-saveas(B_demag, "strayfield")
+saveas(m, "m1")
+saveas(B_demag, "strayfield1")
