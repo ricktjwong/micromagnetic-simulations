@@ -9,7 +9,7 @@ def generate_mumax_boilerplate(x: int, y: int, empty_space: [int]) -> str:
     lines += generate_header(x, y)
     lines += generate_gridspace(x, y)
     lines += initialise_magnetisation(x, y, empty_space)
-    with open('boilerplate' + str(x) + 'x' + str(y) + '_box.mx3', 'w') as f:
+    with open('boilerplate' + str(x) + 'x' + str(y) + '_z_30nm.mx3', 'w') as f:
         for line in lines:
             f.write(line)
 
@@ -19,7 +19,7 @@ def generate_header(x: int, y: int) -> str:
     lines += 'OutputFormat = OVF1_TEXT\n'
     lines += 'nx := ' + str(x*2) + '\n'
     lines += 'ny := ' + str(y*2) + '\n'
-    lines += 'nz := 2\n'
+    lines += 'nz := 6\n'
     lines += 'CellSize := 5e-9\n'
     lines += 'Translate := 5e-9\n'
     lines += 'GridSize := 10e-9\n'
@@ -35,7 +35,7 @@ def generate_gridspace(x: int, y: int) -> str:
     gridspace = []
     for i in range(int(x/2)):
         for j in range(int(y/2)):
-            gridspace += [', Cuboid(GridSize, GridSize, GridSize)' +
+            gridspace += [', Cuboid(GridSize, GridSize, GridSize*3)' +
                           '.transl(' + 'Translate*' + str(1 + 2*i) +
                           ', Translate*' + str(1 + 2*j) + ', 0))\n']
     gridspace += list(map(lambda x:
@@ -73,4 +73,4 @@ empty_space_box_6x6 = [1, 10, 19, 28]
 empty_space_box_12x12 = [1, 2, 7, 8, 37, 38, 43, 44, 73, 74,
                          79, 80, 109, 110, 115, 116]
 empty_space_box_12x12_4 = [1, 37, 73, 109]
-print(generate_mumax_boilerplate(x, y, empty_space_box_12x12))
+print(generate_mumax_boilerplate(x, y, empty_space_two_rows))
