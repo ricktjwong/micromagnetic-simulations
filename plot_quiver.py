@@ -38,17 +38,18 @@ def plot_3D(n: int):
 
 
 def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
-    contours = [0.01 * i for i in range(10)]
+    contours = np.linspace(-0.1,0.1,11) #[0.01 * i for i in range(10)]
     x, y, z, _, _, _ = get_meta_data(file_path)
+    print (x,y,z)
     data = np.array(np.loadtxt(file_path))
     data_field = data.reshape(x, y, z, 3, order="F")
     u, v, w = data_field[:, :, :, 0], data_field[:, :, :, 1], data_field[:, :, :, 2]
     if (mag_dir == 'x'):
-        mag = abs(u)
+        mag = (u)
     elif (mag_dir == 'y'):
-        mag = abs(v)
+        mag = (v)
     elif (mag_dir == 'z'):
-        mag = abs(w)
+        mag = (w)
     elif (mag_dir == 'total'):
         mag = (u * u + v * v + w * w) ** 0.5
     mag_slice = mag[:, :, zslice]
@@ -59,9 +60,9 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     ax.quiver(X[skip]*5, Y[skip]*5, u[:, :, zslice][skip], v[:, :, zslice][skip], 10)
     repeat_y = np.repeat(mag_slice, 5, axis=0)
     repeat_x = np.repeat(repeat_y, 5, axis=1)
-    im = ax.imshow(np.transpose(repeat_x), cmap='seismic', origin='lower')
-    CS = ax.contour(X*5, Y*5, mag_slice, contours, linewidths=[1])
-    ax.clabel(CS, inline=1, fontsize=8)
+    im = ax.imshow(np.transpose(repeat_x), cmap='seismic',vmin=-0.2, vmax=0.20, origin='lower') #cmap = 'seismic'
+    CS = ax.contour(X*5, Y*5, mag_slice, contours, linewidths=[2])
+    ax.clabel(CS, inline=1, fontsize=12)
     divider = make_axes_locatable(ax)
     cax = divider.append_axes("right", size="5%", pad=0.05)
     plt.xlabel('$T$', labelpad=20)
@@ -98,4 +99,5 @@ def get_meta_data(file_path: str):
 
 
 # plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf", mag_dir='total', zslice=15)
-plot_2D_quiver(file_path='./data/investigate/m.ovf', mag_dir='total', zslice=10)
+plot_2D_quiver(file_path='../data/stray_field/2rows/strayfield_2rowsPeriodic_600x100_gap300.ovf', mag_dir='y', zslice=15)
+
