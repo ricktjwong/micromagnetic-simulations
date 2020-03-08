@@ -19,7 +19,7 @@ disp2 := 1.5*xsep + L2 + w1/2
 
 x_total := 4*xsep + 2*w1 + 2*L2
 y_total := L + 400e-9
-nx := x_total / 5e-9
+nx := 340
 ny := y_total / 5e-9
 
 print (ny)
