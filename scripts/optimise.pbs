@@ -24,7 +24,7 @@ echo AfterMuMax
 ##file management - Move output files to WORK directory
 ls
 mkdir $WORK/optimise_6x6
-cp -a * $WORK/optimise_6x6
+cp * $WORK/optimise_6x6
 ls $WORK/optimise_6x6
 ## Diagnostics
 #

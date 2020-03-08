@@ -4,7 +4,7 @@ Configuration files for OOMMF and mumax
 
 ## Utilities
 
-### quiverplot.py
+### plot_quiver.py
 
 Methods
 1. plot_2D_quiver
@@ -13,6 +13,8 @@ Methods
     - mag_dir takes in a string of either 'x', 'y', 'z' or 'total', and specifies what to display for the magnitude of the contour line
     - zslice represent which slice of z you'd want to visualise
     - The units of the data corresponds to the setting in the OOMMF file
+
+### plot_strayfield.py
 
 
 ## Installation of OOMMF

@@ -29,9 +29,17 @@ SetPBC(2, 0, 0)
 SetGridsize(260, ny, 30)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
-Ms := 1400e3
-ExchangeE := 30e-12 
-alpha_coeff := 0.015
+MsPerm := 800e3
+ExchangeEPerm := 13e-12
+AlphaPerm := 0.01
+
+MsCo := 1400e3
+ExchangeECo := 30e-12
+AlphaCo := 0.015
+
+Ms := MsPerm
+ExchangeE := ExchangeEPerm
+alpha_coeff := AlphaPerm
 
 DefRegion(1, Cuboid(L2, w2, thickness_S).transl(-disp_n2,ysep + w2,0))
 DefRegion(2, Cuboid(L2, w2, thickness_S).transl(-disp_n2,0,0))
