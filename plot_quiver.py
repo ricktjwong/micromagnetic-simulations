@@ -45,11 +45,11 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     data_field = data.reshape(x, y, z, 3, order="F")
     u, v, w = data_field[:, :, :, 0], data_field[:, :, :, 1], data_field[:, :, :, 2]
     if (mag_dir == 'x'):
-        mag = (u)
+        mag = u
     elif (mag_dir == 'y'):
-        mag = (v)
+        mag = v
     elif (mag_dir == 'z'):
-        mag = (w)
+        mag = w
     elif (mag_dir == 'total'):
         mag = (u * u + v * v + w * w) ** 0.5
     mag_slice = mag[:, :, zslice]
@@ -99,5 +99,4 @@ def get_meta_data(file_path: str):
 
 
 # plot_2D_quiver(file_path="./data/stray_field/current_design/strayfield_halbach2rows_antiparallel.ovf", mag_dir='total', zslice=15)
-plot_2D_quiver(file_path='../data/stray_field/2rows/strayfield_2rowsPeriodic_600x100_gap300.ovf', mag_dir='y', zslice=15)
-
+plot_2D_quiver(file_path='./data/stray_field/2rows/strayfield_2rowsPeriodic_600x100_gap300.ovf', mag_dir='y', zslice=15)
