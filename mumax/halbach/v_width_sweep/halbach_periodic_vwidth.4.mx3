@@ -26,7 +26,7 @@ print (ny)
 print (nx)
 
 SetPBC(2, 0, 0)
-SetGridsize(260, ny, 30)
+SetGridsize(nx, ny, 30)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 MsPerm := 800e3
