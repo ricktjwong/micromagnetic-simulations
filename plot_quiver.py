@@ -60,7 +60,7 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     ax.quiver(X[skip]*5, Y[skip]*5, u[:, :, zslice][skip], v[:, :, zslice][skip], 10, cmap='binary')
     repeat_y = np.repeat(mag_slice, 5, axis=0)
     repeat_x = np.repeat(repeat_y, 5, axis=1)
-    im = ax.imshow(np.transpose(repeat_x), cmap='seismic', vmin=-0.2, vmax=0.20, origin='lower') #cmap = 'seismic'
+    im = ax.imshow(np.transpose(repeat_x), cmap='seismic', vmin=-0.2, vmax=0.20, origin='lower')
     CS = ax.contour(X*5, Y*5, mag_slice, contours, linewidths=[2])
     ax.clabel(CS, inline=1, fontsize=12)
     divider = make_axes_locatable(ax)
@@ -80,7 +80,7 @@ def plot_2D_stream(z: int):
                        np.arange(0, 40, 1))
     fig, ax = plt.subplots(figsize=(7,2))
     # Choose a z slice
-    ax.streamplot(Y, X, v[:,:,z], u[:,:,z])
+    ax.streamplot(Y, X, v[:, :, z], u[:, :, z])
     ax.set_aspect('equal')
     plt.show()
 
