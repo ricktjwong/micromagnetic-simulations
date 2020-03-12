@@ -1,34 +1,27 @@
 OutputFormat = OVF1_TEXT
-
-SetGridsize(150, 200, 20)
-SetCellsize(5e-9, 5e-9, 5e-9)
-
 MsPerm := 800e3
 ExchangeEPerm := 13e-10
 AlphaPerm := 0.01
-
 MsCo := 1400e3
 ExchangeECo := 30e-12
 AlphaCo := 0.015
-
 Ms := MsPerm
 ExchangeE := ExchangeEPerm
 Alph := AlphaPerm
-
-a := 600e-9
-b := 20e-9
+x := 20e-9
+y := 600e-9
 z := 20e-9
-
-s:= 20e-9
-
-rect1 := Cuboid(b, a, z).transl(-(3.5*s + 3.5*b),0,0)
-rect2 := Cuboid(b, a, z).transl(-(2.5*s + 2.5*b),0,0)
-rect3 := Cuboid(b, a, z).transl(-(1.5*s + 1.5*b),0,0)
-rect4 := Cuboid(b, a, z).transl(-(0.5*s + 0.5*b),0,0)
-rect5 := Cuboid(b, a, z).transl(0.5*s + 0.5*b,0,0)
-rect6 := Cuboid(b, a, z).transl(1.5*s + 1.5*b,0,0)
-rect7 := Cuboid(b, a, z).transl(2.5*s + 2.5*b,0,0)
-rect8 := Cuboid(b, a, z).transl(3.5*s + 3.5*b,0,0)
+s := 20e-9
+SetCellsize(5e-9, 5e-9, 5e-9)
+SetGridsize(60, 200, 4)
+rect1 := Cuboid(x, y, z).transl(-(3.5*s + 3.5*x),0,0)
+rect2 := Cuboid(x, y, z).transl(-(2.5*s + 2.5*x),0,0)
+rect3 := Cuboid(x, y, z).transl(-(1.5*s + 1.5*x),0,0)
+rect4 := Cuboid(x, y, z).transl(-(0.5*s + 0.5*x),0,0)
+rect5 := Cuboid(x, y, z).transl(0.5*s + 0.5*x,0,0)
+rect6 := Cuboid(x, y, z).transl(1.5*s + 1.5*x,0,0)
+rect7 := Cuboid(x, y, z).transl(2.5*s + 2.5*x,0,0)
+rect8 := Cuboid(x, y, z).transl(3.5*s + 3.5*x,0,0)
 
 DefRegion(1, rect1)
 DefRegion(2, rect2)
@@ -96,5 +89,7 @@ relax()
 
 saveas(m, "m")
 saveas(B_demag, "strayfield")
-saveas(regions, "regions")
 save(m.region(1))
+save(m.region(4))
+save(m.region(5))
+save(m.region(8))
