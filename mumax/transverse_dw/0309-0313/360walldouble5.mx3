@@ -1,0 +1,231 @@
+OutputFormat = OVF1_TEXT
+
+SetGridsize(200, 40, 5)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+MsPerm := 800e3
+ExchangeEPerm := 13e-12
+AlphaPerm := 0.01
+
+MsCo := 1400e3
+ExchangeECo := 30e-12
+AlphaCo := 0.015
+
+Ms := MsPerm
+ExchangeE := ExchangeEPerm
+Alph := AlphaPerm
+
+
+a := 30e-9
+b := 250e-9
+z := 10e-9
+b2 := 50e-9
+
+notch_x := 200e-9
+notch_y := a/2
+
+s:= 50e-9
+
+ydisp := s/2 + a
+
+rect1 := Cuboid(b, a, z).transl(-(b/2 + 4*b2),-ydisp,0)
+rect2 := Cuboid(b2, a, z).transl(-4*b2,-ydisp,0)
+rect3 := Cuboid(b2, a, z).transl(-3*b2,-ydisp,0)
+rect4 := Cuboid(b2, a, z).transl(-2*b2,-ydisp,0)
+rect5 := Cuboid(b2, a, z).transl(-b2,-ydisp,0)
+rect6 := Cuboid(b2, a, z).transl(0,-ydisp,0)
+rect7 := Cuboid(b2, a, z).transl(b2,-ydisp,0)
+rect8 := Cuboid(b2, a, z).transl(2*b2,-ydisp,0)
+rect9 := Cuboid(b2, a, z).transl(3*b2,-ydisp,0)
+rect10 := Cuboid(b2, a, z).transl(4*b2,-ydisp,0)
+rect11 := Cuboid(b, a, z).transl(b/2 + 4*b2,-ydisp,0)
+
+rect1b := Cuboid(b, a, z).transl(-(b/2 + 4*b2),ydisp,0)
+rect2b := Cuboid(b2, a, z).transl(-4*b2,ydisp,0)
+rect3b := Cuboid(b2, a, z).transl(-3*b2,ydisp,0)
+rect4b := Cuboid(b2, a, z).transl(-2*b2,ydisp,0)
+rect5b := Cuboid(b2, a, z).transl(-b2,ydisp,0)
+rect6b := Cuboid(b2, a, z).transl(0,ydisp,0)
+rect7b := Cuboid(b2, a, z).transl(b2,ydisp,0)
+rect8b := Cuboid(b2, a, z).transl(2*b2,ydisp,0)
+rect9b := Cuboid(b2, a, z).transl(3*b2,ydisp,0)
+rect10b := Cuboid(b2, a, z).transl(4*b2,ydisp,0)
+rect11b := Cuboid(b, a, z).transl(b/2 + 4*b2,ydisp,0)
+
+DefRegion(1, rect1)
+DefRegion(2, rect2)
+DefRegion(3, rect3)
+DefRegion(4, rect4)
+DefRegion(5, rect5)
+DefRegion(6, rect6)
+DefRegion(7, rect7)
+DefRegion(8, rect8)
+DefRegion(9, rect9)
+DefRegion(10, rect10)
+DefRegion(11, rect11)
+
+DefRegion(21, rect1b)
+DefRegion(22, rect2b)
+DefRegion(23, rect3b)
+DefRegion(24, rect4b)
+DefRegion(25, rect5b)
+DefRegion(26, rect6b)
+DefRegion(27, rect7b)
+DefRegion(28, rect8b)
+DefRegion(29, rect9b)
+DefRegion(30, rect10b)
+DefRegion(31, rect11b)
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(1,0,0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1,Alph)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, uniform(0,1,0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2,Alph)
+
+Msat.SetRegion(3, Ms)
+m.SetRegion(3, uniform(-1,0,0))
+Aex.SetRegion(3, ExchangeE)
+Ku1.SetRegion(3, 0)
+alpha.SetRegion(3,Alph)
+
+Msat.SetRegion(4, Ms)
+m.SetRegion(4, uniform(0,-1,0))
+Aex.SetRegion(4, ExchangeE)
+Ku1.SetRegion(4, 0)
+alpha.SetRegion(4,Alph)
+
+Msat.SetRegion(5, Ms)
+m.SetRegion(5, uniform(1,0,0))
+Aex.SetRegion(5, ExchangeE)
+Ku1.SetRegion(5, 0)
+alpha.SetRegion(5,Alph)
+
+Msat.SetRegion(6, Ms)
+m.SetRegion(6, uniform(0,1,0))
+Aex.SetRegion(6, ExchangeE)
+Ku1.SetRegion(6, 0)
+alpha.SetRegion(6,Alph)
+
+Msat.SetRegion(7, Ms)
+m.SetRegion(7, uniform(-1,0,0))
+Aex.SetRegion(7, ExchangeE)
+Ku1.SetRegion(7, 0)
+alpha.SetRegion(7,Alph)
+
+Msat.SetRegion(8, Ms)
+m.SetRegion(8, uniform(0,-1,0))
+Aex.SetRegion(8, ExchangeE)
+Ku1.SetRegion(8, 0)
+alpha.SetRegion(8,Alph)
+
+Msat.SetRegion(9, Ms)
+m.SetRegion(9, uniform(1,0,0))
+Aex.SetRegion(9, ExchangeE)
+Ku1.SetRegion(9, 0)
+alpha.SetRegion(9,Alph)
+
+Msat.SetRegion(10, Ms)
+m.SetRegion(10, uniform(0,1,0))
+Aex.SetRegion(10, ExchangeE)
+Ku1.SetRegion(10, 0)
+alpha.SetRegion(10,Alph)
+
+Msat.SetRegion(11, Ms)
+m.SetRegion(11, uniform(-1,0,0))
+Aex.SetRegion(11, ExchangeE)
+Ku1.SetRegion(11, 0)
+alpha.SetRegion(11,Alph)
+//
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+//
+Msat.SetRegion(21, Ms)
+m.SetRegion(21, uniform(-1,0,0))
+Aex.SetRegion(21, ExchangeE)
+Ku1.SetRegion(21, 0)
+alpha.SetRegion(21,Alph)
+
+Msat.SetRegion(22, Ms)
+m.SetRegion(22, uniform(0,1,0))
+Aex.SetRegion(22, ExchangeE)
+Ku1.SetRegion(22, 0)
+alpha.SetRegion(22,Alph)
+
+Msat.SetRegion(23, Ms)
+m.SetRegion(23, uniform(1,0,0))
+Aex.SetRegion(23, ExchangeE)
+Ku1.SetRegion(23, 0)
+alpha.SetRegion(23,Alph)
+
+Msat.SetRegion(24, Ms)
+m.SetRegion(24, uniform(0,-1,0))
+Aex.SetRegion(24, ExchangeE)
+Ku1.SetRegion(24, 0)
+alpha.SetRegion(24,Alph)
+
+Msat.SetRegion(25, Ms)
+m.SetRegion(25, uniform(-1,0,0))
+Aex.SetRegion(25, ExchangeE)
+Ku1.SetRegion(25, 0)
+alpha.SetRegion(25,Alph)
+
+Msat.SetRegion(26, Ms)
+m.SetRegion(26, uniform(0,1,0))
+Aex.SetRegion(26, ExchangeE)
+Ku1.SetRegion(26, 0)
+alpha.SetRegion(26,Alph)
+
+Msat.SetRegion(27, Ms)
+m.SetRegion(27, uniform(1,0,0))
+Aex.SetRegion(27, ExchangeE)
+Ku1.SetRegion(27, 0)
+alpha.SetRegion(27,Alph)
+
+Msat.SetRegion(28, Ms)
+m.SetRegion(28, uniform(0,-1,0))
+Aex.SetRegion(28, ExchangeE)
+Ku1.SetRegion(28, 0)
+alpha.SetRegion(28,Alph)
+
+Msat.SetRegion(29, Ms)
+m.SetRegion(29, uniform(-1,0,0))
+Aex.SetRegion(29, ExchangeE)
+Ku1.SetRegion(29, 0)
+alpha.SetRegion(29,Alph)
+
+Msat.SetRegion(30, Ms)
+m.SetRegion(30, uniform(0,1,0))
+Aex.SetRegion(30, ExchangeE)
+Ku1.SetRegion(30, 0)
+alpha.SetRegion(30,Alph)
+
+Msat.SetRegion(31, Ms)
+m.SetRegion(31, uniform(1,0,0))
+Aex.SetRegion(31, ExchangeE)
+Ku1.SetRegion(31, 0)
+alpha.SetRegion(31,Alph)
+
+run(1e-9)
+
+//Bx := 50e-3
+//By := 50e-3
+//B_ext = vector(Bx,By,0)
+
+//relax()         // high-energy states best minimized by relax()
+//saveas(m, "m")
+
+//Bx = 0.0
+//By = 0.0
+//B_ext = vector(Bx,By,0)
+
+relax()
+saveas(m, "m")
+saveas(B_demag, "strayfield")
