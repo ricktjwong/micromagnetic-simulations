@@ -17,6 +17,7 @@ nvidia-smi -L
 cp $WORK/micromagnetic-simulations/optimisation/* $TMPDIR
 #
 ##command line
+cd $TMPDIR
 python optimise.py
 
 echo AfterMuMax
@@ -24,6 +25,7 @@ echo AfterMuMax
 ##file management - Move output files to WORK directory
 ls
 mkdir $WORK/optimise_6x6
+cd $TMPDIR
 cp -a * $WORK/optimise_6x6
 ls $WORK/optimise_6x6
 ## Diagnostics
