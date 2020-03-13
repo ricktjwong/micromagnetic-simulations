@@ -38,7 +38,7 @@ def plot_3D(n: int):
 
 
 def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
-    contours = np.linspace(-0.1,0.1,11) #[0.01 * i for i in range(10)]
+    contours = np.linspace(-0.1, 0.1, 11)  # [0.01 * i for i in range(10)]
     x, y, z, _, _, _ = get_meta_data(file_path)
     print(x, y, z)
     data = np.array(np.loadtxt(file_path))
@@ -57,18 +57,21 @@ def plot_2D_quiver(file_path: str, mag_dir: str, zslice: int):
     fig, ax = plt.subplots()
     # Choose a z slice
     skip = (slice(None, None, 5), slice(None, None, 5))
-    ax.quiver(X[skip]*5, Y[skip]*5, u[:, :, zslice][skip], v[:, :, zslice][skip], 10, cmap='binary')
+    # ax.quiver(X[skip]*5, Y[skip]*5, u[:, :, zslice][skip],
+            #   v[:, :, zslice][skip], 10, cmap='binary')
     repeat_y = np.repeat(mag_slice, 5, axis=0)
     repeat_x = np.repeat(repeat_y, 5, axis=1)
-    im = ax.imshow(np.transpose(repeat_x), cmap='seismic', vmin=-0.2, vmax=0.20, origin='lower')
-    CS = ax.contour(X*5, Y*5, mag_slice, contours, linewidths=[2])
-    ax.clabel(CS, inline=1, fontsize=12)
+    im = ax.imshow(np.transpose(repeat_x), cmap='seismic',
+                   vmin=-0.2, vmax=0.20, origin='lower')
+    # CS = ax.contour(X*5, Y*5, mag_slice, contours, linewidths=[2])
+    # ax.clabel(CS, inline=1, fontsize=12)
     divider = make_axes_locatable(ax)
     cax = divider.append_axes("right", size="5%", pad=0.05)
     plt.xlabel('$T$', labelpad=20)
     plt.colorbar(im, cax=cax)
+    ax.set_xlim([250, 750])
     # ax.set_aspect('equal')
-    # plt.savefig(file_path.split('/')[-1].split('.')[0] + '_By.pdf', dpi=1000)
+    plt.savefig(file_path.split('/')[-1].split('.')[0] + '_Bx.pdf', dpi=3000)
     plt.show()
 
 
@@ -78,7 +81,7 @@ def plot_2D_stream(z: int):
     u, v = data_field[:, :, :, 0], data_field[:, :, :, 1]
     Y, X = np.meshgrid(np.arange(0, 140, 1),
                        np.arange(0, 40, 1))
-    fig, ax = plt.subplots(figsize=(7,2))
+    fig, ax = plt.subplots(figsize=(7, 2))
     # Choose a z slice
     ax.streamplot(Y, X, v[:, :, z], u[:, :, z])
     ax.set_aspect('equal')
@@ -108,4 +111,6 @@ def get_meta_data(file_path: str):
 # plot_2D_quiver(file_path='./data/stray_field/halbach_switching/switch_study_perm_100_60/halbach_switch_perm.4.out/m5.ovf', mag_dir='total', zslice=10)
 # plot_2D_quiver(file_path='./data/stray_field/cobalt_tworows_compare/m_6array_2rows_PBC_6eachside.ovf', mag_dir='total', zslice=10)
 # plot_2D_quiver(file_path='./strayfield_2rows_6array_periodic.out/m_6array_2rows_PBC_6eachside.ovf', mag_dir='total', zslice=10)
-plot_2D_quiver(file_path='./strayfield_2rows_6array_periodic.out/strayfield_6array_2rows_PBC_6eachside.ovf', mag_dir='y', zslice=10)
+# plot_2D_quiver(file_path='./strayfield_2rows_6array_periodic.out/strayfield_6array_2rows_PBC_6eachside.ovf', mag_dir='y', zslice=10)
+plot_2D_quiver(file_path='./data/stray_field/360_dw/strayfield_360wall5double.ovf', mag_dir='x', zslice=3)
+# plot_2D_quiver(file_path='./data/stray_field/360_dw/m_360wall9.ovf', mag_dir='y', zslice=5)

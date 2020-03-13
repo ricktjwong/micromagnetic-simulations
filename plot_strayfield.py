@@ -87,11 +87,12 @@ def plot_rashba(file_path: str, yslice: [int]):
     zslice = int(z / 2)
     data = np.array(np.loadtxt(file_path))
     data_field = data.reshape(x, y, z, 3, order="F")
-    u, v, w = data_field[:, :, :, 0], data_field[:, :, :, 1], data_field[:, :, :, 2]
+    u, v, w = data_field[:, :, :, 0], data_field[:, :, :, 1], \
+        data_field[:, :, :, 2]
     fig, ax1 = plt.subplots()
     ax1.set_ylabel("alpha (eVm)")
-    # ax2 = ax1.twinx()
-    # ax2.set_ylabel("Magnetic Field (T)")
+    ax2 = ax1.twinx()
+    ax2.set_ylabel("Magnetic Field (T)")
     # ax1.set_ylim([1e-12, 5e-11])
     # ax2.set_ylim([0, 0.07])
     for i in yslice:
@@ -112,8 +113,8 @@ def plot_rashba(file_path: str, yslice: [int]):
         # ax1.plot([i * 5 for i in range(x)], alpha2, color="orange", linestyle = "--")
         # ax2.plot([i * 5 for i in range(x)], Bx,label= "$B_x$", color="brown")
         # ax2.plot([i * 5 for i in range(x)], By,label="$B_y$", color="green")
-        # ax2.plot([i * 5 for i in range(x)], B,label="$|B|$",  color="red")
-        # ax2.plot([i * 5 for i in range(x)], Bx/B,label="$Bx/|B|$",  color="red")
+        ax2.plot([i * 5 for i in range(x)], B, label="$|B|$",  color="red")
+        # ax2.plot([i * 5 for i in range(x)], Bx/B, label="$Bx/|B|$",  color="red")
         plt.legend()
         plt.show()
     return alpha
@@ -141,27 +142,29 @@ def surface_alpha(file_path: str, yrange: tuple):
         alpha = np.array([i if np.abs(i) < 1e-10
                          else (1e-10 if i > 0 else -1e-10) for i in alpha])
         alpha2D = alpha if i == yrange[0] else np.vstack((alpha2D, alpha))
-
     # fig, ax = plt.subplots()
-    # im = ax.imshow(alpha2D, cmap='seismic', interpolation='nearest',vmin= -9e-11, vmax= 9e-11, origin='lower')
+    # im = ax.imshow(alpha2D, cmap='seismic', interpolation='nearest',vmin=-9e-11, vmax=9e-11, origin='lower')
     # divider = make_axes_locatable(ax)
     # cax = divider.append_axes("right", size="5%", pad=0.05)
     # plt.colorbar(im, cax=cax)
     # plt.show()
-
     X, Y = np.meshgrid(np.arange(0, x, 1), np.arange(yrange[0], yrange[1], 1))
     fig2 = plt.figure()
     ax2 = Axes3D(fig2)
-    surface = ax2.plot_surface(X, Y, alpha2D, rstride=1, cstride=1,
+    surface = ax2.plot_surface(X*5, Y*5, alpha2D, rstride=1, cstride=1,
                                cmap='seismic', vmin=-1e-10, vmax=1e-10)
     fig2.colorbar(surface, shrink=0.8, pad=0.05)
-    plt.show()
+    # plt.show()
 
 
 # plot_strayfield(file_path='./data/stray_field/halbach_switching/switch_study_perm_100_60/halbach_switch_perm.4.out/strayfield5.ovf', mag_dir='total', yslice = [145,155,165])
 # plot_strayfield(file_path='./data/stray_field/halbach_switching/switch_study_perm_100_60/halbach_switch_perm.4.out/strayfield5.ovf', mag_dir='x', yslice = [145,155,165])
 # plot_strayfield(file_path='./data/stray_field/halbach_switching/switch_study_perm_100_60/halbach_switch_perm.4.out/strayfield5.ovf', mag_dir='y', yslice = [145,155,165])
-# plot_rashba(file_path='./data/stray_field/halbach_switching/switch_study_perm_100_60/halbach_switch_perm.4.out/strayfield5.ovf', yslice = [155])
-surface_alpha(file_path='./data/stray_field/halbach_switching/switch_study_perm_100_60/halbach_switch_perm.4.out/strayfield5.ovf', yrange=(125, 176))
-# plt.savefig('halbach_vary_vwidth_permalloy.pdf', dpi=1000)
+# plot_rashba(file_path='./data/stray_field/rect/kjaergaard/strayfield_parallel6_kjaergaard.ovf', yslice=[118])
+# plot_rashba(file_path='./data/stray_field/rect/kjaergaard/strayfield_antiparallel6_kjaergaard.ovf', yslice=[128])
+# plot_strayfield(file_path='./data/stray_field/360_dw/strayfield_360wall9.ovf', mag_dir='y', yslice=[56, 64, 74])
+# surface_alpha(file_path='./data/stray_field/halbach_switching/switch_study_perm_100_60/halbach_switch_perm.4.out/strayfield5.ovf', yrange=(125, 176))
+# surface_alpha(file_path='./data/stray_field/360_dw/strayfield_360wall5double.ovf', yrange=(15, 26))
+surface_alpha(file_path='./data/stray_field/rect/kjaergaard/strayfield_antiparallel6_kjaergaard.ovf', yrange=[128, 150])
+plt.savefig('strayfield_antiparallel6_kjaergaard.pdf', dpi=1000)
 plt.show()
