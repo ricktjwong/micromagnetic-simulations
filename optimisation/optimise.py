@@ -29,7 +29,7 @@ def initialise_gridspace(x0: [int], filename: str,
                          x: int, y: int, empty_space: [int]):
     configs = ['uniform(0, 0, 0)', 'uniform(0, 1, 0)', 'uniform(0, -1, 0)',
                'uniform(1, 0, 0)', 'uniform(-1, 0, 0)']
-    with open('./boilerplate' + str(x) + 'x' + str(y) + '_z_30.mx3') as f:
+    with open('./boilerplates/boilerplate' + str(x) + 'x' + str(y) + '_z_30.mx3') as f:
         with open('./mumax_scripts/' + filename, 'w') as f1:
             for line in f:
                 f1.write(line)

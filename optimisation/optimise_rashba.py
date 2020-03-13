@@ -42,7 +42,7 @@ def simulated_annealing(x0: [float], T: float,
     x_new = x0.copy()
     while T > T_min:
         count = 0
-        while(count < 100):
+        while(count < 200):
             cost_new = calculate_rashba(x_new)
             print('x0: ', x0)
             print('x_new: ', x_new)
@@ -60,7 +60,7 @@ def simulated_annealing(x0: [float], T: float,
             # Reset x_new to the latest accepted action
             x_new = x0.copy()
             # Make a move and make sure it is different from original
-            new_move = random.choice([0.1, -0.1])
+            new_move = random.choice([0.01, -0.01])
             x_new[param][B_param] += new_move
             count += 1
             print('max cost: ' + str(max_cost))
