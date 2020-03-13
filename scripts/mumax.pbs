@@ -15,22 +15,22 @@ echo BeforeMuMax
 nvidia-smi -L
 #
 ##file management - Copy input file to TMPDIR
-cp $WORK/micromagnetic-simulations/mumax/single_row/0309-0313/sweep_width_sep_20/8array.$PBS_ARRAY_INDEX.mx3 $TMPDIR
+cp $WORK/micromagnetic-simulations/mumax/single_row/0309-0313/halbach_vwidth_40/halbach_sweep.$PBS_ARRAY_INDEX.mx3 $TMPDIR
 ls
 echo
 #
 ##command line
 cd $TMPDIR
-mumax3-cuda6.5 8array.$PBS_ARRAY_INDEX.mx3
+mumax3-cuda6.5 halbach_sweep.$PBS_ARRAY_INDEX.mx3
 
 echo AfterMuMax
 #
 ##file management - Move output files to WORK directory
 ls
-mkdir -p $WORK/8array_sep20
+mkdir -p $WORK/halbach_vwidth_40
 cd $TMPDIR
-cp -a * $WORK/8array_sep20
-ls $WORK/8array_sep20
+cp -a * $WORK/halbach_vwidth_40
+ls $WORK/halbach_vwidth_40
 ## Diagnostics
 #
 echo ------------------------------------------------------------------------------------------------------------------

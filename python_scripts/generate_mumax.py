@@ -1,7 +1,8 @@
+import os
 import math
 
 
-def generate_script(x: str, y: str, z: str, s: str, i: int):
+def generate_parallel_magnets(x: str, y: str, z: str, s: str, i: int):
     lines = ''
     lines += 'OutputFormat = OVF1_TEXT\n'
     lines += 'MsPerm := 800e3\nExchangeEPerm := 13e-10\nAlphaPerm := 0.01\n'
@@ -24,10 +25,50 @@ def generate_script(x: str, y: str, z: str, s: str, i: int):
                 f1.write(line)
 
 
-sweep_width = [i for i in range(20, 210, 10)]
-for i in range(len(sweep_width)):
-    generate_script(x=str(sweep_width[i]) + 'e-9',
-                    y='600e-9',
-                    z=str(sweep_width[i]) + 'e-9',
-                    s='20e-9',
-                    i=i)
+def generate_halbach_arrays(h_length: str, v_width: str, i: int):
+    xsep = 100e-9
+    lines = ''
+    lines += 'OutputFormat = OVF1_TEXT\n'
+    lines += 'L := 600e-9\n'
+    lines += 'thickness_L := 100e-9\n'
+    lines += 'thickness_S := 100e-9\n'
+    lines += 'Nbars := 3\n'
+    lines += 'w2 := L / (2*Nbars - 1)\n'
+    lines += 'xsep := 100e-9\nysep := w2\n'
+    lines += 'L2 := ' + h_length + '\n'
+    lines += 'w1 := ' + v_width + '\n'
+    lines += 'disp_n1 := xsep/2 + w1/2\n'
+    lines += 'disp_n2 := 1.5*xsep + w1 + L2/2\n'
+    lines += 'disp1 := xsep/2 + L2/2\n'
+    lines += 'disp2 := 1.5*xsep + L2 + w1/2\n'
+    Nx = math.ceil((4*xsep + 2*float(v_width) + 2*float(h_length)) / 5e-9)
+    lines += 'SetPBC(2, 0, 0)\n'
+    lines += 'SetGridsize(' + str(Nx) + ', 200, 30)\n'
+    lines += 'SetCellsize(5e-9, 5e-9, 5e-9)\n'
+    with open('halbach_vwidth_' + str(math.ceil(float(v_width)/1e-9)) +
+              '/halbach_sweep.' + str(i) + '.mx3', 'w') as f1:
+        for line in lines:
+            f1.write(line)
+        with open('halbach_sweep_boilerplate.mx3') as f:
+            for line in f:
+                f1.write(line)
+
+
+# sweep_width = [i for i in range(20, 210, 10)]
+# for i in range(len(sweep_width)):
+#     generate_parallel_magnets(x=str(sweep_width[i]) + 'e-9',
+#                               y='600e-9',
+#                               z=str(sweep_width[i]) + 'e-9',
+#                               s='100e-9',
+#                               i=i)
+
+
+sweep_vwidth = [i for i in range(40, 220, 20)]
+sweep_hlength = [i for i in range(240, 620, 20)]
+for j in range(len(sweep_vwidth)):
+    if not os.path.exists('halbach_vwidth_' + str(sweep_vwidth[j])):
+        os.makedirs('halbach_vwidth_' + str(sweep_vwidth[j]))
+    for i in range(len(sweep_hlength)):
+        generate_halbach_arrays(h_length=str(sweep_hlength[i]) + 'e-9',
+                                v_width=str(sweep_vwidth[j]) + 'e-9',
+                                i=i)

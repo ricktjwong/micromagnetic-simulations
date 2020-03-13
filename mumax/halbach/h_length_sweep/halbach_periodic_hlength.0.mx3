@@ -3,7 +3,7 @@ OutputFormat = OVF1_TEXT
 L := 600e-9
 L2 := 300e-9
 w1 := 100e-9
-//w2 := 120e-9
+
 Nbars := 3
 w2 := L / (2*Nbars - 1)
 thickness_L := 100e-9
