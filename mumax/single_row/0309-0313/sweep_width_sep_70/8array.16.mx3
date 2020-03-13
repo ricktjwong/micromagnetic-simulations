@@ -1,0 +1,95 @@
+OutputFormat = OVF1_TEXT
+MsPerm := 800e3
+ExchangeEPerm := 13e-10
+AlphaPerm := 0.01
+MsCo := 1400e3
+ExchangeECo := 30e-12
+AlphaCo := 0.015
+Ms := MsPerm
+ExchangeE := ExchangeEPerm
+Alph := AlphaPerm
+x := 180e-9
+y := 600e-9
+z := 180e-9
+s := 70e-9
+SetCellsize(5e-9, 5e-9, 5e-9)
+SetGridsize(386, 200, 36)
+rect1 := Cuboid(x, y, z).transl(-(3.5*s + 3.5*x),0,0)
+rect2 := Cuboid(x, y, z).transl(-(2.5*s + 2.5*x),0,0)
+rect3 := Cuboid(x, y, z).transl(-(1.5*s + 1.5*x),0,0)
+rect4 := Cuboid(x, y, z).transl(-(0.5*s + 0.5*x),0,0)
+rect5 := Cuboid(x, y, z).transl(0.5*s + 0.5*x,0,0)
+rect6 := Cuboid(x, y, z).transl(1.5*s + 1.5*x,0,0)
+rect7 := Cuboid(x, y, z).transl(2.5*s + 2.5*x,0,0)
+rect8 := Cuboid(x, y, z).transl(3.5*s + 3.5*x,0,0)
+
+DefRegion(1, rect1)
+DefRegion(2, rect2)
+DefRegion(3, rect3)
+DefRegion(4, rect4)
+DefRegion(5, rect5)
+DefRegion(6, rect6)
+DefRegion(7, rect7)
+DefRegion(8, rect8)
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0,-1,0))
+Aex.SetRegion(1, ExchangeE)
+Ku1.SetRegion(1, 0)
+alpha.SetRegion(1, Alph)
+
+Msat.SetRegion(2, Ms)
+m.SetRegion(2, uniform(0,1,0))
+Aex.SetRegion(2, ExchangeE)
+Ku1.SetRegion(2, 0)
+alpha.SetRegion(2, Alph)
+
+Msat.SetRegion(3, Ms)
+m.SetRegion(3, uniform(0,-1,0))
+Aex.SetRegion(3, ExchangeE)
+Ku1.SetRegion(3, 0)
+alpha.SetRegion(3, Alph)
+
+Msat.SetRegion(4, Ms)
+m.SetRegion(4, uniform(0,1,0))
+Aex.SetRegion(4, ExchangeE)
+Ku1.SetRegion(4, 0)
+alpha.SetRegion(4, Alph)
+
+Msat.SetRegion(5, Ms)
+m.SetRegion(5, uniform(0,-1,0))
+Aex.SetRegion(5, ExchangeE)
+Ku1.SetRegion(5, 0)
+alpha.SetRegion(5, Alph)
+
+Msat.SetRegion(6, Ms)
+m.SetRegion(6, uniform(0,1,0))
+Aex.SetRegion(6, ExchangeE)
+Ku1.SetRegion(6, 0)
+alpha.SetRegion(6, Alph)
+
+Msat.SetRegion(7, Ms)
+m.SetRegion(7, uniform(0,-1,0))
+Aex.SetRegion(7, ExchangeE)
+Ku1.SetRegion(7, 0)
+alpha.SetRegion(7, Alph)
+
+Msat.SetRegion(8, Ms)
+m.SetRegion(8, uniform(0,1,0))
+Aex.SetRegion(8, ExchangeE)
+Ku1.SetRegion(8, 0)
+alpha.SetRegion(8, Alph)
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0,0,0))
+Aex.SetRegion(0, 0)
+Kc1.SetRegion(0, 0)
+
+relax()
+
+saveas(m, "m")
+saveas(B_demag, "strayfield")
+save(m.region(1))
+save(m.region(4))
+save(m.region(5))
+save(m.region(8))
