@@ -80,23 +80,30 @@ def compare_strayfields(base_path: str, thicknesses: [int], mag_dir: str):
     plt.show()
 
 
-def extract_maxfield(file_path: str, mag_dir: str, y_slice: int):
+def extract_maxfield(file_path: str, mag_dir: str, yslice: int):
     x, y, z, _, _, _ = get_meta_data(file_path)
     print(x, y, z)
     zslice = int(z / 2)
     data = np.array(np.loadtxt(file_path))
     data_field = data.reshape(x, y, z, 3, order="F")
     u, v, w = data_field[:,:,:,0], data_field[:,:,:,1], data_field[:,:,:,2]
-    if (mag_dir == 'x'):
-        mag = u
-    elif (mag_dir == 'y'):
-        mag = v
-    elif (mag_dir == 'z'):
-        mag = w
-    elif (mag_dir == 'total'):
-        mag = (u * u + v * v + w * w) ** 0.5
-    mag_slice = mag[:, yslice, zslice]
-    return max(mag_slice)
+    mag = (u * u + v * v + w * w) ** 0.5
+    u_max = u[:, yslice, zslice]
+    v_max = v[:, yslice, zslice]
+    w_max = w[:, yslice, zslice]
+    mag_max = mag[:, yslice, zslice]
+    return [u, v, w_max, mag_max]
+
+
+# all_B = []
+# for i in range(20, 110, 10):
+#     b_row = []
+#     for j in range(0, 19):
+#         B = extract_maxfield(file_path='../halbach_sweep/halbach_vwidth_' + str(i) + '/halbach_sweep.' + str(j) + '.out/strayfield_halbachPeriodic.ovf', mag_dir='total', yslice=190)
+#         b_row += [B]
+#     all_B += [b_row]
+# print(all_B)
+# np.save('halbach_sweeps', all_B)
 
 
 # plot_strayfield(file_path='./data/stray_field/halbach_switching/switch_study_perm_100_60/halbach_switch_perm.4.out/strayfield5.ovf', mag_dir='total', yslice = [145,155,165])
@@ -106,14 +113,16 @@ def extract_maxfield(file_path: str, mag_dir: str, y_slice: int):
 # plot_strayfield(file_path='./data/stray_field/360_dw/strayfield_360wall9.ovf', mag_dir='y', yslice=[56, 64, 74])
 
 all_B = []
-for i in range(20, 110, 10):
+for i in range(20, 620, 20):
     b_row = []
-    for j in range(0, 19):
-        B = extract_maxfield(file_path='../8array_sweeps/8array_sep' + str(i) + '/8array.' + str(j) + '.out/strayfield.ovf', mag_dir='total', y_slice=190)
+    for j in range(0, 30):
+        B = extract_maxfield(file_path='./8array_z100_sep_' + str(i) + '/8array.' + str(j) + '.out/strayfield.ovf', mag_dir='total', yslice=190)
         b_row += [B]
-    all_B += b_row
+        print(B)
+    all_B += [b_row]
+    print(b_row)
 print(all_B)
-np.save(all_B)
+np.save('8array_z100_sweeps', all_B)
 
 # plt.savefig('strayfield_antiparallel6_kjaergaard.pdf', dpi=1000)
 # plt.show()
