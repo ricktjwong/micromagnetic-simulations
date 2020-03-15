@@ -13,7 +13,7 @@ y := 600e-9
 z := 100e-9
 s := 50e-9
 SetCellsize(5e-9, 5e-9, 5e-9)
-SetGridsize(998, 200, 20)
+SetGridsize(1000, 200, 20)
 rect1 := Cuboid(x, y, z).transl(-(3.5*s + 3.5*x),0,0)
 rect2 := Cuboid(x, y, z).transl(-(2.5*s + 2.5*x),0,0)
 rect3 := Cuboid(x, y, z).transl(-(1.5*s + 1.5*x),0,0)
