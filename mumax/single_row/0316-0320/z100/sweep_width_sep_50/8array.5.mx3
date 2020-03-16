@@ -1,6 +1,6 @@
 OutputFormat = OVF1_TEXT
 MsPerm := 800e3
-ExchangeEPerm := 13e-10
+ExchangeEPerm := 13e-12
 AlphaPerm := 0.01
 MsCo := 1400e3
 ExchangeECo := 30e-12
