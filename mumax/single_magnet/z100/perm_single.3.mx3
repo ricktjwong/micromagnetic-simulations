@@ -8,11 +8,11 @@ AlphaCo := 0.015
 Ms := MsPerm
 ExchangeE := ExchangeEPerm
 Alph := AlphaPerm
-x := 10e-9
+x := 40e-9
 y := 600e-9
-z := 20e-9
+z := 100e-9
 SetCellsize(5e-9, 5e-9, 5e-9)
-SetGridsize(10, 200, 4)
+SetGridsize(10, 200, 20)
 DefRegion(1, Cuboid(x, y, z))
 
 Msat.SetRegion(1, Ms)

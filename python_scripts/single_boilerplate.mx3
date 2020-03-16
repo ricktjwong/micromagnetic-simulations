@@ -1,18 +1,3 @@
-OutputFormat = OVF1_TEXT
-MsPerm := 800e3
-ExchangeEPerm := 13e-12
-AlphaPerm := 0.01
-MsCo := 1400e3
-ExchangeECo := 30e-12
-AlphaCo := 0.015
-Ms := MsPerm
-ExchangeE := ExchangeEPerm
-Alph := AlphaPerm
-x := 10e-9
-y := 600e-9
-z := 20e-9
-SetCellsize(5e-9, 5e-9, 5e-9)
-SetGridsize(10, 200, 4)
 DefRegion(1, Cuboid(x, y, z))
 
 Msat.SetRegion(1, Ms)

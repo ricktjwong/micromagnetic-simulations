@@ -1,0 +1,40 @@
+## interpreter directive - this is a shell script
+#!/bin/sh
+#
+## ask PBS for time (format hh:mm:ss)
+#PBS -l walltime=24:00:00
+#
+## ask for one node with 4 cpus and total 2gb memory (per node)
+#PBS -l select=1:ncpus=4:ngpus=1:mem=24GB
+#PBS -J 0-59
+
+##load application module
+module load cuda/6.5 mumax/3.9.1
+#
+echo BeforeMuMax
+nvidia-smi -L
+#
+##file management - Copy input file to TMPDIR
+cp $WORK/micromagnetic-simulations/mumax/single_magnet/z20/perm_single.$PBS_ARRAY_INDEX.mx3 $TMPDIR
+ls
+echo
+#
+##command line
+cd $TMPDIR
+mumax3-cuda6.5 perm_single.$PBS_ARRAY_INDEX.mx3
+
+echo AfterMuMax
+#
+##file management - Move output files to WORK directory
+ls
+mkdir -p $WORK/perm_single_z20
+cd $TMPDIR
+cp -a * $WORK/perm_single_z20
+ls $WORK/perm_single_z20
+## Diagnostics
+#
+echo ------------------------------------------------------------------------------------------------------------------
+ls -la /tmp/
+nvidia-smi
+
+#

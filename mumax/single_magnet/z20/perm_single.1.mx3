@@ -8,7 +8,7 @@ AlphaCo := 0.015
 Ms := MsPerm
 ExchangeE := ExchangeEPerm
 Alph := AlphaPerm
-x := 10e-9
+x := 20e-9
 y := 600e-9
 z := 20e-9
 SetCellsize(5e-9, 5e-9, 5e-9)
