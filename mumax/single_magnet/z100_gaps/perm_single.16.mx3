@@ -1,0 +1,31 @@
+OutputFormat = OVF1_TEXT
+MsPerm := 800e3
+ExchangeEPerm := 13e-12
+AlphaPerm := 0.01
+MsCo := 1400e3
+ExchangeECo := 30e-12
+AlphaCo := 0.015
+Ms := MsPerm
+ExchangeE := ExchangeEPerm
+Alph := AlphaPerm
+x := 170e-9
+y := 600e-9
+z := 100e-9
+SetCellsize(5e-9, 5e-9, 5e-9)
+SetGridsize(60, 200, 24)
+DefRegion(1, Cuboid(x, y, z))
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0, 1, 0))
+Aex.SetRegion(1, ExchangeE)
+alpha.SetRegion(1, Alph)
+Ku1.SetRegion(1, 0)
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0, 0, 0))
+Aex.SetRegion(0, 0)
+
+relax()
+
+saveas(m, "m")
+saveas(B_demag, "strayfield")
