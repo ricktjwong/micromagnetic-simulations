@@ -1,0 +1,2 @@
+.0 - .7: initialisation tests
+.8: Halbach 2rows - horizontal (120, 600, 100), vertical (100, 600, 100)
