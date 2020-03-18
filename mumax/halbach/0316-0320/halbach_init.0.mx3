@@ -3,26 +3,26 @@ OutputFormat = OVF1_TEXT
 thickness_L := 100e-9
 thickness_S := 100e-9
 Nbars := 3
-w1 := 120e-9
-w2 := 80e-9
+w1 := 100e-9
+w2 := 60e-9
 xsep := 100e-9
 
 L := 600e-9
 L2 := 600e-9
 
 
-y_disp1 := 240e-9
-y_disp2 := -240e-9
-y_disp3 := 260e-9
-y_disp4 := -260e-9
+y_disp1 := 250e-9
+y_disp2 := -250e-9
+y_disp3 := 270e-9
+y_disp4 := -270e-9
 
-disp_n1 := 90e-9
-disp_n2 := 530e-9
+disp_n1 := 80e-9
+disp_n2 := 510e-9
 disp1 := 350e-9
-disp2 := 810e-9
+disp2 := 800e-9
 
 SetPBC(2, 0, 0)
-SetGridsize(360, 200, 30)
+SetGridsize(352, 200, 30)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 MsPerm := 800e3
