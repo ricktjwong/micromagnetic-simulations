@@ -131,7 +131,7 @@ relax()
 saveas(m, "m3")
 
 Bx = 0.0
-By = -30e-3
+By = -26e-3
 B_ext = vector(Bx,By,0)
 
 relax()         
