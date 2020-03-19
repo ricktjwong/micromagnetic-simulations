@@ -3,26 +3,26 @@ OutputFormat = OVF1_TEXT
 thickness_L := 100e-9
 thickness_S := 100e-9
 Nbars := 3
-w1 := 120e-9
-w2 := 100e-9
+w1 := 100e-9
+w2 := 60e-9
 xsep := 100e-9
 
 L := 600e-9
 L2 := 600e-9
 
 
-y_disp1 := 240e-9
-y_disp2 := -240e-9
-y_disp3 := 250e-9
-y_disp4 := -250e-9
+y_disp1 := 250e-9
+y_disp2 := -250e-9
+y_disp3 := 270e-9
+y_disp4 := -270e-9
 
-disp_n1 := 100e-9
-disp_n2 := 550e-9
+disp_n1 := 80e-9
+disp_n2 := 510e-9
 disp1 := 350e-9
-disp2 := 810e-9
+disp2 := 800e-9
 
 SetPBC(2, 0, 0)
-SetGridsize(360, 200, 30)
+SetGridsize(352, 200, 30)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 MsPerm := 800e3
@@ -37,14 +37,14 @@ Ms := MsPerm
 ExchangeE := ExchangeEPerm
 alpha_coeff := AlphaPerm
 
-DefRegion(1, Cuboid(L2, w2, thickness_S).transl(-disp_n2, y_disp1, 0))
+DefRegion(1, Cuboid(L2, w1, thickness_S).transl(-disp_n2, y_disp1, 0))
 DefRegion(2, Cuboid(L2, w2, thickness_S).transl(-disp_n2, 0, 0))
-DefRegion(3, Cuboid(L2, w2, thickness_S).transl(-disp_n2, y_disp2, 0))
+DefRegion(3, Cuboid(L2, w1, thickness_S).transl(-disp_n2, y_disp2, 0))
 
-DefRegion(4, Cuboid(w1, L, thickness_L).transl(-disp_n1, 0, 0))
+DefRegion(4, Cuboid(w2, L, thickness_L).transl(-disp_n1, 0, 0))
 
 DefRegion(5, Cuboid(L2, w2, thickness_S).transl(disp1, y_disp3, 0))
-DefRegion(6, Cuboid(L2, w2, thickness_S).transl(disp1, 0, 0))
+DefRegion(6, Cuboid(L2, w1, thickness_S).transl(disp1, 0, 0))
 DefRegion(7, Cuboid(L2, w2, thickness_S).transl(disp1, y_disp4, 0))
 
 DefRegion(8, Cuboid(w1, L, thickness_L).transl(disp2, 0, 0))
@@ -116,7 +116,7 @@ B_ext = vector(Bx,By,0)
 relax()         // high-energy states best minimized by relax()
 saveas(m, "m1")
 
-Bx = 30e-3
+Bx = 26e-3
 By = 0.0
 B_ext = vector(Bx,By,0)
 
