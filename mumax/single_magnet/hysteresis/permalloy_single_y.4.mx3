@@ -1,0 +1,44 @@
+w := 100e-9
+
+SetGridsize(20, 120, 20)
+SetCellsize(5e-9, 5e-9, 5e-9)
+
+DefRegion(1, Cuboid(w, 600e-9, 100e-9))
+
+Ms := 800e3
+ExchangeE := 13e-12 
+
+Msat.SetRegion(1, Ms)
+m.SetRegion(1, uniform(0, 1, 0))
+Aex.SetRegion(1, ExchangeE)
+alpha.SetRegion(1, 0.01)
+Ku1.SetRegion(1, 0)
+
+Msat.SetRegion(0, 0)
+m.SetRegion(0, uniform(0, 0, 0))
+Aex.SetRegion(0, 0)
+
+relax()
+
+Bmax  := 300.0e-3
+Bstep := 1e-3
+MinimizerStop = 1e-6
+TableAdd(B_ext)
+
+for B:=0.0; B<=Bmax; B+=Bstep{
+    B_ext = vector(0, B, 0)
+    minimize()   // small changes best minimized by minimize()
+    tablesave()
+}
+
+for B:=Bmax; B>=-Bmax; B-=Bstep{
+    B_ext = vector(0, B, 0)
+    minimize()   // small changes best minimized by minimize()
+    tablesave()
+}
+
+for B:=-Bmax; B<=Bmax; B+=Bstep{
+    B_ext = vector(0, B, 0)
+    minimize()   // small changes best minimized by minimize()
+    tablesave()
+}

@@ -6,7 +6,7 @@
 #
 ## ask for one node with 4 cpus and total 2gb memory (per node)
 #PBS -l select=1:ncpus=4:ngpus=1:mem=24GB
-#PBS -J 0-29
+#PBS -J 0-9
 
 ##load application module
 module load cuda/6.5 mumax/3.9.1
@@ -15,22 +15,22 @@ echo BeforeMuMax
 nvidia-smi -L
 #
 ##file management - Copy input file to TMPDIR
-cp $WORK/micromagnetic-simulations/mumax/single_row/0316-0320/z20/sweep_width_sep_20/8array.$PBS_ARRAY_INDEX.mx3 $TMPDIR
+cp $WORK/micromagnetic-simulations/mumax/single_magnet/hysteresis/permalloy_single_y.$PBS_ARRAY_INDEX.mx3 $TMPDIR
 ls
 echo
 #
 ##command line
 cd $TMPDIR
-mumax3-cuda6.5 8array.$PBS_ARRAY_INDEX.mx3
+mumax3-cuda6.5 permalloy_single_y.$PBS_ARRAY_INDEX.mx3
 
 echo AfterMuMax
 #
 ##file management - Move output files to WORK directory
 ls
-mkdir -p $WORK/8array_z20_sep_20
+mkdir -p $WORK/permalloy_hysteresis
 cd $TMPDIR
-cp -a * $WORK/8array_z20_sep_20
-ls $WORK/8array_z20_sep_20
+cp -a * $WORK/permalloy_hysteresis
+ls $WORK/permalloy_hysteresis
 ## Diagnostics
 #
 echo ------------------------------------------------------------------------------------------------------------------
