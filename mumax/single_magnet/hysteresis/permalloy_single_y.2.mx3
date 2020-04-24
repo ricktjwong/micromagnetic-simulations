@@ -2,7 +2,7 @@ OutputFormat = OVF1_TEXT
 
 w := 80e-9
 
-SetGridsize(20, 120, 20)
+SetGridsize(20, 200, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 DefRegion(1, Cuboid(100e-9, 600e-9, w))
