@@ -1,9 +1,11 @@
+OutputFormat = OVF1_TEXT
+
 w := 90e-9
 
 SetGridsize(20, 120, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
-DefRegion(1, Cuboid(w, 600e-9, 100e-9))
+DefRegion(1, Cuboid(100e-9, 600e-9, w))
 
 Ms := 800e3
 ExchangeE := 13e-12 
@@ -19,6 +21,9 @@ m.SetRegion(0, uniform(0, 0, 0))
 Aex.SetRegion(0, 0)
 
 relax()
+
+saveas(m, "m")
+saveas(B_demag, "strayfield")
 
 Bmax  := 300.0e-3
 Bstep := 1e-3
