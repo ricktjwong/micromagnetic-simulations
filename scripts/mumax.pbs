@@ -15,22 +15,22 @@ echo BeforeMuMax
 nvidia-smi -L
 #
 ##file management - Copy input file to TMPDIR
-cp $WORK/micromagnetic-simulations/mumax/single_magnet/hysteresis/permalloy_single_y.$PBS_ARRAY_INDEX.mx3 $TMPDIR
+cp $WORK/micromagnetic-simulations/mumax/sweep_permalloy/double_y/vary-x-w0-100/perm_double_y.$PBS_ARRAY_INDEX.mx3 $TMPDIR
 ls
 echo
 #
 ##command line
 cd $TMPDIR
-mumax3-cuda6.5 permalloy_single_y.$PBS_ARRAY_INDEX.mx3
+mumax3-cuda6.5 perm_double_y.$PBS_ARRAY_INDEX.mx3
 
 echo AfterMuMax
 #
 ##file management - Move output files to WORK directory
 ls
-mkdir -p $WORK/permalloy_hysteresis
+mkdir -p $WORK/perm_double_y
 cd $TMPDIR
-cp -a * $WORK/permalloy_hysteresis
-ls $WORK/permalloy_hysteresis
+cp -a * $WORK/perm_double_y
+ls $WORK/perm_double_y
 ## Diagnostics
 #
 echo ------------------------------------------------------------------------------------------------------------------
