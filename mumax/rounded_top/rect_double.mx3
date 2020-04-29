@@ -1,7 +1,19 @@
 OutputFormat = OVF1_TEXT
 
-SetGridsize(80, 280, 20)
+SetGridsize(80, 200, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
+
+MsPerm := 800e3
+ExchangeEPerm := 13e-12
+AlphaPerm := 0.01
+
+MsCo := 1400e3
+ExchangeECo := 30e-12
+AlphaCo := 0.015
+
+Ms := MsPerm
+ExchangeE := ExchangeEPerm
+Alph := AlphaPerm
 
 w1 := 100e-9
 w2 := 100e-9
@@ -9,20 +21,20 @@ gap := 100e-9
 trans1 := -(w1/2 + gap/2)
 trans2 := w2/2 + gap/2
 
-DefRegion(1, Cuboid(w1, 1e-6, 100e-9).transl(trans1, 0, 0))
-DefRegion(2, Cuboid(w2, 1e-6, 100e-9).transl(trans2, 0, 0))
+DefRegion(1, Cuboid(w1, 600e-9, 100e-9).transl(trans1, 0, 0))
+DefRegion(2, Cuboid(w2, 600e-9, 100e-9).transl(trans2, 0, 0))
 
-Msat.SetRegion(1, 1400e3)
+Msat.SetRegion(1, Ms)
 m.SetRegion(1, uniform(0, 1, 0))
-Aex.SetRegion(1, 30e-12)
+Aex.SetRegion(1, ExchangeE)
 Ku1.SetRegion(1, 0)
-alpha.SetRegion(1, 0.015)
+alpha.SetRegion(1, Alph)
 
-Msat.SetRegion(2, 1400e3)
+Msat.SetRegion(2, Ms)
 m.SetRegion(2, uniform(0, -1, 0))
-Aex.SetRegion(2, 30e-12)
+Aex.SetRegion(2, ExchangeE)
 Ku1.SetRegion(2, 0)
-alpha.SetRegion(2, 0.015)
+alpha.SetRegion(2, Alph)
 
 Msat.SetRegion(0, 0)
 m.SetRegion(0, uniform(0,0,0))
@@ -30,5 +42,5 @@ Aex.SetRegion(0, 0)
 
 relax()         // high-energy states best minimized by relax()
 
-saveas(m, "m_double_rect_100_100_100_1u")
-saveas(B_demag, "strayfield_double_rect_100_100_100_1u")
+saveas(m, "m_double_rect")
+saveas(B_demag, "strayfield_double_rect")

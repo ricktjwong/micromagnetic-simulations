@@ -1,7 +1,7 @@
 OutputFormat = OVF1_TEXT
 EdgeSmooth = 8
 
-SetGridsize(120, 200, 20)
+SetGridsize(80, 200, 20)
 SetCellsize(5e-9, 5e-9, 5e-9)
 
 MsPerm := 800e3
@@ -12,9 +12,9 @@ MsCo := 1400e3
 ExchangeECo := 30e-12
 AlphaCo := 0.015
 
-Ms := MsCo
-ExchangeE := ExchangeECo
-Alph := AlphaCo
+Ms := MsPerm
+ExchangeE := ExchangeEPerm
+Alph := AlphaPerm
 
 base_x := 200e-9
 sep := 100e-9
@@ -60,5 +60,5 @@ Kc1.SetRegion(0, 0)
 
 relax()         // high-energy states best minimized by relax()
 
-saveas(m, "m_double_rounded_tip_100_100_100")
-saveas(B_demag, "strayfield_double_rounded_tip_100_100_100")
+saveas(m, "m_double_rounded_tip")
+saveas(B_demag, "strayfield_double_rounded_tip")
