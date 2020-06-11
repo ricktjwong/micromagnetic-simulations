@@ -23,7 +23,7 @@ Methods
     - yslice specifies the distance to plot stray field at
     - dotted is a graph display parameter
 
-### Simulated Annealing
+## Simulated Annealing
 Simulated annealing was implemented in the optimisation folder. This optimises for maximum stray field at the centre of a square array of magnets.
 
 ## Installation of OOMMF
