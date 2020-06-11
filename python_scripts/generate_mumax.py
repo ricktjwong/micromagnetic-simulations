@@ -107,7 +107,7 @@ def generate_halbach_arrays(h_length: str, v_width: str, i: int):
 
 x = [i for i in range(10, 610, 10)]
 for i in range(len(x)):
-    generate_single_magnet(x=str(x[i])+'e-9',
+    generate_single_magnet(x='100e-9',
                            y='600e-9',
-                           z='100e-9',
+                           z=str(x[i])+'e-9',
                            i=i)

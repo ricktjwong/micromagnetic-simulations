@@ -1,5 +1,14 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+
+plt.rcParams['font.family'] = 'Times New Roman'
+plt.rcParams['font.size'] = 16
+plt.rcParams['lines.linewidth'] = 2
+plt.rcParams.update({'figure.autolayout': True})
+plt.rcParams['mathtext.default'] = 'regular'
 
 
 def get_meta_data(file_path: str):
@@ -25,9 +34,9 @@ def plot_rashba(file_path: str, yslice: [int]):
     u, v, w = data_field[:, :, :, 0], data_field[:, :, :, 1], \
         data_field[:, :, :, 2]
     fig, ax1 = plt.subplots()
-    ax1.set_ylabel("alpha (eVm)")
+    # ax1.set_ylabel("alpha (eVm)")
     ax2 = ax1.twinx()
-    ax2.set_ylabel("Magnetic Field (T)")
+    # ax2.set_ylabel("Magnetic Field (T)")
     # ax1.set_ylim([1e-12, 5e-11])
     # ax2.set_ylim([0, 0.07])
     for i in yslice:
@@ -38,7 +47,7 @@ def plot_rashba(file_path: str, yslice: [int]):
         grad_B = np.gradient(B)
         grad_Bx = np.gradient(Bx)
         # assumes in nanometres
-        dphi_dx = -(Bx * grad_B - B * grad_Bx)/(B*By*2*np.pi)
+        dphi_dx = -(Bx*grad_B - B*grad_Bx) / (B*By*2*np.pi)
         # alt expression but uses sqrt, might have sign issues?
         dphi_dx2 = (Bx * grad_B - B * grad_Bx)/(2*np.pi*B*B*np.sqrt(1-Bx*Bx/(B*B)))
         # extra 2pi factor from X = 2(pi)x
@@ -50,8 +59,7 @@ def plot_rashba(file_path: str, yslice: [int]):
         # ax2.plot([i * 5 for i in range(x)], By,label="$B_y$", color="green")
         ax2.plot([i * 5 for i in range(x)], B, label="$|B|$",  color="red")
         # ax2.plot([i * 5 for i in range(x)], Bx/B, label="$Bx/|B|$",  color="red")
-        plt.legend()
-        plt.show()
+        # plt.legend()
     return alpha
 
 
@@ -87,13 +95,6 @@ def surface_alpha(file_path: str, yrange: tuple):
     fig2 = plt.figure()
     ax2 = Axes3D(fig2)
     surface = ax2.plot_surface(X*5, Y*5, alpha2D, rstride=1, cstride=1,
-                               cmap='seismic', vmin=-1e-10, vmax=1e-10)
-    fig2.colorbar(surface, shrink=0.8, pad=0.05)
+                               cmap='seismic')
+    # fig2.colorbar(surface, shrink=0.8, pad=0.05)
     # plt.show()
-
-
-# plot_rashba(file_path='./data/stray_field/rect/kjaergaard/strayfield_parallel6_kjaergaard.ovf', yslice=[118])
-# plot_rashba(file_path='./data/stray_field/rect/kjaergaard/strayfield_antiparallel6_kjaergaard.ovf', yslice=[128])
-# surface_alpha(file_path='./data/stray_field/halbach_switching/switch_study_perm_100_60/halbach_switch_perm.4.out/strayfield5.ovf', yrange=(125, 176))
-# surface_alpha(file_path='./data/stray_field/360_dw/strayfield_360wall5double.ovf', yrange=(15, 26))
-surface_alpha(file_path='./data/stray_field/rect/kjaergaard/strayfield_antiparallel6_kjaergaard.ovf', yrange=[128, 150])

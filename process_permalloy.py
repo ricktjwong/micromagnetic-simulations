@@ -56,8 +56,3 @@ def process_mumax_single_permalloy_x():
         plt.legend()
     # plt.savefig('x-permalloy-single.pdf', dpi=1000)
     plt.show()
-
-# process_single_permalloy_y()
-# process_double_permalloy_varygap_y()
-# process_mumax_single_permalloy_x()
-# process_mumax_single_permalloy_y()

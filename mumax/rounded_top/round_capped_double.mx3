@@ -16,7 +16,7 @@ Ms := MsPerm
 ExchangeE := ExchangeEPerm
 Alph := AlphaPerm
 
-base_x := 200e-9
+base_x := 100e-9
 sep := 100e-9
 disp := sep/2 + base_x/2
 
