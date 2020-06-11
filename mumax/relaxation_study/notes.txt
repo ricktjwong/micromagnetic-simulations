@@ -1,0 +1,4 @@
+0: Double no relax
+1: 8array no relax
+2: 8array parallel no relax
+3: 8array parallel relax
